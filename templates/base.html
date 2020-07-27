@@ -13,14 +13,16 @@
     {% endblock %}
 
     {% block corecss %}
-        <link rel='icon' type='image/png' href="myicon.png">
+        <link rel="icon" type="image/png" href="media/canva/favicon.png">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
     {% block corejs %}
+        <script src="https://kit.fontawesome.com/41a1455613.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -32,10 +34,29 @@
     <title>Grizzly Audio Packs {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top"></header>
+    <header class="container-fluid fixed-top">
+        <div class="row pt-lg-2 d-none d-lg-flex">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="#">
+                    <img class="d-inline-block" id="main-nav-logo" src="media/canva/grizzlyaudio-logo.png" alt="Main Logo">
+                    <h2 class="d-inline-block">Grizzly Audio</h2>
+                </a>
+            </div>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0"></div>
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+                <nav>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    {% include 'includes/main-navbar.html' %}
+                    {% include 'includes/mobile-navbar.html' %}
+                </nav>
+            </div>
+        </div>
+    </header>
 
     {% if messages %}
-    <div class="message-container"></div>
+        <div class="message-container"></div>
     {% endif %}
 
     {% block page_header %}

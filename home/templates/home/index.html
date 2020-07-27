@@ -1,6 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
-    <h1 class="display-4">Heyyyyyyy bud</h1>
+    <div class="container h-100">
+        <div class="row h-50">
+            <div class="col-8 col-md-12 my-auto text-center">
+                <h1 class="display-4">Shop Description</h1>
+                <p>This segment will contain a brief description about the store, the products offered.</p>
+                <div class="my-5">
+                    <h4>
+                        <a href="" class="shop-now-button btn btn-outline-dark btn-sm text-uppercase py-3">View packs</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row h-50">
+            <div class="col-8 col-md-12 my-auto text-center">
+                <h1 class="display-4">Best Sellers</h1>
+                <div class="my-5">
+                    <h4>
+                        <a href="" class="shop-now-button btn btn-outline-dark btn-sm text-uppercase py-3">View packs</a>
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

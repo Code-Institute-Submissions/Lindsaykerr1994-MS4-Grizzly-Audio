@@ -1,0 +1,14 @@
+html {
+    height: 100%;
+}
+body {
+    background-color: #fff;
+    height: calc(100vh - 164px);
+}
+/* Header Specifications */
+header{
+    background-color: #222433;
+}
+#main-nav-logo{
+    height:50px;
+}
