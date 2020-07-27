@@ -1,18 +1,17 @@
-<div class="collapse navbar-collapse" id="main-navbar">
-    <ul class="navbar-nav text-center text-lg-right my-0">
-        <li class="nav-item">
-            <a class="nav-link" href="" id="home-link">
+<ul id="main-navbar-list" class="list-inline text-center text-lg-right my-0 text-uppercase">
+    <li class="list-inline-item">
+            <a class="nav-link text-white" href="" id="home-link">
                 <div class="text-center">
-                    <div><i class="fas fa-user"></i></div>
-                        <p class="my-0">Home</p>
+                    <div><i class="fas fa-home"></i></div>
+                    <p class="my-0 font-12">Home</p>
                 </div>
             </a>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" href="#" id="packs-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="list-inline-item dropdown">
+            <a class="nav-link text-white" href="#" id="packs-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
                     <div><i class="fas fa-music"></i></div>
-                    <p class="my-0">Packs</p>
+                    <p class="my-0 font-12">Packs</p>
                 </div>
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="packs-link">
@@ -22,11 +21,11 @@
                 <a class="dropdown-item">By Category</a>
             </div>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link" href="#" id="search-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <li class="list-inline-item dropdown">
+            <a class="nav-link text-white" href="#" id="search-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
                     <div><i class="fas fa-search"></i></div>
-                    <p class="my-0">Search</p>
+                    <p class="my-0 font-12">Search</p>
                 </div>
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="search-link">
@@ -41,14 +40,14 @@
                     </div>
                 </form>
             </div>
-        </li>
-        <li class="nav-item">
-                        <a class="nav-link" href="#" id="account-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <div class="text-center">
-                                <div><i class="fas fa-user fa-lg"></i></div>
-                                <p class="my-0">Account</p>
-                            </div>
-                        </a>
+    </li>
+        <li class="list-inline-item">
+            <a class="nav-link text-white" href="#" id="account-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="text-center">
+                    <div><i class="fas fa-user fa-lg"></i></div>
+                    <p class="my-0 font-12">Account</p>
+                </div>
+            </a>
                         <div class="dropdown-menu border-0" aria-labelledby="account-link">
                             {% if request.user.is_authenticated %}
                                 {% if request.user.is_superuser %}
@@ -62,19 +61,17 @@
                             {% endif %}
                         </div>
         </li>
-        <li class="nav-item">
-                        <a class="nav-link" href="#" id="cart-link">
-                            <div class="text-center">
-                                <div><i class="fas fa-shopping-cart"></i></div>
-                                <p class="my-0">
-                                    {% if grand_total %}
-                                        {{ grand_total|floatformat:2 }}
-                                    {% else %}
-                                        $0.00
-                                    {% endif %}
-                                </p>
-                            </div>
-                        </a>
+        <li class="list-inline-item">
+            <a class="nav-link text-white" href="#" id="cart-link">
+                <div class="text-center">
+                    <div><i class="fas fa-shopping-cart"></i></div>
+                    <p class="my-0 font-12">
+                        {% if grand_total %}                                {{        grand_total|floatformat:2 }}
+                        {% else %}
+                            $0.00
+                        {% endif %}
+                    </p>
+                </div>
+            </a>
         </li>
     </ul>
-</div>

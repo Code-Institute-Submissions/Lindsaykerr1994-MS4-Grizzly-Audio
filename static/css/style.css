@@ -8,7 +8,41 @@ body {
 /* Header Specifications */
 header{
     background-color: #222433;
+    color: #fff;
 }
 #main-nav-logo{
     height:50px;
+}
+#main-logo-text{
+    line-height: 50px;
+    font-family: 'Sanchez';
+}
+
+.mobile-nav-btn{
+    background-color: #222433;
+    border: 1px solid;
+    border-color: rgba(255 ,255,255,0.6);
+    border-radius: 5px;
+    color: rgba(255 ,255,255,0.6)
+}
+#mobile-nav-bar{
+    display: none;
+}
+.dropdown-menu {
+    width: 225px;
+}
+/* Font Specifications */
+.font-12{
+    font-size: 12px;
+}
+/* Media Queries */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 80%;
+  }
+}
+@media (max-width: 991px) {
+    .nav-icon {
+        margin: auto 15px;
+    }
 }
