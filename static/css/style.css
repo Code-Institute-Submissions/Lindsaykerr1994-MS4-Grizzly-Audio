@@ -5,6 +5,10 @@ body {
     background-color: #fff;
     height: calc(100vh - 164px);
 }
+/* Font Specifications */
+.font-12{
+    font-size: 12px;
+}
 /* Header Specifications */
 header{
     background-color: #222433;
@@ -31,9 +35,17 @@ header{
 .dropdown-menu {
     width: 225px;
 }
-/* Font Specifications */
-.font-12{
-    font-size: 12px;
+/* Carousel Specifications */
+
+.carousel-container .carousel-item img{
+    height: 200px;
+    width: 200px;
+}
+.carousel-control-next-icon{
+    background-image: none;
+}
+.carousel-control-prev-icon{
+    background-image: none;
 }
 /* Media Queries */
 @media (min-width: 1200px) {
