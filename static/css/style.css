@@ -9,10 +9,15 @@ body {
 .font-12{
     font-size: 12px;
 }
-/* Header Specifications */
-header{
+/* Spacing Specifications */
+.margin-tb-125{
+    margin: 125px auto;
+}
+/* Header & Footer Specifications */
+header, footer{
     background-color: #222433;
     color: #fff;
+    height: 75px;
 }
 #main-nav-logo{
     height:50px;
@@ -21,7 +26,6 @@ header{
     line-height: 50px;
     font-family: 'Sanchez';
 }
-
 .mobile-nav-btn{
     background-color: #222433;
     border: 1px solid;
@@ -35,6 +39,7 @@ header{
 .dropdown-menu {
     width: 225px;
 }
+
 /* Carousel Specifications */
 
 .carousel-container .carousel-item img{

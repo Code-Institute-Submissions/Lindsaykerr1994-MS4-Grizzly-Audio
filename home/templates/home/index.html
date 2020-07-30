@@ -2,28 +2,30 @@
 {% load static %}
 
 {% block page_header %}
+    <!--
     <div class="container header-container">
         <div class="row">
             <div class="col"></div>
         </div>
-    </div>
+    </div>-->
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100">
+    <div class="container h-100 margin-tb-125">
         <div class="row h-50">
             <div class="col-8 col-md-12 my-auto text-center">
                 <h1 class="display-4">Shop Description</h1>
-                <p>This segment will contain a brief description about the store, the products offered. </p>
+                <p>This segment will contain a brief description about the store, the products offered.</p>
                 <div class="my-5">
                     <a href="" class="shop-now-button btn btn-outline-dark btn-sm text-uppercase py-3">View packs</a>
                 </div>
             </div>
+            <hr>
         </div>
-        <hr>
+        
         <div class="row h-50">
             <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
-                <h3 class="text-uppercase my-4">Best Sellers</h3>
+                <h3 class="text-uppercase my-4 font-weight-light">Best Sellers</h3>
                 <div class="carousel-container">
                     <div id="carouselBestSellerControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -66,7 +68,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
-                <h3 class="text-uppercase my-4">New Release</h3>
+                <h3 class="text-uppercase my-4 font-weight-light">New Release</h3>
                 <div class="carousel-container">
                     <div id="carouselNewReleaseControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -109,7 +111,7 @@
                 </div>
             </div>
             <div class="d-none d-lg-inline-block col-lg-4 my-auto text-center">
-                <h3 class="text-uppercase my-4">Free Packs</h3>
+                <h3 class="text-uppercase my-4 font-weight-light">Free Packs</h3>
                 <div class="carousel-container">
                     <div id="carouselFreePacksControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
