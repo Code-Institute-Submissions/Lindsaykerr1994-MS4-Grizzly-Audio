@@ -52,6 +52,18 @@ header, footer{
 .carousel-control-prev-icon{
     background-image: none;
 }
+/* Pack Page Specifcations */
+.pack-card{
+    width:200px;
+}
+.pack-card .badge{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+.card-img-top:hover{
+    opacity:0.6;
+}
 /* Media Queries */
 @media (min-width: 1200px) {
   .container {

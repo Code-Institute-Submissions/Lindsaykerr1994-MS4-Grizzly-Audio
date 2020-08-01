@@ -13,7 +13,7 @@
     {% endblock %}
 
     {% block corecss %}
-        <link rel="icon" type="image/png" href="media/canva/favicon.png">
+        <link rel="icon" type="image/png" href="{% static 'canva/favicon.png' %}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Sanchez&display=swap" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
@@ -42,7 +42,7 @@
         <div class="row py-2">
             <div class="col-12 col-lg-6 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="#" class="float-left float-lg-none">
-                    <img class="d-inline-block" id="main-nav-logo" src="media/canva/grizzlyaudio-logo.png" alt="Main Logo">
+                    <img class="d-inline-block" id="main-nav-logo" src="{% static 'canva/grizzlyaudio-logo.png' %}" alt="Main Logo">
                     <h2 id="main-logo-text" class="d-lg-inline-block d-none text-uppercase text-white">Grizzly Audio</h2>
                 </a>
                 <button class="float-right d-inline-block d-lg-none mobile-nav-btn"><i class="fas fa-bars fa-2x"></i></button>

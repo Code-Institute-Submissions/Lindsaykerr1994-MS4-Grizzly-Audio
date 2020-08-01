@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    <!--
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>-->
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid margin-tb-125">
+        <div class="row">
+            <div class="col text-center">
+                <h3 class="text-uppercase my-4 font-weight-light">All Audio Packs</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-10 offset-1">
+                <div class="row mt-1 mb-2">
+                </div>
+                <div class="row">
+                    {% for pack in packs %}
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="pack-card card h-100 border-0 mx-auto my-4">
+                                {% if pack.image %}
+                                <div class="img-container">
+                                    {% if pack.on_sale %}
+                                    <span class="badge badge-danger">On Sale!</span>
+                                    {% endif %}
+                                    <a href="" class="h-100">
+                                        <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="card-img-top img-fluid">
+                                    </a>
+                                </div>
+                                {% else %}
+                                <div class="img-container">
+                                    <a href="" >
+                                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
+                                    </a>
+                                </div>
+                                {% endif %}
+                                <div class="card-body p-1 pb-0">
+                                    <p class="mb-0">{{ pack.name }} - <br><small>{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s>{% endif %} ${{ pack.price }}</small></p>
+                                </div>
+                                <div class="card-footer border-0 p-1 pb-0 text-center bg-white">
+                                    <div class="row">
+                                        <div class="col">
+                                                
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
