@@ -4,5 +4,24 @@ from .models import Pack, Category
 # Register your models here.
 
 
-admin.site.register(Pack)
-admin.site.register(Category)
+class PackAdmin(admin.ModelAdmin):
+    list_display = (
+        'sku',
+        'name',
+        'category',
+        'price',
+        'image'
+    )
+
+    ordering = ('sku',)
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = (
+        'friendly_name',
+        'name',
+    )
+
+
+admin.site.register(Pack, PackAdmin)
+admin.site.register(Category, CategoryAdmin)
