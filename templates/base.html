@@ -49,19 +49,21 @@
             </div>
             <div class="col-6 d-none d-lg-inline-block my-auto py-1 py-lg-0">    
                 {% include 'includes/main-navbar.html' %}
+                
             </div>
         </div>
         <div id="mobile-nav-bar" class="row d-lg-none">
             {% include 'includes/mobile-navbar.html' %}
         </div>
+        {% block page_header %}
+        {% endblock %}
     </header>
 
     {% if messages %}
         <div class="message-container"></div>
     {% endif %}
 
-    {% block page_header %}
-    {% endblock %}
+    
 
 
     {% block content %}

@@ -9,9 +9,16 @@ body {
 .font-12{
     font-size: 12px;
 }
+/* Colour Specifications */
+.bg-gold{
+    background-color: #9c824a;
+}
 /* Spacing Specifications */
 .margin-tb-125{
     margin: 125px auto;
+}
+.w-90{
+    width: 90%;
 }
 /* Header & Footer Specifications */
 header, footer{
@@ -41,7 +48,6 @@ header, footer{
 }
 
 /* Carousel Specifications */
-
 .carousel-container .carousel-item img{
     height: 200px;
     width: 200px;
@@ -63,6 +69,11 @@ header, footer{
 }
 .card-img-top:hover{
     opacity:0.6;
+}
+/* Pack Details Page Specifcations */
+.pack-detail-img{
+    height:400px;
+    width:400px;
 }
 /* Media Queries */
 @media (min-width: 1200px) {

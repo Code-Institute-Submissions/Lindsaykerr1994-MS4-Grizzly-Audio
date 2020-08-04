@@ -32,13 +32,13 @@
                                     {% if pack.on_sale %}
                                     <span class="badge badge-danger">On Sale!</span>
                                     {% endif %}
-                                    <a href="" class="h-100">
+                                    <a href="{% url 'pack_detail' pack.id %}" class="h-100">
                                         <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="card-img-top img-fluid">
                                     </a>
                                 </div>
                                 {% else %}
                                 <div class="img-container">
-                                    <a href="" >
+                                    <a href="">
                                         <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
                                     </a>
                                 </div>

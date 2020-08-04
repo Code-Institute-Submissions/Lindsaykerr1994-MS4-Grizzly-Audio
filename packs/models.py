@@ -19,7 +19,7 @@ class Pack(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    publish_date = models.FloatField()
+    publish_date = models.IntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     on_sale = models.BooleanField(default=False)
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)

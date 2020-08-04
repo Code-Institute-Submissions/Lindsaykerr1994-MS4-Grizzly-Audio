@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+        <div class="row bg-gold">
+            <div class="col-12 text-center">
+                {% if pack.on_sale %}
+                <p class="mb-0 text-white font-weight-light">This product is currently on sale! Get it <u>now</u> before the sale ends.</p>
+                {% endif %}
+            </div>
+        </div>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid margin-tb-125">
+        <div class="row">
+            <div class="col-10 offset-sm-1 col-lg-6 offset-lg-0">
+                <div class="img-container text-center my-3">
+                    {% if pack.image %}
+                        {% if pack.on_sale %}
+                            <span class="badge badge-danger">On Sale!</span>
+                        {% endif %}
+                            <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="pack-detail-img">
+                    {% else %}
+                            <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="pack-detail-img">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-10 offset-sm-1 col-lg-6 offset-lg-0">
+                <h3 class="text-uppercase my-4 font-weight-light text-center text-lg-left">{{ pack.name }}</h3>
+                <hr class="w-100 mb-1">
+                <div class="h-50" >
+                    <p class="text-muted">Publication Date: {{ date_string }}/{{ month_string }}/{{ year_string }}</p>
+                    <p class="my-4">{{ pack.description }}</p>
+                </div>
+                <p class="my-4 font-weight-bold">{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s>{% endif %} ${{ pack.price }}</p>
+                
+            </div>
+            <hr class="w-90 mb-5">
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-4 mx-auto">
+                        <h4 class="text-uppercase my-4 font-weight-light text-center">Similar Packs</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4">
+                        Product 1
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        Product 1
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4 d-none d-lg-inline-block">
+                        Product 1
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
