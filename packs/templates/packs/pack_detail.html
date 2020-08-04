@@ -46,15 +46,14 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-md-6 col-lg-4">
-                        Product 1
+                {% for pack in similar_packs[0:3] %}
+                    <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
+                        {{ pack.name }}
                     </div>
-                    <div class="col-12 col-md-6 col-lg-4">
-                        Product 1
-                    </div>
-                    <div class="col-12 col-md-6 col-lg-4 d-none d-lg-inline-block">
-                        Product 1
-                    </div>
+                    {% if forloop.counter == 3%}
+                        <div class="d-none d-lg-inline-block col-lg-4 my-auto text-center"></div>
+                    {% endif %}
+                {% endfor %}    
                 </div>
             </div>
         </div>
