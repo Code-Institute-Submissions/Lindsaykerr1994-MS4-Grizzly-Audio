@@ -31,21 +31,21 @@
                         <div class="carousel-inner">
                         <!-- Remember to change the ID for each carousel
                             And to set only one item as a active, otherwise the carousel will have no display-->
-                            <div class="carousel-item active">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/colossus-filters.jpeg" alt="First slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/django-guitars.jpeg" alt="Second slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/drum-sessions-vol1.jpeg" alt="Third slide">
-                                </a>
-                            </div>
+                            {% for pack in best_sellers %}
+                                {% if forloop.first %}
+                                    <div class="carousel-item active">
+                                        <a href="{% url 'pack_detail' pack.id %}">
+                                            <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <a href="{% url 'pack_detail' pack.id %}">
+                                            <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <a class="carousel-control-prev" href="#carouselBestSellerControls" role="button" data-slide="prev">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -74,21 +74,21 @@
                         <div class="carousel-inner">
                         <!-- Remember to change the ID for each carousel
                             And to set only one item as a active, otherwise the carousel will have no display-->
-                            <div class="carousel-item active">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/colossus-filters.jpeg" alt="First slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/django-guitars.jpeg" alt="Second slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/drum-sessions-vol1.jpeg" alt="Third slide">
-                                </a>
-                            </div>
+                            {% for pack in new_releases %}
+                                {% if forloop.first %}
+                                    <div class="carousel-item active">
+                                        <a href="{% url 'pack_detail' pack.id %}">
+                                            <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <a href="{% url 'pack_detail' pack.id %}">
+                                            <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <a class="carousel-control-prev" href="#carouselNewReleaseControls" role="button" data-slide="prev">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -117,21 +117,21 @@
                         <div class="carousel-inner">
                         <!-- Remember to change the ID for each carousel
                             And to set only one item as a active, otherwise the carousel will have no display-->
-                            <div class="carousel-item active">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/colossus-filters.jpeg" alt="First slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/django-guitars.jpeg" alt="Second slide">
-                                </a>
-                            </div>
-                            <div class="carousel-item">
-                                <a href="#">
-                                    <img class="d-block mx-auto" src="media/audiocovers/drum-sessions-vol1.jpeg" alt="Third slide">
-                                </a>
-                            </div>
+                            {% for pack in free_packs %}
+                                {% if forloop.first %}
+                                    <div class="carousel-item active">
+                                        <a href="{% url 'pack_detail' pack.id %}">
+                                            <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
+                                        </a>
+                                    </div>
+                                {% else %}
+                                    <div class="carousel-item">
+                                        <a href="{% url 'pack_detail' pack.id %}">
+                                            <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
                         </div>
                         <a class="carousel-control-prev" href="#carouselFreePacksControls" role="button" data-slide="prev">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">

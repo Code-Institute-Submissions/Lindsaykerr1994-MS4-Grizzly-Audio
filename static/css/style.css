@@ -62,7 +62,7 @@ header, footer{
 .pack-card{
     width:200px;
 }
-.pack-card .badge{
+.img-container .badge{
     position: absolute;
     right: 5px;
     top: 5px;
@@ -74,6 +74,10 @@ header, footer{
 .pack-detail-img{
     height:400px;
     width:400px;
+}
+.pack-detail-img img{
+    width: 100%;
+    height: 100%;
 }
 /* Media Queries */
 @media (min-width: 1200px) {

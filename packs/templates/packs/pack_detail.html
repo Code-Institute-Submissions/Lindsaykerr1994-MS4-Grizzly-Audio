@@ -15,12 +15,12 @@
     <div class="container-fluid margin-tb-125">
         <div class="row">
             <div class="col-10 offset-sm-1 col-lg-6 offset-lg-0">
-                <div class="img-container text-center my-3">
+                <div class="img-container mx-auto my-3 pack-detail-img">
                     {% if pack.image %}
                         {% if pack.on_sale %}
                             <span class="badge badge-danger">On Sale!</span>
                         {% endif %}
-                            <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="pack-detail-img">
+                            <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="">
                     {% else %}
                             <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="pack-detail-img">
                     {% endif %}
