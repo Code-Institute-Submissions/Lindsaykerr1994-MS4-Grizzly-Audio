@@ -20,7 +20,8 @@ def all_packs(request):
             if sortkey == ' name':
                 sortkey = 'lower_name'
                 packs = packs.annotate(lower_name=Lower('name'))
-
+            if sortkey == 'category':
+                sortkey = 'category__name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
@@ -42,12 +43,11 @@ def all_packs(request):
             packs = packs.filter(queries)
 
 
-    current_sorting = f'{sort}_{direction}'
-
     context = {
         'packs': packs,
         'search_term': query, 
-        'curent_sorting': current_sorting,
+        'current_sorting': sort,
+        'current_direction': direction,
         'current_categories': categories,
     }
 

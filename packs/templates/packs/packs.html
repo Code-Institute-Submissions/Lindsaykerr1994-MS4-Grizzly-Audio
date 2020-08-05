@@ -15,23 +15,38 @@
         <div class="row">
             <hr class="w-100 mb-1">
             <div class="col-10 offset-1">
-                <h2 class="text-uppercase mt-4 text-center font-weight-light header-spacing">All Audio Packs</h2>
+                <h2 class="text-uppercase mt-4 text-center font-weight-light header-spacing">All {% for cat in current_categories %}{{ cat.friendly_name }}{% endfor %} Packs</h2>
             </div>
             <hr class="w-100 mb-1">
         </div>
-        <div class="row">
-            <div class="col-5 offset-1">
-                <p id="pack-count" class="px-5 font-weight-light">packs</p>
+        
+        <div class="row text-uppercase">
+            <div class="col-5 offset-1 px-5">
+                <p id="pack-count" class=" font-weight-light">{{ packs|length }} pack(s)  
+                {% if search_term %}
+                    with search term: <strong>"{{ search_term }}"</strong>
+                {% endif %}
+                {% if current_categories %}
+                    with category: <strong>"{% for cat in current_categories %}{{ cat.friendly_name }}{% endfor %}"</strong>
+                {% endif %}
+                </p>
             </div>
-            <div class="col-5 text-right">
-                
-                <select name="sortby" class="px-5 font-weight-light sortby-select">
-                    <option selected><a href="">Sort</a></option>
-                    <option><a>By Name</a></option>
-                    <option><a>By Popularity</a></option>
-                    <option><a>By Price</a></option>
-                    <option><a>By Category</a></option>
+            <div class="col-5 text-right px-5">
+            <label for="sortby" class="font-weight-light">Sort By</label>
+                <select name="sortby" id="sortbyoptions" class="font-weight-light sortby-select text-uppercase">
+                    <option value="-">-</option>
+                    <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'sales' %}selected{% endif %} value="sales">Popularity {% if current_sorting == 'sales' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'price' %}selected{% endif %} value="price">Price {% if current_sorting == 'price' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'category' %}selected{% endif %} value="category">Category {% if current_sorting == 'category' %}({{ current_direction }}){% endif %}</option>
                 </select>
+                <button id="changedirection">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#607D8B" fill="none" stroke-linecap="round" stroke-linejoin="round" >
+                    <path stroke="none" d="M0 0h24v24H0z"/>
+                    <path d="M3 9l4-4l4 4m-4 -4v14" />
+                    <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                    </svg>
+                </button>
             </div>
         </div>
         <div class="row">
@@ -80,3 +95,29 @@
         </div>
     </div>
 {% endblock %}
+
+{% block postloadjs %}
+    {{block.super}}
+    <script type="text/javascript">
+        $("#sortbyoptions").change(function(){
+            var sortelement = $(this);
+            var currentUrl = new URL(window.location);
+            var selectedSort = sortelement.val();
+            if(selectedSort != "-"){
+                currentUrl.searchParams.set("sort", selectedSort);
+                window.location.replace(currentUrl)
+            }
+        })
+        $("#changedirection").click(function(){
+            var currentUrl = new URL(window.location);
+            var currentDir = currentUrl.searchParams.get("direction");
+            if(currentDir == "desc"){
+                var newDir = "asc";
+            } else {
+                newDir = "desc";
+            }
+            currentUrl.searchParams.set("direction", newDir);
+            window.location.replace(currentUrl)
+        })
+    </script>
+{% endblock%}
