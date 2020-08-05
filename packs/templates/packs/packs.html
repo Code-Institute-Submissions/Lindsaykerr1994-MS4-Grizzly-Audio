@@ -13,10 +13,25 @@
 {% block content %}
     <div class="container-fluid margin-tb-125">
         <div class="row">
+            <hr class="w-100 mb-1">
             <div class="col-10 offset-1">
-                <hr class="w-100 mb-1">
-                <h3 class="text-uppercase my-4 font-weight-light">All Audio Packs</h3>
-                <hr class="w-100 mb-1">
+                <h2 class="text-uppercase mt-4 text-center font-weight-light header-spacing">All Audio Packs</h2>
+            </div>
+            <hr class="w-100 mb-1">
+        </div>
+        <div class="row">
+            <div class="col-5 offset-1">
+                <p id="pack-count" class="px-5 font-weight-light">packs</p>
+            </div>
+            <div class="col-5 text-right">
+                
+                <select name="sortby" class="px-5 font-weight-light sortby-select">
+                    <option selected><a href="">Sort</a></option>
+                    <option><a>By Name</a></option>
+                    <option><a>By Popularity</a></option>
+                    <option><a>By Price</a></option>
+                    <option><a>By Category</a></option>
+                </select>
             </div>
         </div>
         <div class="row">
@@ -44,7 +59,11 @@
                                 </div>
                                 {% endif %}
                                 <div class="card-body p-1 pb-0">
-                                    <p class="mb-0">{{ pack.name }} - <br><small>{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s>{% endif %} ${{ pack.price }}</small></p>
+                                    <a href="{% url 'pack_detail' pack.id %}" class="mb-0 text-black">{{ pack.name }}</a>
+                                    <br>
+                                    <small>{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s>{% endif %} ${{ pack.price }}</small>
+                                    <br>
+                                    <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="mb-0 text-black"><small>{{ pack.category.friendly_name }}</small></a>
                                 </div>
                                 <div class="card-footer border-0 p-1 pb-0 text-center bg-white">
                                     <div class="row">

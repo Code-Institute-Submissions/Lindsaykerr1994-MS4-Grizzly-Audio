@@ -16,9 +16,9 @@
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="packs-link">
                 <a href="{% url 'packs' %}" class="dropdown-item">All Audio Packs</a>
-                <a class="dropdown-item">By Popularity</a>
-                <a class="dropdown-item">By Price</a>
-                <a class="dropdown-item">By Category</a>
+                <a href="{% url 'packs' %}?sort=sales&direction=desc" class="dropdown-item">By Popularity</a>
+                <a href="{% url 'packs' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'packs' %}?sort=category&direction=asc" class="dropdown-item">By Category</a>
             </div>
         </li>
     <li class="list-inline-item dropdown">
@@ -29,7 +29,7 @@
                 </div>
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="search-link">
-                <form method="GET" action="">
+                <form method="GET" action="{% url 'packs' %}">
                 <div class="input-group w-100">
                     <input type="text" name="q" placeholder="Search all packs">
                         <div class="input-group-append">

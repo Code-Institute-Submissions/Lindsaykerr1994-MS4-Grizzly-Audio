@@ -9,6 +9,21 @@ body {
 .font-12{
     font-size: 12px;
 }
+.header-spacing{
+    letter-spacing: 1.5px;
+}
+.font-weight-light{
+    font-weight: 200 !important;
+}
+.text-black{
+    color: #000;
+}
+.text-black:hover{
+    color: #000;
+}
+.underline-hover:hover{
+    text-decoration: underline;
+}
 /* Colour Specifications */
 .bg-gold{
     background-color: #9c824a;
@@ -78,6 +93,9 @@ header, footer{
 .pack-detail-img img{
     width: 100%;
     height: 100%;
+}
+.sortby-select{
+    border: 0px;
 }
 /* Media Queries */
 @media (min-width: 1200px) {

@@ -32,6 +32,7 @@
                 <div class="h-50" >
                     <p class="text-muted">Publication Date: {{ date_string }}/{{ month_string }}/{{ year_string }}</p>
                     <p class="my-4">{{ pack.description }}</p>
+                    <p class="my-4">Category: <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="text-muted">{{pack.category.friendly_name}}</a></p>
                 </div>
                 <p class="my-4 font-weight-bold">{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s>{% endif %} ${{ pack.price }}</p>
                 
@@ -46,7 +47,7 @@
                     </div>
                 </div>
                 <div class="row">
-                {% for pack in similar_packs[0:3] %}
+                {% for pack in similar_packs %}
                     <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
                         {{ pack.name }}
                     </div>
