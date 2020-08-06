@@ -64,8 +64,13 @@ header, footer{
 }
 #mobile-nav-bar{
     display: none;
+    background-color:#9c824a;
+}
+#mobile-nav-bar li{
+    width:24%;
 }
 .dropdown-menu {
+    margin-top:8px;
     width: 225px;
 }
 /* Carousel Specifications */

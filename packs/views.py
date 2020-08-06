@@ -63,10 +63,8 @@ def pack_detail(request, pack_id):
     packs = Pack.objects.all()
     similar_packs = packs.filter(category=category)
     for this_pack in similar_packs:
-        print(this_pack.id)
         if this_pack == pack:
             similar_packs = similar_packs.exclude(pk=this_pack.id)
-        print(similar_packs)
 
     context = {
         'pack': pack,

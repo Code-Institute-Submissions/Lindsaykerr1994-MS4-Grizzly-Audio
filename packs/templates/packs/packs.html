@@ -32,6 +32,14 @@
                 </p>
             </div>
             <div class="col-5 text-right px-5">
+                
+                <select name="sortby" id="sortbyoptions" class="font-weight-light border-0 text-uppercase">
+                    <option value="-">Sort By</option>
+                    <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'sales' %}selected{% endif %} value="sales">Popularity {% if current_sorting == 'sales' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'price' %}selected{% endif %} value="price">Price {% if current_sorting == 'price' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'category' %}selected{% endif %} value="category">Category {% if current_sorting == 'category' %}({{ current_direction }}){% endif %}</option>
+                </select> 
                 <button id="changedirection" class="border-0 bg-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
                     <path stroke="none" d="M0 0h24v24H0z"/>
@@ -39,15 +47,6 @@
                     <path d="M21 15l-4 4l-4-4m4 4v-14" />
                     </svg>
                 </button>
-                <label for="sortby" class="font-weight-light">Sort By</label>
-                <select name="sortby" id="sortbyoptions" class="font-weight-light border-0 text-uppercase">
-                    <option value="-">-</option>
-                    <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' %}({{ current_direction }}){% endif %}</option>
-                    <option {% if current_sorting == 'sales' %}selected{% endif %} value="sales">Popularity {% if current_sorting == 'sales' %}({{ current_direction }}){% endif %}</option>
-                    <option {% if current_sorting == 'price' %}selected{% endif %} value="price">Price {% if current_sorting == 'price' %}({{ current_direction }}){% endif %}</option>
-                    <option {% if current_sorting == 'category' %}selected{% endif %} value="category">Category {% if current_sorting == 'category' %}({{ current_direction }}){% endif %}</option>
-                </select> 
-                
             </div>
         </div>
         <div class="row">

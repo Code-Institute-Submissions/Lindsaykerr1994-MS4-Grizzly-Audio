@@ -51,7 +51,8 @@
                 <div class="row">
                 {% for pack in similar_packs %}
                     <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
-                        <div class="img-container similar-product mx-auto">
+                        <div class="pack-card card h-100 border-0 mx-auto my-4">
+                        <div class="img-container similar-product">
                             <div>
                             <a href="{% url 'pack_detail' pack.id %}" class="h-100">
                             <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="card-img-top img-fluid">
@@ -61,36 +62,18 @@
                             {% endif %}
                             </div>
                         </div>
+                        </div>
                     </div>
-                    {% if forloop.counter == 3 %}
-                        <div class="d-none d-lg-inline-block col-lg-4 my-auto text-center">
-                            <div class="img-container similar-product mx-auto">
-                                <div>
-                                <a href="{% url 'pack_detail' pack.id %}" class="h-100">
-                                <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="card-img-top img-fluid">
+                {% endfor %}  
+                    <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
+                        <div class="pack-card card h-100 border-0 mx-auto my-4">
+                            <div class="img-container">
+                                <a href="{% url 'packs' %}">
+                                    <img src="../media/see-all.png" alt="" class="card-img-top img-fluid">
                                 </a>
-                                {% if pack.on_sale %}
-                                <span class="badge badge-danger onsale-badge">On Sale!</span>
-                                {% endif %}
-                                </div>
                             </div>
                         </div>
-                    {% endif %}
-                    {%  if forloop.counter == 4 %}
-                        <div class="d-none">
-                            <div class="img-container similar-product mx-auto">
-                                <div>
-                                <a href="{% url 'pack_detail' pack.id %}" class="h-100">
-                                <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="card-img-top img-fluid">
-                                </a>
-                                {% if pack.on_sale %}
-                                <span class="badge badge-danger onsale-badge">On Sale!</span>
-                                {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}    
+                    </div>
                 </div>
             </div>
         </div>
