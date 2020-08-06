@@ -4,6 +4,7 @@ html {
 body {
     background-color: #fff;
     height: calc(100vh - 164px);
+    color: #292929;
 }
 /* Font Specifications */
 .font-12{
@@ -31,6 +32,9 @@ body {
 .bg-gold{
     background-color: #9c824a;
 }
+.bg-darkgrey{
+    background-color: #292929;
+}
 /* Spacing Specifications */
 .margin-tb-125{
     margin: 125px auto;
@@ -40,7 +44,7 @@ body {
 }
 /* Header & Footer Specifications */
 header, footer{
-    background-color: #222433;
+    background-color: #292929;
     color: #fff;
     height: 75px;
 }
@@ -52,7 +56,7 @@ header, footer{
     font-family: 'Sanchez';
 }
 .mobile-nav-btn{
-    background-color: #222433;
+    background-color: #292929;
     border: 1px solid;
     border-color: rgba(255 ,255,255,0.6);
     border-radius: 5px;
@@ -64,7 +68,6 @@ header, footer{
 .dropdown-menu {
     width: 225px;
 }
-
 /* Carousel Specifications */
 .carousel-container .carousel-item img{
     height: 200px;
@@ -80,13 +83,20 @@ header, footer{
 .pack-card{
     width:200px;
 }
-.img-container .badge{
+.pack-display .badge{
     position: absolute;
     right: 5px;
     top: 5px;
 }
 .card-img-top:hover{
     opacity:0.6;
+}
+.btt-button{
+    display:none;
+    position: fixed;
+    bottom: 75px;
+    right:25px;
+    width: 100px;
 }
 /* Pack Details Page Specifcations */
 .pack-detail-img{
@@ -97,8 +107,19 @@ header, footer{
     width: 100%;
     height: 100%;
 }
-.sortby-select{
-    border: 0px;
+.similar-product{
+    height: 200px;
+    width: 200px;
+}
+.onsale-badge{
+    position: relative;
+    left: 65px;
+    bottom: 200px;
+}
+.onsale-lgdisplay{
+    position: relative;
+    left: 335px;
+    bottom: 400px;
 }
 /* Media Queries */
 @media (min-width: 1200px) {

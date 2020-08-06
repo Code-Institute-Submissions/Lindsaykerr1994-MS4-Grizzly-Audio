@@ -40,14 +40,16 @@
   <body>
     <header class="container-fluid fixed-top">
         <div class="row py-2">
-            <div class="col-12 col-lg-6 my-auto py-1 py-lg-0 text-center text-lg-left">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="#" class="float-left float-lg-none">
-                    <img class="d-inline-block" id="main-nav-logo" src="{% static 'canva/grizzlyaudio-logo.png' %}" alt="Main Logo">
-                    <h2 id="main-logo-text" class="d-lg-inline-block d-none text-uppercase text-white">Grizzly Audio</h2>
+                    <h2 id="main-logo-text" class="d-lg-inline-block d-none text-uppercase text-white">GRIZZLY</h2>
                 </a>
                 <button class="float-right d-inline-block d-lg-none mobile-nav-btn"><i class="fas fa-bars fa-2x"></i></button>
             </div>
-            <div class="col-6 d-none d-lg-inline-block my-auto py-1 py-lg-0">    
+            <div class="col-4">
+                <img class="d-inline-block" id="main-nav-logo" src="{% static 'canva/grizzlyaudio-logo.png' %}" alt="Main Logo">
+            </div>
+            <div class="col-4 d-none d-lg-inline-block my-auto py-1 py-lg-0">    
                 {% include 'includes/main-navbar.html' %}
                 
             </div>

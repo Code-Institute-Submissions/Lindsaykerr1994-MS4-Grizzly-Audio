@@ -32,21 +32,22 @@
                 </p>
             </div>
             <div class="col-5 text-right px-5">
-            <label for="sortby" class="font-weight-light">Sort By</label>
-                <select name="sortby" id="sortbyoptions" class="font-weight-light sortby-select text-uppercase">
-                    <option value="-">-</option>
-                    <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' %}({{ current_direction }}){% endif %}</option>
-                    <option {% if current_sorting == 'sales' %}selected{% endif %} value="sales">Popularity {% if current_sorting == 'sales' %}({{ current_direction }}){% endif %}</option>
-                    <option {% if current_sorting == 'price' %}selected{% endif %} value="price">Price {% if current_sorting == 'price' %}({{ current_direction }}){% endif %}</option>
-                    <option {% if current_sorting == 'category' %}selected{% endif %} value="category">Category {% if current_sorting == 'category' %}({{ current_direction }}){% endif %}</option>
-                </select>
-                <button id="changedirection">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#607D8B" fill="none" stroke-linecap="round" stroke-linejoin="round" >
+                <button id="changedirection" class="border-0 bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
                     <path stroke="none" d="M0 0h24v24H0z"/>
                     <path d="M3 9l4-4l4 4m-4 -4v14" />
                     <path d="M21 15l-4 4l-4-4m4 4v-14" />
                     </svg>
                 </button>
+                <label for="sortby" class="font-weight-light">Sort By</label>
+                <select name="sortby" id="sortbyoptions" class="font-weight-light border-0 text-uppercase">
+                    <option value="-">-</option>
+                    <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'sales' %}selected{% endif %} value="sales">Popularity {% if current_sorting == 'sales' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'price' %}selected{% endif %} value="price">Price {% if current_sorting == 'price' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'category' %}selected{% endif %} value="category">Category {% if current_sorting == 'category' %}({{ current_direction }}){% endif %}</option>
+                </select> 
+                
             </div>
         </div>
         <div class="row">
@@ -58,7 +59,7 @@
                         <div class="col-sm-6 col-lg-4 col-xl-3">
                             <div class="pack-card card h-100 border-0 mx-auto my-4">
                                 {% if pack.image %}
-                                <div class="img-container">
+                                <div class="img-container pack-display">
                                     {% if pack.on_sale %}
                                     <span class="badge badge-danger">On Sale!</span>
                                     {% endif %}
@@ -80,44 +81,33 @@
                                     <br>
                                     <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="mb-0 text-black"><small>{{ pack.category.friendly_name }}</small></a>
                                 </div>
-                                <div class="card-footer border-0 p-1 pb-0 text-center bg-white">
-                                    <div class="row">
-                                        <div class="col">
-                                                
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     {% endfor %}
+                    {% if current_categories or current_sorting or search_term %}
+                        <div class="col-sm-6 col-lg-4 col-xl-3">
+                            <div class="pack-card card h-100 border-0 mx-auto my-4">
+                                <div class="img-container">
+                                    <a href="{% url 'packs' %}">
+                                        <img src="../media/see-all.png" alt="" class="card-img-top img-fluid">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
+    <div class="btt-button shadow-sm rounded-0 border border-black bg-darkgrey">
+        <a class="btt-link d-flex h-100">
+            <p class="mb-0 mx-auto font-weight-light text-uppercase text-white">Top</p>
+            <i class="fas fa-arrow-up text-black mx-auto my-1 text-white"></i>
+        </a>	
+    </div>
 {% endblock %}
 
-{% block postloadjs %}
+{% block extra_js %}
     {{block.super}}
-    <script type="text/javascript">
-        $("#sortbyoptions").change(function(){
-            var sortelement = $(this);
-            var currentUrl = new URL(window.location);
-            var selectedSort = sortelement.val();
-            if(selectedSort != "-"){
-                currentUrl.searchParams.set("sort", selectedSort);
-                window.location.replace(currentUrl)
-            }
-        })
-        $("#changedirection").click(function(){
-            var currentUrl = new URL(window.location);
-            var currentDir = currentUrl.searchParams.get("direction");
-            if(currentDir == "desc"){
-                var newDir = "asc";
-            } else {
-                newDir = "desc";
-            }
-            currentUrl.searchParams.set("direction", newDir);
-            window.location.replace(currentUrl)
-        })
-    </script>
+    <script src="{% static 'js/sortpacks.js' %}"></script>
 {% endblock%}
