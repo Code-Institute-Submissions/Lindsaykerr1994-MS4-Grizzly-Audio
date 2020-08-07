@@ -2,12 +2,7 @@
 {% load static %}
 
 {% block page_header %}
-    <!--
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>-->
+    
 {% endblock %}
 
 {% block content %}
@@ -22,6 +17,13 @@
         
         <div class="row text-uppercase">
             <div class="col-5 offset-1 px-5">
+                <button id="changedirection" class="border-0 bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
+                    <path stroke="none" d="M0 0h24v24H0z"/>
+                    <path d="M3 9l4-4l4 4m-4 -4v14" />
+                    <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                    </svg>
+                </button>
                 <p id="pack-count" class=" font-weight-light">{{ packs|length }} pack(s)  
                 {% if search_term %}
                     with search term: <strong>"{{ search_term }}"</strong>
@@ -32,27 +34,17 @@
                 </p>
             </div>
             <div class="col-5 text-right px-5">
-                
                 <select name="sortby" id="sortbyoptions" class="font-weight-light border-0 text-uppercase">
                     <option value="-">Sort By</option>
                     <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' %}({{ current_direction }}){% endif %}</option>
                     <option {% if current_sorting == 'sales' %}selected{% endif %} value="sales">Popularity {% if current_sorting == 'sales' %}({{ current_direction }}){% endif %}</option>
                     <option {% if current_sorting == 'price' %}selected{% endif %} value="price">Price {% if current_sorting == 'price' %}({{ current_direction }}){% endif %}</option>
                     <option {% if current_sorting == 'category' %}selected{% endif %} value="category">Category {% if current_sorting == 'category' %}({{ current_direction }}){% endif %}</option>
-                </select> 
-                <button id="changedirection" class="border-0 bg-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
-                    <path stroke="none" d="M0 0h24v24H0z"/>
-                    <path d="M3 9l4-4l4 4m-4 -4v14" />
-                    <path d="M21 15l-4 4l-4-4m4 4v-14" />
-                    </svg>
-                </button>
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-10 offset-1">
-                <div class="row mt-1 mb-2">
-                </div>
                 <div class="row">
                     {% for pack in packs %}
                         <div class="col-sm-6 col-lg-4 col-xl-3">

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_header %}
+    
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid margin-tb-125">
+        <div class="row">
+            <hr class="w-100 mb-1">
+            <div class="col-5 offset-1">
+                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Shopping Cart</h4>
+            </div>
+            <div class="col-5">
+                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Payment Options</h4>
+            </div>
+            <hr class="w-100 mb-1">
+        </div>
+        
+        <!--<div class="row text-uppercase">
+            <div class="col-5 offset-1 px-5">
+                <button id="changedirection" class="border-0 bg-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
+                    <path stroke="none" d="M0 0h24v24H0z"/>
+                    <path d="M3 9l4-4l4 4m-4 -4v14" />
+                    <path d="M21 15l-4 4l-4-4m4 4v-14" />
+                    </svg>
+                </button>
+                <p id="pack-count" class=" font-weight-light">{{ packs|length }} pack(s)  
+                {% if search_term %}
+                    with search term: <strong>"{{ search_term }}"</strong>
+                {% endif %}
+                {% if current_categories %}
+                    with category: <strong>"{% for cat in current_categories %}{{ cat.friendly_name }}{% endfor %}"</strong>
+                {% endif %}
+                </p>
+            </div>
+            <div class="col-5 text-right px-5">
+                
+                <select name="sortby" id="sortbyoptions" class="font-weight-light border-0 text-uppercase">
+                    <option value="-">Sort By</option>
+                    <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'sales' %}selected{% endif %} value="sales">Popularity {% if current_sorting == 'sales' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'price' %}selected{% endif %} value="price">Price {% if current_sorting == 'price' %}({{ current_direction }}){% endif %}</option>
+                    <option {% if current_sorting == 'category' %}selected{% endif %} value="category">Category {% if current_sorting == 'category' %}({{ current_direction }}){% endif %}</option>
+                </select>
+            </div>
+        </div>-->
+        <div class="row">
+            <div class="col-10 offset-1 col-lg-6 offset-lg-0">
+                Shopping Cart Item
+            </div>
+            <div class="col-10 offset-1 col-lg-6 offset-lg-0">
+                Shopping Cart Summary
+            </div>
+        </div>
+    </div>
+    <div class="btt-button shadow-sm rounded-0 border border-black bg-darkgrey">
+        <a class="btt-link d-flex h-100">
+            <p class="mb-0 mx-auto font-weight-light text-uppercase text-white">Top</p>
+            <i class="fas fa-arrow-up text-black mx-auto my-1 text-white"></i>
+        </a>	
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    {{block.super}}
+    <script src="{% static 'js/sortpacks.js' %}"></script>
+{% endblock%}
