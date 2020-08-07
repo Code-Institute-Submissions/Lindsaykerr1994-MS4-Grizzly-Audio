@@ -10,7 +10,7 @@
         <div class="row">
             <hr class="w-100 mb-1">
             <div class="col-5 offset-1">
-                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Shopping Cart</h4>
+                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Shopping Bag</h4>
             </div>
             <div class="col-5">
                 <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Payment Options</h4>
@@ -48,10 +48,14 @@
             </div>
         </div>-->
         <div class="row">
-            <div class="col-10 offset-1 col-lg-6 offset-lg-0">
-                Shopping Cart Item
+            <div class="col-10 offset-1 col-lg-6 offset-lg-0 h-50">
+                {% if bag_items %}
+                <div class="table-responsive"></div>
+                {% else %}
+                    <p>Your bag is empty.</p>
+                {% endif %}
             </div>
-            <div class="col-10 offset-1 col-lg-6 offset-lg-0">
+            <div class="col-10 offset-1 col-lg-6 offset-lg-0 h-50">
                 Shopping Cart Summary
             </div>
         </div>
