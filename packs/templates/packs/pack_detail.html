@@ -37,7 +37,16 @@
                     <p class="my-4">Category: <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="text-muted">{{pack.category.friendly_name}}</a></p>
                 </div>
                 <p class="my-4 font-weight-bold">{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s>{% endif %} ${{ pack.price }}</p>
-                
+                <form class="form" action="{% url 'add_to_bag' pack.id %}" method="POST">
+                    {% csrf_token %}
+                    <input class="d-none" type="number" value="1" name="add_to_bag" data-item_id="{{ pack.id }}" id="id_qty_{{ pack.id }}">
+                    <div class="form-row">
+                        <div class="col-12">
+                            <input type="submit" class="btn btn-darkgrey rounded-0 text-uppercase mt-5" value="add_to_bag">
+                        </div>
+                    </div>
+                    <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </form>
             </div>
             <hr class="w-90 mb-5">
         </div>
