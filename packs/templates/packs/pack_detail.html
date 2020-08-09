@@ -50,11 +50,17 @@
                     <input class="d-none" type="number" value="1" name="add_to_bag" data-item_id="{{ pack.id }}" id="id_qty_{{ pack.id }}">
                     <div class="form-row">
                         <div class="col-12">
-                            <input type="submit" class="btn btn-darkgrey rounded-0 text-uppercase mt-5" value="add to bag">
+                            <a href="{ url 'packs' }" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                                    <i class="fas fa-chevron-left">
+                                    </i>
+                                    <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Keep Shopping</p>
+                            </a>
+                            <input type="submit" class="btn btn-darkgrey rounded-0 text-uppercase mt-5 font-weight-light underline-hover" value="add to bag">
                         </div>
                     </div>
                     <input type="hidden" name="redirect_url" value="{{ request.path }}">
                 </form>
+                
             </div>
             <hr class="w-90 mb-5">
         </div>

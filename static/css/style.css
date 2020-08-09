@@ -136,6 +136,10 @@ header, footer{
     left: 335px;
     bottom: 400px;
 }
+/* Bag Page Specifcations */
+.img-col{
+    width:250px;
+}
 /* Media Queries */
 @media (min-width: 1200px) {
   .container {
