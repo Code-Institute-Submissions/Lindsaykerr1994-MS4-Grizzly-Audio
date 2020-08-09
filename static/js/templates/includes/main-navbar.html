@@ -1,0 +1,74 @@
+<ul id="main-navbar-list" class="list-inline my-0 text-uppercase d-none d-lg-inline-block">
+    <li class="list-inline-item">
+            <a class="nav-link text-white" href="{% url 'home' %}" id="home-link">
+                <div class="text-center">
+                    <div><i class="fas fa-home"></i></div>
+                </div>
+            </a>
+        </li>
+        <li class="list-inline-item dropdown">
+            <a class="nav-link text-white" href="#" id="packs-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="text-center">
+                    <div><i class="fas fa-music"></i></div>
+                </div>
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="packs-link">
+                <a href="{% url 'packs' %}" class="dropdown-item">All Audio Packs</a>
+                <a href="{% url 'packs' %}?sort=sales&direction=desc" class="dropdown-item">By Popularity</a>
+                <a href="{% url 'packs' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
+                <a href="{% url 'packs' %}?sort=category&direction=asc" class="dropdown-item">By Category</a>
+            </div>
+        </li>
+    <li class="list-inline-item dropdown">
+            <a class="nav-link text-white" href="#" id="search-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="text-center">
+                    <div><i class="fas fa-search"></i></div>
+                </div>
+            </a>
+            <div class="dropdown-menu border-0" aria-labelledby="search-link">
+                <form method="GET" action="{% url 'packs' %}">
+                <div class="input-group w-100">
+                    <input type="text" name="q" placeholder="Search all packs">
+                        <div class="input-group-append">
+                            <button class="form-control btn btn-outline-dark btn-sm">
+                                <div><i class="fas fa-search"></i></div>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+    </li>
+        <li class="list-inline-item">
+            <a class="nav-link text-white" href="#" id="account-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="text-center">
+                    <div><i class="fas fa-user fa-lg"></i></div>
+                </div>
+            </a>
+                        <div class="dropdown-menu border-0" aria-labelledby="account-link">
+                            {% if request.user.is_authenticated %}
+                                {% if request.user.is_superuser %}
+                                    <a href="" class="dropdown-item">Product Management</a>
+                                {% endif %}
+                                <a href="" class="dropdown-item">My Profile</a>
+                                <a href="" class="dropdown-item">Logout</a>
+                            {% else %}
+                                <a href="" class="dropdown-item">Register</a>
+                                <a href="" class="dropdown-item">Login</a>
+                            {% endif %}
+                        </div>
+        </li>
+        <li class="list-inline-item">
+            <a class="nav-link text-white" href="{% url 'bag' %}" id="cart-link">
+                <div class="text-center">
+                    <div><i class="fas fa-shopping-cart"></i></div>
+                    <p class="my-0 font-12">
+                        {% if total %}                                
+                            £{{ total|floatformat:2 }}
+                        {% else %}
+                            £0.00
+                        {% endif %}
+                    </p>
+                </div>
+            </a>
+        </li>
+    </ul>

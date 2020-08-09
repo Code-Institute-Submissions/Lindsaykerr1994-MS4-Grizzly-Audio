@@ -1,0 +1,75 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block meta %}
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% endblock %}
+
+    {% block extra_meta %}
+    {% endblock %}
+
+    {% block corecss %}
+        <link rel="icon" type="image/png" href="{% static 'canva/favicon.png' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css2?family=Sanchez&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    {% endblock %}
+
+    {% block extra_css %}
+    {% endblock %}
+
+    {% block corejs %}
+        <script src="https://kit.fontawesome.com/41a1455613.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% endblock %}
+
+    {% block extra_js %}
+        <script src="{% static 'js/navbar.js' %}"></script>
+    {% endblock %}
+
+    <title>Grizzly Audio Packs {% block extra_title %}{% endblock %}</title>
+  </head>
+  <body>
+    <header class="container-fluid fixed-top">
+        <div class="row py-2">
+            <div class="col-8 offset-2 col-lg-6 offset-lg-0 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="#" class="float-lg-none">
+                    <img class="d-inline-block" id="main-nav-logo" src="{% static 'canva/grizzlyaudio-logo.png' %}" alt="Main Logo">
+                    <h2 id="main-logo-text" class="d-lg-inline-block d-none text-uppercase text-white">GRIZZLY</h2>
+                </a>
+                
+            </div>
+            <div class="col-1 offset-1 col-lg-6 offset-lg-0 my-auto py-1 py-lg-0 text-lg-right">    
+                {% include 'includes/main-navbar.html' %}
+                <button class="float-right d-inline-block d-lg-none mobile-nav-btn"><i class="fas fa-bars fa-2x"></i></button>
+            </div>
+        </div>
+        <div id="mobile-nav-bar" class="row d-lg-none">
+            <div class="col-12 col-md-8 offset-md-2">
+            {% include 'includes/mobile-navbar.html' %}
+            </div>
+        </div>
+        {% block page_header %}
+        {% endblock %}
+    </header>
+
+    {% if messages %}
+        <div class="message-container"></div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock %}
+    <footer class="container-fluid fixed-bottom">
+    </footer>
+    {% block postloadjs %}
+    {% endblock %}
+  </body>
+</html>

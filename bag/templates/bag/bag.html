@@ -50,10 +50,57 @@
         <div class="row">
             <div class="col-10 offset-1 col-lg-6 offset-lg-0 h-50">
                 {% if bag_items %}
-                <div class="table-responsive"></div>
-                {% else %}
-                    <p>Your bag is empty.</p>
-                {% endif %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-borderless">
+                        <thead class="text-black">
+                            <tr>
+                                <th scope="col">Pack Info</th>
+                                <th scope="col"></th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+                        {% if bag_items %}
+                        {% for item in bag_items %}
+                            <tr>
+                                <td class=""><img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid"></td>
+                                <td>
+                                    <p class="mb-0"><strong>{{ item.pack.name }}</strong></p>
+                                    <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0">{{ item.pack.price }}</p>
+                                </td>
+                                <td>
+                                    <p class="mb-0">{{ item.pack.price }}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% else %}
+                            <td colspan="4" class="text-right">
+                                <h6><strong>Your bag is empty</strong></h6>
+                            </td>
+                        {% endif %}
+                        <tr>
+                            <td colspan="4" class="text-right">
+                                <h6><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="text-right">
+                                <a href="{ url 'packs' }" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                                    <i class="fas fa-chevron-left">
+                                    </i>
+                                    <p class="d-inline-block text-uppercase font-weight-light underline-hover">Keep Shopping</p>
+                                </a>
+                                <a href="" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                                    <p class="d-inline-block text-uppercase font-weight-light underline-hover">Secure Checkout</p>
+                                    <i class="fas fa-lock"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
             <div class="col-10 offset-1 col-lg-6 offset-lg-0 h-50">
                 Shopping Cart Summary
