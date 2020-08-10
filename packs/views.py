@@ -61,7 +61,7 @@ def pack_detail(request, pack_id):
     pack = get_object_or_404(Pack, pk=pack_id)
     category = pack.category.pk
     packs = Pack.objects.all()
-    similar_packs = packs.filter(category=category)
+    similar_packs = packs.filter(category=category)[:2]
     for this_pack in similar_packs:
         if this_pack == pack:
             similar_packs = similar_packs.exclude(pk=this_pack.id)

@@ -1,9 +1,8 @@
-from django.conf import settings
 from django.shortcuts import get_object_or_404
 from packs.models import Pack
 
-def bag_contents(request):
 
+def bag_contents(request):
     bag_items = []
     total = 0
     bag_count = 0
