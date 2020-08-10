@@ -28,20 +28,24 @@ def all_packs(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             packs = packs.order_by(sortkey)
+            messages.info(request, f'You are sorting by: {sortkey.capitalize()}')
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
+            for term in categories:
+                category_term = term.capitalize()
+            messages.info(request, f'You are searching for: {category_term}')
             packs = packs.filter(category__name__in=categories)
-            print(categories)
             categories = Category.objects.filter(name__in=categories)
 
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You did not enter any search criteria")
+                messages.warning(request, "You did not enter any search criteria")
                 return redirect(reverse('packs'))
 
             queries = Q(name__icontains=query) | Q(description__icontains=query)
+            messages.info(request, f'You are searching for: {queries}')
             packs = packs.filter(queries)
 
     context = {
@@ -61,10 +65,11 @@ def pack_detail(request, pack_id):
     pack = get_object_or_404(Pack, pk=pack_id)
     category = pack.category.pk
     packs = Pack.objects.all()
-    similar_packs = packs.filter(category=category)[:2]
+    similar_packs = packs.filter(category=category)
     for this_pack in similar_packs:
         if this_pack == pack:
             similar_packs = similar_packs.exclude(pk=this_pack.id)
+    similar_packs = similar_packs[:2]
 
     context = {
         'pack': pack,

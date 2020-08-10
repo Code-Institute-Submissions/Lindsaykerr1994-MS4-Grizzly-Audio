@@ -2,14 +2,20 @@
     <li class="list-inline-item">
             <a class="nav-link text-white" href="{% url 'home' %}" id="home-link">
                 <div class="text-center">
-                    <div><i class="fas fa-home"></i></div>
+                    <div>
+                        <i class="fas fa-home"></i>
+                        <p class="my-0 font-12">Home</p>
+                    </div>
                 </div>
             </a>
         </li>
         <li class="list-inline-item dropdown">
             <a class="nav-link text-white" href="#" id="packs-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
-                    <div><i class="fas fa-music"></i></div>
+                    <div>
+                    <i class="fas fa-music"></i>
+                    <p class="my-0 font-12">Packs</p>
+                    </div>
                 </div>
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="packs-link">
@@ -22,7 +28,10 @@
     <li class="list-inline-item dropdown">
             <a class="nav-link text-white" href="#" id="search-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
-                    <div><i class="fas fa-search"></i></div>
+                    <div>
+                        <i class="fas fa-search"></i>
+                        <p class="my-0 font-12">Search</p>
+                    </div>
                 </div>
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="search-link">
@@ -31,7 +40,9 @@
                     <input type="text" name="q" placeholder="Search all packs">
                         <div class="input-group-append">
                             <button class="form-control btn btn-outline-dark btn-sm">
-                                <div><i class="fas fa-search"></i></div>
+                                <div>
+                                    <i class="fas fa-search"></i>
+                                </div>
                             </button>
                         </div>
                     </div>
@@ -41,33 +52,38 @@
         <li class="list-inline-item">
             <a class="nav-link text-white" href="#" id="account-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="text-center">
-                    <div><i class="fas fa-user fa-lg"></i></div>
+                    <div>
+                        <i class="fas fa-user fa-lg"></i>
+                        <p class="my-0 font-12">Account</p>
+                    </div>
                 </div>
             </a>
-                        <div class="dropdown-menu border-0" aria-labelledby="account-link">
-                            {% if request.user.is_authenticated %}
-                                {% if request.user.is_superuser %}
-                                    <a href="" class="dropdown-item">Product Management</a>
-                                {% endif %}
-                                <a href="" class="dropdown-item">My Profile</a>
-                                <a href="" class="dropdown-item">Logout</a>
-                            {% else %}
-                                <a href="" class="dropdown-item">Register</a>
-                                <a href="" class="dropdown-item">Login</a>
-                            {% endif %}
-                        </div>
+                <div class="dropdown-menu border-0" aria-labelledby="account-link">
+                    {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                            <a href="" class="dropdown-item">Product Management</a>
+                        {% endif %}
+                        <a href="" class="dropdown-item">My Profile</a>
+                        <a href="" class="dropdown-item">Logout</a>
+                    {% else %}
+                        <a href="" class="dropdown-item">Register</a>
+                        <a href="" class="dropdown-item">Login</a>
+                    {% endif %}
+                </div>
         </li>
         <li class="list-inline-item">
             <a class="nav-link text-white" href="{% url 'bag' %}" id="cart-link">
                 <div class="text-center">
-                    <div><i class="fas fa-shopping-cart"></i></div>
-                    <p class="my-0 font-12">
-                        {% if total %}
-                        {{ total|floatformat:2 }}
-                        {% else %}
-                            $0.00
-                        {% endif %}
-                    </p>
+                    <div>
+                        <i class="fas fa-shopping-cart"></i>
+                        <p class="my-0 font-12">
+                            {% if total %}
+                                £{{ total|floatformat:2 }}
+                            {% else %}
+                                £0.00
+                            {% endif %}
+                        </p>
+                    </div>
                 </div>
             </a>
         </li>

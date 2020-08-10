@@ -64,9 +64,9 @@
                             <tr>
                                 <td class="img-col"><img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid"></td>
                                 <td>
-                                    <p class="mb-0"><strong>{{ item.pack.name }}</strong></p>
+                                    <a href="{% url 'pack_detail' item.pack.id %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
                                     <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
-                                    <a class="remove-item-link hover-red" data-pack_id="{{ item.pack_id }}"><small>Remove</small></a>
+                                    <a class="remove-item-link" data-pack_id="{{ item.pack_id }}"><small class="hover-red underline-hover">Remove</small></a>
                                 </td>
                                 <td>
                                     <p class="mb-0">{{ item.pack.price }}</p>

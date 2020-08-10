@@ -1,0 +1,41 @@
+<div class="toast rounded-0 border-top-0 font-weight-light" data-autohide="false">
+    <div class="w-100 toast-banner bg-success"></div>
+    <div class="toast-header bg-darkgrey text-white text-uppercase pl-2">
+        <p class="mr-auto mb-0 d-inline-block">Success!</p>
+        <button type="button" class="mb-1 close text-white" data-dismiss="toast" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="toast-body bg-white pl-2">
+        <div class="row">
+            <div class="col">
+                <small>{{ message }}</small>
+                <hr>
+            </div>
+        </div>
+        {% if total %}
+            <div class="toast-items-container">
+            {% for item in bag_items %}
+                <div class="row">
+                    <div class="col-3">
+                        <img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="w-100">
+                    </div>
+                    <div class="col-9">
+                        <p class="my-0">{{ item.pack.name }}</p>
+                        <p class="my-0"><small>£ {% if item.pack.on_sale %}{{ item.pack.reduced_price}}{% else %}{{ item.pack.price}}{% endif %}</small></p>
+                    </div>
+                </div>
+                <hr class="w-75">
+            {% endfor %}
+            </div>
+                <div class="row bg-darkgrey text-white">
+                    <div class="col">
+                        <p class="my-auto text-uppercase d-inline-block">Total: {{ total|floatformat:2 }}</p>
+                        <a href="{% url 'bag' %}" class="btn toast-checkout-btn text-uppercase text-white font-weight-light float-right">Checkout
+                        <i class="fas fa-lock"></i>
+                        </a>
+                    </div>
+                </div>
+        {% endif %}
+    </div>
+</div>
