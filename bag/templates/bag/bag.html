@@ -72,7 +72,12 @@
                                     <p class="mb-0">{{ item.pack.price }}</p>
                                 </td>
                                 <td>
-                                    <p class="mb-0">{{ item.pack.price }}</p>
+                                    <p class="mb-0">
+                                    {% if item.pack.on_sale %}
+                                    {{ item.pack.reduced_price }}
+                                    {% else %}
+                                    {{ item.pack.price }}
+                                    {% endif %}</p>
                                 </td>
                             </tr>
                         {% endfor %}

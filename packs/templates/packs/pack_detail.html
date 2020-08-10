@@ -47,9 +47,10 @@
                 <p class="my-4 font-weight-bold">
                 {% if pack.on_sale %}
                     <s class="text-muted">${{ pack.price }}</s>
-                    {{ pack.reducedprice }}
-                {% endif %}
+                    {{ pack.reduced_price }}
+                {% else %}
                 ${{ pack.price }}
+                {% endif %}
                 </p>
                 <form class="form" action="{% url 'add_to_bag' pack.id%}" method="POST">
                     {% csrf_token %}

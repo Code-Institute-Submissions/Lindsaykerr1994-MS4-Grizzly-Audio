@@ -22,7 +22,7 @@ class Pack(models.Model):
     publish_date = models.IntegerField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     on_sale = models.BooleanField(default=False)
-    reduced_price = models.DecimalField(max_digits=3, decimal_places=2, null=True, blank=True)
+    reduced_price = models.DecimalField(max_digits=6, decimal_places=2, null=True, blank=True)
     category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
     sales = models.IntegerField(null=True, blank=True)
     image_url = models.URLField(max_length=1024, null=True, blank=True)

@@ -68,7 +68,7 @@
                                 <div class="card-body p-1 pb-0">
                                     <a href="{% url 'pack_detail' pack.id %}" class="mb-0 text-black">{{ pack.name }}</a>
                                     <br>
-                                    <small>{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s>{% endif %} ${{ pack.price }}</small>
+                                    <small>{% if pack.on_sale %}<s class="text-muted">${{ pack.price }}</s> {{ pack.reduced_price }}{% else %} ${{ pack.price }}{% endif %}</small>
                                     <br>
                                     <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="mb-0 text-black"><small>{{ pack.category.friendly_name }}</small></a>
                                 </div>
