@@ -66,7 +66,7 @@
                                 <td>
                                     <p class="mb-0"><strong>{{ item.pack.name }}</strong></p>
                                     <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
-                                    <a href="" data-id="{{ item.pack.id }}" class="text-danger"><small>Remove</small></a>
+                                    <a class="remove-item-link hover-red" data-pack_id="{{ item.pack_id }}"><small>Remove</small></a>
                                 </td>
                                 <td>
                                     <p class="mb-0">{{ item.pack.price }}</p>
@@ -88,7 +88,7 @@
                         </tr>
                         <tr>
                             <td colspan="4" class="text-right">
-                                <a href="{ url 'packs' }" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                                <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
                                     <i class="fas fa-chevron-left">
                                     </i>
                                     <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Keep Shopping</p>
@@ -118,16 +118,17 @@
 {% block postloadjs %}
 {{ block.super }}
     <script>
-        $(.remove-item-link).click(function(e){
-            var csrftoken = "{{ csrf_token }}"
-            var packId = $(this).data("id");
-            var url = `/bag/remove/${packId}`;
-            var data = {"csrfmiddlewaretoken": csrfToken};
+        //Allows user to remove a pack from their shopping bag
+        $(".remove-item-link").click(function(e){
+            var csrfToken = "{{ csrf_token }}"
+            var packId = $(this).data("pack_id");
+            var url = `/bag/remove_from_bag/${packId}/`;
+            var data = {'csrfmiddlewaretoken': csrfToken};
 
             $.post(url, data)
             .done(function(){
                 location.reload();
-            });
+            })
         })
     </script>
-{% endblock %}
+{% endblock%}
