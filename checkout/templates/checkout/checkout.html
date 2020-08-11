@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/checkout-style.css' %}">
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid margin-tb-125">
+        <div class="row">
+            <hr class="w-100 mb-1">
+            <div class="col-5 offset-1">
+                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Shopping Bag</h4>
+            </div>
+            <div class="col-5">
+                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Payment Options</h4>
+            </div>
+            <hr class="w-100 mb-1">
+        </div>
+        <div class="row">
+            <div class="col-10 offset-1 col-lg-4 offset-lg-0 h-50 order-lg-last">
+                Shopping Cart Summary
+            </div>
+            <div class="col-10 offset-1 col-lg-8 offset-lg-0 h-50">
+                <p class="text-muted">Please fill out the form below to complete your order.</p>
+                <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
+                    {% csrf_token %}
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small px-2 w-auto">Details</legend>
+                        {{ order_form.full_name | as_crispy_field }}
+                        {{ order_form.email | as_crispy_field }}
+                        {{ order_form.country | as_crispy_field }}
+                        <div class="form-check form-check-inline">
+                            {% if not user.is_authenticated %}
+                                <a class="btn btn-darkgrey rounded-0 text-uppercase mt-5" href="{% url 'account_signup' %}">Create an account</a>
+                                <a class="btn btn-darkgrey rounded-0 text-uppercase mt-5" href="{% url 'account_login' %}">Login</a>
+                            {% endif %}
+                        </div>
+                    </fieldset>
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small px-2 w-auto">Payment</legend>
+                        <div id="card-element"></div>
+                        <div class="text-danger" id="card-errors" role="alert"></div>
+                    </fieldset>
+                        <a href="{% url 'bag' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                            <i class="fas fa-chevron-left"></i>
+                            <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Adjust Order</p>
+                        </a>
+                        <input type="submit" class="btn btn-darkgrey rounded-0 text-uppercase mt-5 font-weight-light underline-hover" value="Complete Order">
+                </form>
+            </div>
+            
+        </div>
+    </div>
+    <div class="btt-button shadow-sm rounded-0 border border-black bg-darkgrey">
+        <a class="btt-link d-flex h-100">
+            <p class="mb-0 mx-auto font-weight-light text-uppercase text-white">Top</p>
+            <i class="fas fa-arrow-up text-black mx-auto my-1 text-white"></i>
+        </a>	
+    </div>
+{% endblock %}
