@@ -6,16 +6,14 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid margin-tb-125">
-        <div class="row">
-            <hr class="w-100 mb-1">
-            <div class="col-5 offset-1">
-                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Shopping Bag</h4>
+    <div class="container-fluid margin-tb-75">
+        <div class="row mb-2 bg-lightgrey">
+            <div class="col-5 offset-1 pr-0">
+                <h4 class="text-uppercase py-4 text-center font-weight-light header-spacing dark-border-bottom mt-4 mb-5">Shopping Bag</h4>
             </div>
-            <div class="col-5">
-                <h4 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Payment Options</h4>
+            <div class="col-5 pl-0">
+                <h4 class="text-uppercase py-4 text-center font-weight-light header-spacing light-border-bottom mt-4 mb-5">Payment Options</h4>
             </div>
-            <hr class="w-100 mb-1">
         </div>
         
         <!--<div class="row text-uppercase">
@@ -47,7 +45,7 @@
                 </select>
             </div>
         </div>-->
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-10 offset-1 col-lg-8 offset-lg-0 h-50">
                 <div class="table-responsive">
                     <table class="table table-sm table-borderless">
@@ -63,15 +61,15 @@
                         {% for item in bag_items %}
                             <tr>
                                 <td class="img-col"><img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid"></td>
-                                <td>
+                                <td class="align-middle">
                                     <a href="{% url 'pack_detail' item.pack.id %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
                                     <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
                                     <a class="remove-item-link" data-pack_id="{{ item.pack_id }}"><small class="hover-red underline-hover">Remove</small></a>
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <p class="mb-0">{{ item.pack.price }}</p>
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <p class="mb-0">
                                     {% if item.pack.on_sale %}
                                     {{ item.pack.reduced_price }}
@@ -82,9 +80,11 @@
                             </tr>
                         {% endfor %}
                         {% else %}
-                            <td colspan="4" class="text-right">
-                                <h6><strong>Your bag is empty</strong></h6>
-                            </td>
+                            <tr>
+                                <td colspan="4" class="text-right">
+                                    <h6><strong>Your bag is empty</strong></h6>
+                                </td>
+                            </tr>
                         {% endif %}
                         <tr>
                             <td colspan="4" class="text-right py-3">
@@ -108,7 +108,25 @@
                 </div>
             </div>
             <div class="col-10 offset-1 col-lg-4 offset-lg-0 h-50">
-                Shopping Cart Summary
+                <table class="table table-sm table-borderless">
+                    <thead>
+                        <th colspan="4">Shopping Cart Summary</th>
+                    </thead>
+                    <tr class="my-3">
+                        <td colspan="3">Items</td>
+                        <td colspan="1">X</td>
+                        
+                    </tr>
+                    <tr class="my-3">
+                        <td colspan="3">Amount Saved</td>
+                        <td colspan="1">X</td>
+
+                    </tr>
+                    <thead class="my-3">
+                        <th colspan="3">Total</th>
+                        <th colspan="1">X</th>
+                    </thead>
+                </table>
             </div>
         </div>
     </div>

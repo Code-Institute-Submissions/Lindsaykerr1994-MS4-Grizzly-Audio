@@ -38,6 +38,9 @@ body {
 .bg-darkgrey{
     background-color: #292929;
 }
+.bg-lightgrey{
+    background: #eee;
+}
 .btn-darkgrey{
     border: 2px solid #fff;
     background-color:  #292929;
@@ -48,9 +51,18 @@ body {
     color: #000;
     border: 2px solid #292929;
 }
+.dark-border-bottom{
+    border-bottom: 3px #292929 solid;
+}
+.light-border-bottom{
+    border-bottom: 3px lightgray solid;
+}
 /* Spacing Specifications */
 .margin-tb-125{
     margin: 125px auto;
+}
+.margin-tb-75{
+    margin: 75px auto;
 }
 .w-90{
     width: 90%;

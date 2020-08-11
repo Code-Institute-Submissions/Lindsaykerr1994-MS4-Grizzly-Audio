@@ -1,0 +1,37 @@
+#payment-form .form-control,
+#card-element {
+    color: #292929;
+    border: 1px solid #292929;
+}
+.stripe-stype-input:placeholder{
+    color: #e3e3e3;
+}
+/* The following specifcations are found at */
+/* https://stripe.com/docs/stripe-js */
+.StripeElement, .stripe-stype-input {
+  box-sizing: border-box;
+
+  height: 40px;
+
+  padding: 10px 12px;
+
+  border: 1px solid transparent;
+  border-radius: 2px;
+  background-color: white;
+
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus, .stripe-stype-input:focus, .stripe-stype-input:active {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid, .stripe-stype-input--invalid {
+  border-color: #dc3545;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
