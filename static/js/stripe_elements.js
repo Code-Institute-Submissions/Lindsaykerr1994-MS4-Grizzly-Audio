@@ -56,47 +56,66 @@ form.addEventListener('submit', function(ev) {
     $('#submit-button').attr('disabled', true)
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
-    stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-            card: card,
-            billing_details: {
-                name: $.trim(form.full_name.value),
-                phone: $.trim(form.phone_number.value),
-                email: $.trim(form.phone_number.value),
-                address:{
-                    line1: $.trim(form.street_address1.value),
-                    line2: $.trim(form.street_address2.value),
-                    city: $.trim(form.city.value),
-                    country: $.trim(form.country.value),
-                    state: $.trim(form.county.value),
+    /* Check if 'save-info' input is checked */
+    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    /* Retrieve the csrf_token from the form */
+    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    var postData = {
+        'csrfmiddlewaretoken': csrfToken,
+        'client_secret': clientSecret,
+        'save_info': saveInfo
+    }
+    var url = '/checkout/cache_checkout_data/';
+    /* Post the url to save this information to cache */
+    /* Wait to see that the action is completed before progressing */
+    $.post(url, postData).done(function(){
+        /* Then proceed with the payment */
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+                billing_details: {
+                    name: $.trim(form.full_name.value),
+                    phone: $.trim(form.phone_number.value),
+                    email: $.trim(form.phone_number.value),
+                    address:{
+                        line1: $.trim(form.street_address1.value),
+                        line2: $.trim(form.street_address2.value),
+                        city: $.trim(form.city.value),
+                        state: $.trim(form.county.value),
+                        postal_code: $.trim(form.post_code.value),
+                        country: $.trim(form.country.value),
+                    }
                 }
             }
-        }
-    }).then(function(result) {
-        if (result.error) {
-        // Show error to your customer (e.g., insufficient funds)
-            var errorDiv = document.getElementById('card-errors');
-            var html = `
-                <span class="icon" role="alert">
-                <i class="fas fa-times"></i>
-                </span>
-                <span>${result.error.message}</span>`;
-            $(errorDiv).html(html);
-            /* Re-enable the card and submit button to try again */
-            card.update({ 'disabled': false});
-            $('#submit-button').attr('disabled', false);
-            $('#payment-form').fadeToggle(100);
-            $('#loading-overlay').fadeToggle(100);
-        } else {
-        // The payment has been processed!
-            if (result.paymentIntent.status === 'succeeded') {
-            // Show a success message to your customer
-            // There's a risk of the customer closing the window before callback
-            // execution. Set up a webhook or plugin to listen for the
-            // payment_intent.succeeded event that handles any business critical
-            // post-payment actions.
-            form.submit();
+        }).then(function(result) {
+            if (result.error) {
+            // Show error to your customer (e.g., insufficient funds)
+                var errorDiv = document.getElementById('card-errors');
+                var html = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(html);
+                /* Re-enable the card and submit button to try again */
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
+                $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
+            } else {
+            // The payment has been processed!
+                if (result.paymentIntent.status === 'succeeded') {
+                // Show a success message to your customer
+                // There's a risk of the customer closing the window before callback
+                // execution. Set up a webhook or plugin to listen for the
+                // payment_intent.succeeded event that handles any business critical
+                // post-payment actions.
+                form.submit();
+                }
             }
-        }
+        });
+    /* If the post method fails, then reload the page, and the error message will display */
+    }).fail(function(){
+        location.reload();
     });
 });

@@ -11,7 +11,9 @@ class OrderForm(forms.ModelForm):
                   'country',)
 
     def __init__(self, *args, **kwargs):
-        """ Adds placeholders and classes to form fields, removes auto-generated labels and sets auto-focus on the first field of the page """
+        # Adds placeholders and classes to form fields,
+        # removes auto-generated labels and sets auto-focus
+        # on the first field of the page
         super().__init__(*args, **kwargs)
         placeholders = {
             'full_name': 'Full Name',
