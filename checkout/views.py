@@ -6,6 +6,7 @@ from .models import Order, OrderLineItem
 from packs.models import Pack
 from bag.contexts import bag_contents
 import stripe
+import json
 
 
 def checkout(request):
@@ -18,11 +19,13 @@ def checkout(request):
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
             'country': request.POST['country'],
+            'phone_number': request.POST['phone_number'],
         }
+        print(form_data)
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()
-            for item_id in bag.items():
+            for item_id, quantity in bag.items():
                 try:
                     pack = Pack.objects.get(id=item_id)
                     order_line_item = OrderLineItem(
@@ -31,18 +34,23 @@ def checkout(request):
                     )
                     order_line_item.save()
                 except Pack.DoesNotExist:
-                    messages.error(request, (
-                        "There was an error with one of the items in your bag. Please contact us for further assistance."
-                    ))
+                    messages.error(request, ("There is an error with one of\
+                        your items. Please contact us for further\
+                            assistance!"))
                     order.delete()
                     return redirect(reverse('bag'))
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse('checkout_success',
+                            args=[order.order_number]))
         else:
-            messages.error(request, 'There is an error with your form. Please confirm you have enter the correct information.')
+            messages.error(request, 'There is an error! Please confirm your\
+                information and try again.')
+            print(order_form.errors)
+            return redirect(reverse('checkout'))
     else:
         bag = request.session.get('bag', {})
         if not bag:
-            messages.error(request, "There is nothing in your shopping bag right now")
+            messages.error(request, "There is nothing in your shopping bag\
+                    right now")
             return redirect(reverse('packs'))
 
         current_bag = bag_contents(request)
@@ -54,15 +62,15 @@ def checkout(request):
             amount=stripe_total,
             currency=settings.STRIPE_CURRENCY,
         )
+        order_form = OrderForm()
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing.')
 
-    order_form = OrderForm()
     template = 'checkout/checkout.html'
     context = {
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
-        'client_secret_key': intent.client_secret,
+        'client_secret': intent.client_secret,
     }
     return render(request, template, context)
 
@@ -70,8 +78,17 @@ def checkout(request):
 def checkout_success(request, order_number):
     """ This will confirm a successful order """
     order = get_object_or_404(Order, order_number=order_number)
-    messages.success(request, f'Your order({order_number}) was a success. A confirmation email will be sent to your address.')
+    messages.success(request, f'Your order({order_number}) was a success. A\
+        confirmation email will be sent to your address.')
     if 'bag' in request.session:
+        bag = request.session.get('bag', {})
+        for item_id, quantity in bag.items():
+            try:
+                pack = Pack.objects.get(id=item_id)
+                pack.sales += 1
+                pack.save()
+            except Pack.DoesNotExist:
+                print("Didn't work")
         del request.session['bag']
     template = 'checkout/checkout_success.html'
     context = {

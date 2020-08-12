@@ -21,7 +21,7 @@ class OrderForm(forms.ModelForm):
         for field in self.fields:
             if self.fields[field].required:
                 placeholder = f'{placeholders[field]} *'
-            else: 
+            else:
                 placeholder = placeholder[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
