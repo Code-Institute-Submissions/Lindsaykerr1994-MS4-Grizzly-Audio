@@ -46,8 +46,8 @@
                 </div>
                 <p class="my-4 font-weight-bold">
                 {% if pack.on_sale %}
-                    <s class="text-muted font-weight-light">${{ pack.price }}</s>
-                    {{ pack.reduced_price }}
+                    <s class="text-muted font-weight-light">£{{ pack.price }}</s>
+                     £{{ pack.reduced_price }}
                 {% else %}
                 ${{ pack.price }}
                 {% endif %}

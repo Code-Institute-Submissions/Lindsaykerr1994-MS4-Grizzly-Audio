@@ -52,7 +52,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form action="{% url 'checkout' %}" method="POST" id="checkout-form">
+                            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                                 {% csrf_token %}
                                 <fieldset class="rounded px-3 mb-5">
                                     <legend class="fieldset-label small"><strong>Details</strong></legend>
@@ -98,11 +98,12 @@
             
         </div>
     </div>
-    <div class="btt-button shadow-sm rounded-0 border border-black bg-darkgrey">
-        <a class="btt-link d-flex h-100">
-            <p class="mb-0 mx-auto font-weight-light text-uppercase text-white">Top</p>
-            <i class="fas fa-arrow-up text-black mx-auto my-1 text-white"></i>
-        </a>	
+    <div id="loading-overlay">
+        <h1 class="loading-spinner">
+            <span class="icon">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            </span>
+        </h1>
     </div>
 {% endblock %}
 

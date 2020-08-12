@@ -6,7 +6,6 @@ from .models import Order, OrderLineItem
 from packs.models import Pack
 from bag.contexts import bag_contents
 import stripe
-import json
 
 
 def checkout(request):
@@ -21,7 +20,6 @@ def checkout(request):
             'country': request.POST['country'],
             'phone_number': request.POST['phone_number'],
         }
-        print(form_data)
         order_form = OrderForm(form_data)
         if order_form.is_valid():
             order = order_form.save()

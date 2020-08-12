@@ -12,37 +12,53 @@ var elements = stripe.elements();
 
 /* Style necessary aspects */
 var style = {
-  base: {
-      /* Changed this colour to match established theme */
-    color: '#292929',
-    fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-    fontSmoothing: 'antialiased',
-    fontSize: '16px',
-    '::placeholder': {
-      color: '#aab7c4'
+    base: {
+        /* Changed this colour to match established theme */
+        color: '#292929',
+        fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+        fontSmoothing: 'antialiased',
+        fontSize: '16px',
+        '::placeholder': {
+        color: '#aab7c4'
     }
-  },
-  invalid: {
-      /* Changed this colour to match established theme */
-    color: '#dc3545',
-    iconColor: '#dc3545'
-  }
+},
+    invalid: {
+        /* Changed this colour to match established theme */
+        color: '#dc3545',
+        iconColor: '#dc3545'
+    }
 };
 /* Create card element */
 var card = elements.create('card', {style: style});
 /* Mount Stripe elements */
 card.mount('#card-element');
+/* Display any errors with card element */
+card.addEventListener('change', function(event){
+    var errorDiv = document.getElementById('card-errors');
+    if (event.error) {
+        var html = `
+            <span class="icon" role="alert">
+            <i class="fas fa-times"></i>
+            </span>
+            <span>${event.error.message}</span>`;
+        $(errorDiv).html(html);
+    } else {
+        errorDiv.textContent = '';
+    }
+});
 /* Create a form to submit payment */
 var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function(ev) {
-  ev.preventDefault();
+    ev.preventDefault();
     /* Disable the card element and submit button to prevent multiple payments */
     card.update({'disabled': true});
     $('#submit-button').attr('disabled', true)
+    $('#payment-form').fadeToggle(100);
+    $('#loading-overlay').fadeToggle(100);
     stripe.confirmCardPayment(clientSecret, {
         payment_method: {
-        card: card,
+            card: card,
         }
     }).then(function(result) {
         if (result.error) {
@@ -57,6 +73,8 @@ form.addEventListener('submit', function(ev) {
             /* Re-enable the card and submit button to try again */
             card.update({ 'disabled': false});
             $('#submit-button').attr('disabled', false);
+            $('#payment-form').fadeToggle(100);
+            $('#loading-overlay').fadeToggle(100);
         } else {
         // The payment has been processed!
             if (result.paymentIntent.status === 'succeeded') {
