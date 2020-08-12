@@ -5,14 +5,15 @@ from packs.models import Pack
 
 
 class Order(models.Model):
-    order_number = models.CharField(max_length=32, null=False, editable=True)
+    order_number = models.CharField(max_length=32, null=False, editable=False)
     date = models.DateTimeField(auto_now_add=True, editable=True)
     full_name = models.CharField(max_length=32, null=False, blank=False)
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
-    street_address1 = models.CharField(max_length=80, null=False, blank=False)
+    street_address1 = models.CharField(max_length=80, null=True, blank=False)
     # Street Address is not required
-    street_address2 = models.CharField(max_length=80, null=True, blank=True)
+    street_address2 = models.CharField(max_length=80,
+                                       null=True, blank=True)
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
     # Street Address is not required
     county = models.CharField(max_length=40, null=True, blank=True)
@@ -22,16 +23,18 @@ class Order(models.Model):
                                       null=False, default=0)
 
     def _generate_order_number(self):
-        """ Generates a random number to assign to each order using UUID """
+        # Generates a random number to assign to each order using UUID
         return uuid.uuid4().hex.upper()
 
     def update_total(self):
-        """ Updates the order total every time a new line item is added """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        # Updates the order total every time a new line item is added
+        self.order_total = self.lineitems.\
+            aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         self.save()
 
     def save(self, *args, **kwargs):
-        """ Override the original save method, allowing an order number to be set if one hasn't been done previously """
+        # Override the original save method, allowing an order number to be
+        # set if one hasn't been done previously
         if not self.order_number:
             self.order_number = self._generate_order_number()
         super().save(*args, **kwargs)
@@ -51,7 +54,8 @@ class OrderLineItem(models.Model):
                                          blank=False, editable=False)
 
     def save(self, *args, **kwargs):
-        """ Overrides the original save method to set the lineitem total and update the order total """
+        # Overrides the original save method to set the lineitem total and
+        # update the order total
         if self.pack.on_sale:
             self.lineitem_total = self.pack.reduced_price
         else:
