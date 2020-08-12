@@ -54,28 +54,31 @@
                         <td>
                             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                                 {% csrf_token %}
-                                <fieldset class="rounded px-3 mb-5">
-                                    <legend class="fieldset-label small"><strong>Details</strong></legend>
-                                    <div class="payment-detail-input my-3">
+                                <fieldset class="rounded payment-details-div px-3 mb-5">
+                                    <legend class="fieldset-label small"><strong>Personal Details</strong></legend>
                                     {{ order_form.full_name | as_crispy_field }}
-                                    </div>
-                                    <div class="payment-detail-input my-3">
                                     {{ order_form.email | as_crispy_field }}
-                                    </div>
-                                    <div class="payment-detail-input my-3">
-                                    {{ order_form.country | as_crispy_field }}
-                                    </div>
-                                    <div class="payment-detail-input my-3">
                                     {{ order_form.phone_number | as_crispy_field }}
-                                    </div>
-                                    {% if not user.is_authenticated %}
-                                        <div class="form-check form-check-inline">
+                                </fieldset>
+                                <fieldset class="rounded payment-details-div px-3 mb-5">
+                                    <legend class="fieldset-label small"><strong>Billing Details</strong></legend>
+                                    {{ order_form.street_address1 | as_crispy_field }}
+                                    {{ order_form.street_address2 | as_crispy_field }}
+                                    {{ order_form.town_or_city | as_crispy_field }}
+                                    {{ order_form.county | as_crispy_field }}
+                                    {{ order_form.post_code | as_crispy_field }}
+                                    {{ order_form.country | as_crispy_field }}
+                                    <div class="form-check form-check-inline float-right mr-0">
+                                        {% if user.is_authenticated %}
+                                            <label for="id-save-info" class="form-check-label text-primary small">Save this delivery information for next time</label>
+                                            <input type="checkbox" class="form-check-input ml-2 mr-0" id="id-save-info" name="save-info" checked>
+                                        {% else %}
                                             <a class="btn btn-darkgrey rounded-0 text-uppercase mt-5" href="{% url 'account_signup' %}">Create an account</a>
                                             <a class="btn btn-darkgrey rounded-0 text-uppercase mt-5" href="{% url 'account_login' %}">Login</a>
-                                        </div>
-                                    {% endif %}
+                                        {% endif %}
+                                    </div>
                                 </fieldset>
-                                <fieldset class="rounded px-3 mb-5">
+                                <fieldset class="rounded payment-details-div px-3 mb-5">
                                     <legend class="fieldset-label small"><strong>Payment</strong></legend>
                                     <div id="card-element"></div>
                                      <div class="mb-3 text-danger" id="card-errors" role="alert"></div>

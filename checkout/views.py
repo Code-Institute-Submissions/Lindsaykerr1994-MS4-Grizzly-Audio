@@ -17,8 +17,13 @@ def checkout(request):
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
-            'country': request.POST['country'],
             'phone_number': request.POST['phone_number'],
+            'street_address1': request.POST['street_address1'],
+            'street_address2': request.POST['street_address2'],
+            'town_or_city': request.POST['town_or_city'],
+            'post_code': request.POST['post_code'],
+            'county': request.POST['county'],
+            'country': request.POST['country'],
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
@@ -37,6 +42,7 @@ def checkout(request):
                             assistance!"))
                     order.delete()
                     return redirect(reverse('bag'))
+            request.session['save_info'] = 'save-info' in request.POST
             return redirect(reverse('checkout_success',
                             args=[order.order_number]))
         else:
