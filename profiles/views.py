@@ -18,7 +18,8 @@ def profile(request):
             messages.error(request, 'There was a problem updating your\
                 information. Please check your information and try again.')
     # Import user's information from .forms
-    form = UserProfileForm(instance=profile)
+    else:
+        form = UserProfileForm(instance=profile)
     # Import user's order for order history
     orders = profile.orders.all()
     for item in orders:

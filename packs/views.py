@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Pack, Category
+from .forms import PackForm
 
 
 def all_packs(request):
@@ -80,3 +81,23 @@ def pack_detail(request, pack_id):
     }
 
     return render(request, 'packs/pack_detail.html', context)
+
+
+def add_pack(request):
+    # Allows store owners to add a pack to the store
+    if request.method == 'POST':
+        form = PackForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully added new pack!')
+            return redirect(reverse('add_pack'))
+        else:
+            messages.error(request, 'Failed to add pack. Please confirm\
+            the information you entered, and try again.')
+    else:
+        form = PackForm()
+    template = 'packs/add_pack.html'
+    context = {
+        'form': form,
+    }
+    return render(request, template, context)

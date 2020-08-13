@@ -60,7 +60,13 @@
                         {% if bag_items %}
                         {% for item in bag_items %}
                             <tr>
-                                <td class="img-col"><img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid"></td>
+                                <td class="img-col">
+                                    {% if item.pack.image %}
+                                        <img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid">
+                                    {% else %}
+                                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
+                                    {% endif %}
+                                </td>
                                 <td class="align-middle">
                                     <a href="{% url 'pack_detail' item.pack.id %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
                                     <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
