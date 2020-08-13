@@ -30,24 +30,34 @@ class StripeWH_Handler:
             if value == "":
                 shipping_details.address[field] = None
         order_exists = False
-        try:
-            order = Order.objects.get(
-                full_name__iexact=shipping_details.name,
-                email__iexact=shipping_details.email,
-                phone_number__iexact=shipping_details.phone,
-                street_address1__iexact=shipping_details,
-                street_address2__iexact=shipping_details.name,
-                town_or_city__iexact=shipping_details.name,
-                county__iexact=shipping_details.address.state,
-                postcode__iexact=shipping_details.address.postal_code,
-                country__iexact=shipping_details.address.country,
-                total=total,
-            )
-            order_exists = True
-            return HttpResponse(
-                content=f'Successful Webhook received {event["type"]} | SUCCESS:\
-                    Verified order already in data', status=200)
-        except Order.DoesNotExist:
+        attempt = 1
+        while attempt <= 5:
+            try:
+                order = Order.objects.get(
+                    full_name__iexact=shipping_details.name,
+                    email__iexact=shipping_details.email,
+                    phone_number__iexact=shipping_details.phone,
+                    street_address1__iexact=shipping_details,
+                    street_address2__iexact=shipping_details.name,
+                    town_or_city__iexact=shipping_details.name,
+                    county__iexact=shipping_details.address.state,
+                    postcode__iexact=shipping_details.address.postal_code,
+                    country__iexact=shipping_details.address.country,
+                    total=total,
+                )
+                order_exists = True
+                break
+                return HttpResponse(
+                    content=f'Successful Webhook received {event["type"]} | SUCCESS:\
+                        Verified order already in data', status=200)
+            except Order.DoesNotExist:
+                attempt += 1
+                time.sleep(1)
+        if order_exists:
+            return HttpResponse(content=f'Webhook received: {event["type"]}\
+                | SUCCESS: Created order in webhook', status=200)
+        else:
+            order = None
             try:
                 order = Order.Objects.create(
                     full_name=shipping_details.name,
@@ -73,8 +83,8 @@ class StripeWH_Handler:
                 return HttpResponse(content=f'Webhook received: {event["type"]}\
                     | ERROR: {e}', status=500)
         return HttpResponse(
-            content=f'Webhook received: {event["type"]}', status=500
-        )
+            content=f'Webhook received: {event["type"]} | SUCCESS:\
+                Created order in webhook', status=200)
 
     def handle_payment_intent_failed(self, event):
         # This function will handle any failed webhooks
