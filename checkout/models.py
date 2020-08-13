@@ -1,6 +1,8 @@
 import uuid
 from django.db import models
 from django.db.models import Sum
+from django.conf import settings
+from django_countries.fields import CountryField
 from packs.models import Pack
 
 
@@ -18,7 +20,8 @@ class Order(models.Model):
     # Street Address is not required
     county = models.CharField(max_length=40, null=True, blank=True)
     post_code = models.CharField(max_length=10, null=True, blank=True)
-    country = models.CharField(max_length=40, null=False, blank=False)
+    country = CountryField(blank_label='Country *', null=False,
+                                  blank=False)
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
                                       null=False, default=0)
     # New fields to ensure that the order is not duplicated

@@ -54,3 +54,11 @@
     margin: 0;
     height: 100%;
 }
+
+select, select option {
+    color: #000;
+    height: 30px;
+}
+select:invalid, select option[value=""]{
+    color: #aab7c4 !important;
+}
