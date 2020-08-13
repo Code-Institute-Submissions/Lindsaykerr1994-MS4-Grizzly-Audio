@@ -13,7 +13,7 @@
                 <hr>
             </div>
         </div>
-        {% if total %}
+        {% if total and not on_profile %}
             <div class="toast-items-container">
             {% for item in bag_items %}
                 <div class="row">

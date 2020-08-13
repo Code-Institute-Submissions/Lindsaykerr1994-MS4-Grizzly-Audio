@@ -184,6 +184,8 @@ header, footer{
 .remove-item-link{
     cursor: pointer;
 }
+/* All Auth Page Specifications */
+
 /* Media Queries */
 @media (min-width: 1200px) {
   .container {
