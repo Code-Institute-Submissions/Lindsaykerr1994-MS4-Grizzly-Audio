@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from .models import Order, OrderLineItem
 from packs.models import Pack
 import json
+import time
 
 
 class StripeWH_Handler:
@@ -23,7 +24,7 @@ class StripeWH_Handler:
         save_info = intent.metadata.save_info
         billing_details = intent.charges.data[0].billing_details
         shipping_details = intent.shipping
-        total = round(intent.data.charges[0].amount / 100, 2)
+        total = round(intent.charges.data[0].amount / 100, 2)
         # Ensure every field in shipping_details has a value, or None
         # This is because "" != None
         for field, value in shipping_details.address.items():
@@ -35,15 +36,17 @@ class StripeWH_Handler:
             try:
                 order = Order.objects.get(
                     full_name__iexact=shipping_details.name,
-                    email__iexact=shipping_details.email,
+                    email__iexact=billing_details.email,
                     phone_number__iexact=shipping_details.phone,
-                    street_address1__iexact=shipping_details,
-                    street_address2__iexact=shipping_details.name,
-                    town_or_city__iexact=shipping_details.name,
+                    street_address1__iexact=shipping_details.address.line1,
+                    street_address2__iexact=shipping_details.address.line2,
+                    town_or_city__iexact=shipping_details.address.city,
                     county__iexact=shipping_details.address.state,
-                    postcode__iexact=shipping_details.address.postal_code,
+                    post_code__iexact=shipping_details.address.postal_code,
                     country__iexact=shipping_details.address.country,
-                    total=total,
+                    order_total=total,
+                    original_bag=bag,
+                    stripe_pid=pid,
                 )
                 order_exists = True
                 break
@@ -61,14 +64,16 @@ class StripeWH_Handler:
             try:
                 order = Order.Objects.create(
                     full_name=shipping_details.name,
-                    email=shipping_details.email,
+                    email=billing_details.email,
                     phone_number=shipping_details.phone,
-                    street_address1=shipping_details,
-                    street_address2=shipping_details.name,
-                    town_or_city=shipping_details.name,
+                    street_address1=shipping_details.address.line1,
+                    street_address2=shipping_details.address.line2,
+                    town_or_city=shipping_details.address.city,
                     county=shipping_details.address.state,
                     postcode=shipping_details.address.postal_code,
                     country=shipping_details.address.country,
+                    original_bag=bag,
+                    stripe_pid=pid,
                 )
                 for item_id, quantity in json.loads(bag).items():
                     pack = Pack.objects.get(id=item_id)
