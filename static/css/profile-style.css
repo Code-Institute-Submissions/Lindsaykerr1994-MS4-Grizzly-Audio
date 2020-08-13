@@ -1,3 +1,6 @@
 #profile-update-form input::placeholder {
     color: #aab7c4;
 }
+select:invalid, select option[value=""] {
+    color: #aab7c4 !important;
+}

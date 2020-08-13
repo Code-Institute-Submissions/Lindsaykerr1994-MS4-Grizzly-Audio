@@ -38,10 +38,12 @@
                     <i class="fas fa-chevron-left"></i>
                     <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Back To Store</p>
                 </a>
-                <a href="" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
                     <i class="fas fa-chevron-right"></i>
                     <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Order History</p>
                 </a>
+                {% endif %}
             </div>
         </div>
     </div>
