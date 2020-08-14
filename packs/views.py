@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
 from .models import Pack, Category
@@ -83,8 +84,13 @@ def pack_detail(request, pack_id):
     return render(request, 'packs/pack_detail.html', context)
 
 
+@login_required
 def add_pack(request):
     # Allows store owners to add a pack to the store
+    # Check if user is a store owner
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have access to this page.')
+        return redirect(reverse('home'))
     if request.method == 'POST':
         form = PackForm(request.POST, request.FILES)
         if form.is_valid():
@@ -103,8 +109,13 @@ def add_pack(request):
     return render(request, template, context)
 
 
+@login_required
 def edit_pack(request, pack_id):
     # Allow store owners to edit an existing pack
+    # Check if user is a store owner
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have access to this page.')
+        return redirect(reverse('home'))
     pack = get_object_or_404(Pack, pk=pack_id)
     if request.method == 'POST':
         form = PackForm(request.POST, request.FILES, instance=pack)
@@ -126,8 +137,13 @@ def edit_pack(request, pack_id):
     return render(request, template, context)
 
 
+@login_required
 def delete_pack(request, pack_id):
     # Allows store owners to delete an existing product
+    # Check if user is a store owner
+    if not request.user.is_superuser:
+        messages.error(request, 'You do not have access to this page.')
+        return redirect(reverse('home'))
     pack = get_object_or_404(Pack, pk=pack_id)
     pack.delete()
     messages.success(request, 'Pack has been successfully deleted!')
