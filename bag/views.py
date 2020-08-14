@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from django.contrib import messages
 from packs.models import Pack
 
@@ -19,7 +19,7 @@ def add_to_bag(request, pack_id):
     else:
         messages.error(request, f'{pack.name} is already in your shopping bag.')
     request.session['bag'] = bag
-    return redirect(redirect_url)
+    return redirect(reverse('packs'))
 
 
 def remove_from_bag(request, pack_id):

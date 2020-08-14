@@ -30,7 +30,28 @@ $(document).ready(function(){
             }
             currentUrl.searchParams.set("direction", newDir);
             window.location.replace(currentUrl)
-        })  
+        })
+        $(".pack-card").click(function(){
+            var windowHeight = $(window).height();
+            console.log(windowHeight);
+            if(windowHeight > 650){
+                var heightDiff = (windowHeight-650)/2;
+                $(".modal-dialog").css("margin-top", `${heightDiff}px`);
+            } else {
+                console.log("Window to small")
+                $(".modal-dialog").css("height", `${windowHeight}px`);
+                $(".modal-content").css("height", `${windowHeight}px`);
+                $(".modal-body").css("overflow: scroll");
+            }
+        })
+        $(window).resize(function(){
+            var windowHeight = $(window).height();
+            var modalHeight = $(".modal-dialog").height();
+            if(windowHeight > modalHeight){
+                var heightDiff = (windowHeight-modalHeight)/2;
+                $(".modal-dialog").css("margin-top", heightDiff);
+            }
+        })
 })
 
 function checkWindowHeight(){

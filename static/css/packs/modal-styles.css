@@ -1,5 +1,12 @@
 /* Modal Window Specifications */
 .modal-dialog{
-    margin: 150px auto;
+    margin: 0 auto;
+    height: 650px;
 }
-
+.modal-header .close{
+    padding: 0.25rem;
+    position: relative;
+}
+.modal-body{
+    overflow: scroll;
+}
