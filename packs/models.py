@@ -18,7 +18,8 @@ class Pack(models.Model):
     sku = models.CharField(max_length=254, null=False, blank=False)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    publish_date = models.IntegerField()
+    publish_date = models.CharField(max_length=10, null=True, blank=True,
+                                    default='2020/01/01')
     price = models.DecimalField(max_digits=6, decimal_places=2)
     on_sale = models.BooleanField(default=False)
     reduced_price = models.DecimalField(max_digits=6, decimal_places=2,

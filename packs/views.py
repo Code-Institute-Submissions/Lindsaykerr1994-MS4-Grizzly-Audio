@@ -8,7 +8,7 @@ from .forms import PackForm
 
 
 def all_packs(request):
-    """ Show all audio packs, allow sorting and search queries """
+    # Show all audio packs, allow sorting and search queries
 
     packs = Pack.objects.all()
     query = None
@@ -30,7 +30,8 @@ def all_packs(request):
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
             packs = packs.order_by(sortkey)
-            messages.info(request, f'You are sorting by: {sortkey.capitalize()}')
+            messages.info(request, f'You are sorting by:\
+                {sortkey.capitalize()}')
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
@@ -43,10 +44,12 @@ def all_packs(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.warning(request, "You did not enter any search criteria")
+                messages.warning(request, "You did not enter any search\
+                    criteria")
                 return redirect(reverse('packs'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(name__icontains=query) |\
+                Q(description__icontains=query)
             messages.info(request, f'You are searching for: {queries}')
             packs = packs.filter(queries)
 
@@ -62,7 +65,7 @@ def all_packs(request):
 
 
 def pack_detail(request, pack_id):
-    """ Retrieves and displays a specific audio pack using its pack_id """
+    # Retrieves and displays a specific audio pack using its pack_id
 
     pack = get_object_or_404(Pack, pk=pack_id)
     category = pack.category.pk

@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/packs/modal-styles.css' %}">
+{% endblock %}
+
 {% block page_header %}
-    
 {% endblock %}
 
 {% block content %}
@@ -63,13 +66,14 @@
                                     {% if pack.on_sale %}
                                     <span class="badge badge-danger">On Sale!</span>
                                     {% endif %}
-                                    <a href="{% url 'pack_detail' pack.id %}" class="h-100">
+                                    <a href="" class="h-100" data-toggle="modal" data-target="#pack{{ pack.id }}Modal">
                                         <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="card-img-top img-fluid">
                                     </a>
+                                    
                                 </div>
                                 {% else %}
                                 <div class="img-container">
-                                    <a href="{% url 'pack_detail' pack.id %}">
+                                    <a href="{% url 'pack_detail' pack.id %}" class="h-100">
                                         <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
                                     </a>
                                 </div>
@@ -90,6 +94,7 @@
                                 </div>
                             </div>
                         </div>
+                        {% include 'packs/packmodals/pack_detail.html' %}
                     {% endfor %}
                     {% if current_categories or current_sorting or search_term %}
                         <div class="col-sm-6 col-lg-4 col-xl-3">
