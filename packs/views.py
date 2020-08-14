@@ -88,9 +88,9 @@ def add_pack(request):
     if request.method == 'POST':
         form = PackForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            pack = form.save()
             messages.success(request, 'Successfully added new pack!')
-            return redirect(reverse('add_pack'))
+            return redirect(reverse('pack_detail', args=[pack.id]))
         else:
             messages.error(request, 'Failed to add pack. Please confirm\
             the information you entered, and try again.')
@@ -101,3 +101,34 @@ def add_pack(request):
         'form': form,
     }
     return render(request, template, context)
+
+
+def edit_pack(request, pack_id):
+    # Allow store owners to edit an existing pack
+    pack = get_object_or_404(Pack, pk=pack_id)
+    if request.method == 'POST':
+        form = PackForm(request.POST, request.FILES, instance=pack)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated pack!')
+            return redirect(reverse('pack_detail', args=[pack.id]))
+        else:
+            messages.error(request, 'Failed to update pack. Please confirm\
+            the information you entered, and try again.')
+    else:
+        form = PackForm(instance=pack)
+        messages.info(request, f'You are editing {pack.name}')
+    template = 'packs/edit_pack.html'
+    context = {
+        'form': form,
+        'pack': pack,
+    }
+    return render(request, template, context)
+
+
+def delete_pack(request, pack_id):
+    # Allows store owners to delete an existing product
+    pack = get_object_or_404(Pack, pk=pack_id)
+    pack.delete()
+    messages.success(request, 'Pack has been successfully deleted!')
+    return redirect(reverse('packs'))
