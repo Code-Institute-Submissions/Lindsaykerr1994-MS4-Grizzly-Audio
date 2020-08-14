@@ -1,0 +1,63 @@
+<!doctype html>
+<div class="modal fade" id="edit-pack{{ pack.id }}Modal" tabindex="-1" role="dialog" aria-labelledby="Edit {{ pack.name }} ModalLabel" aria-hidden="true">
+  <div class="modal-dialog edit-pack-modal" role="document">
+    <div class="modal-content rounded-0">
+      <div class="modal-header border-0">
+        <h4 class="text-uppercase mt-4 mb-0 font-weight-light text-center w-100">Edit {{ pack.name }}</h4>    
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body py-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <hr class="w-100 mb-1">
+                        <form method="POST" action="{% url 'edit_pack' pack.id %}" class="" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    {{ edit_pack_form.name | as_crispy_field}}
+                                    {{ edit_pack_form.image }}
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    {{ edit_pack_form.sku | as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    {{ edit_pack_form.description | as_crispy_field}}
+                                    {{ edit_pack_form.category | as_crispy_field}}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    {{ edit_pack_form.price | as_crispy_field}}
+                                    {{ edit_pack_form.on_sale | as_crispy_field}}
+                                </div>
+                                <div class="col-12 col-sm-6">
+                                    {{ edit_pack_form.reduced_price | as_crispy_field}}
+                                </div>
+                            </div>
+                            
+                            
+                            
+                        </form>
+                    <hr class="w-100 mb-1">
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer border-0">
+        <a href="" class="btn btn-darkgrey text-uppercase rounded-0 float-left" data-dismiss="modal">
+            <i class="fas fa-window-close"></i>
+            Cancel
+        </a>
+        <a href="javascript:$('#edit_pack-{{ pack.id }}').submit();" class="btn btn-darkgrey text-uppercase rounded-0">
+            <i class="far fa-save"></i>
+            Save
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

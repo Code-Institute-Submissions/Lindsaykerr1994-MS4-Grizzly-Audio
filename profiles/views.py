@@ -24,10 +24,9 @@ def profile(request):
         form = UserProfileForm(instance=profile)
     # Import user's order for order history
     orders = profile.orders.all()
-    for item in orders:
-        print(item)
     template = 'profiles/profile.html'
     context = {
+        'profile': profile,
         'form': form,
         'orders': orders,
         'on_profile': True,

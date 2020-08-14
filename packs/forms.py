@@ -15,7 +15,23 @@ class PackForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         categories = Category.objects.all()
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]
-
+        placeholders = {
+            'name': 'Pack Name',
+            'sku': 'SKU Number',
+            'description': 'Pack Description',
+            'price': 'Price',
+            'reduced_price': 'Reduced Price',
+            'on_sale': '',
+            'category': 'Category',
+            'image': 'Image',
+        }
+        self.fields['name'].widget.attrs['autofocus'] = True
         self.fields['category'].choices = friendly_names
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'pack-form-input'
+        for field in self.fields:
+            if self.fields[field].required:
+                placeholder = f'{placeholders[field]} *'
+            else:
+                placeholder = placeholders[field]
+            self.fields[field].widget.attrs['placeholder'] = placeholder
+            self.fields[field].widget.attrs['class'] = 'pack-form-input'
+            self.fields[field].label = False

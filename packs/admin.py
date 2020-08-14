@@ -10,7 +10,8 @@ class PackAdmin(admin.ModelAdmin):
         'name',
         'category',
         'price',
-        'image'
+        'image',
+        'publish_date',
     )
 
     ordering = ('sku',)

@@ -33,25 +33,43 @@ $(document).ready(function(){
         })
         $(".pack-card").click(function(){
             var windowHeight = $(window).height();
-            console.log(windowHeight);
             if(windowHeight > 650){
                 var heightDiff = (windowHeight-650)/2;
-                $(".modal-dialog").css("margin-top", `${heightDiff}px`);
+                $(".pack-detail-modal").css("margin-top", `${heightDiff}px`);
             } else {
-                console.log("Window to small")
-                $(".modal-dialog").css("height", `${windowHeight}px`);
-                $(".modal-content").css("height", `${windowHeight}px`);
-                $(".modal-body").css("overflow: scroll");
+                $(".pack-detail-modal").css("margin-top", 0);
+                $(".pack-detail-modal").css("height", `${windowHeight}px`);
+                $(".pack-detail-modal .modal-content").css("height", `${windowHeight}px`);
             }
-        })
+        });
+        $("#delete-pack-btn").click(function(){
+            var windowHeight = $(window).height();
+            if(windowHeight > 650){
+                var smallheightDiff = ((windowHeight-650)/2)+278;
+                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
+            } else {
+                smallheightDiff = ((windowHeight-94)/2);
+                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
+            }
+        });
         $(window).resize(function(){
             var windowHeight = $(window).height();
-            var modalHeight = $(".modal-dialog").height();
+            var modalHeight = $(".pack-detail-modal").height();
             if(windowHeight > modalHeight){
                 var heightDiff = (windowHeight-modalHeight)/2;
-                $(".modal-dialog").css("margin-top", heightDiff);
+                var smallheightDiff = ((windowHeight-650)/2)+278;
+                $(".pack-detail-modal").css("margin-top", heightDiff);
+                $(".pack-detail-modal").css("height", `650px`);
+                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
+            } else {
+                smallheightDiff = ((windowHeight-94)/2);
+                $(".pack-detail-modal").css("margin-top", 0);
+                $(".pack-detail-modal").css("height", `${windowHeight}px`);
+                $(".pack-detail-modal .modal-content").css("height", `${windowHeight}px`);
+                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
             }
-        })
+        });
+        
 })
 
 function checkWindowHeight(){

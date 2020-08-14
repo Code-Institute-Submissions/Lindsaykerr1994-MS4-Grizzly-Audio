@@ -1,10 +1,6 @@
 <!doctype html>
-<!-- Using Bootstrap Modal Components -->
-<!-- https://getbootstrap.com/docs/4.0/components/modal/ -->
-
-<!-- Modal -->
 <div class="modal fade" id="pack{{ pack.id }}Modal" tabindex="-1" role="dialog" aria-labelledby="{{ pack.name }}ModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+  <div class="modal-dialog pack-detail-modal" role="document">
     <div class="modal-content rounded-0">
       <div class="modal-header border-0">
         {% if request.user.is_authenticated %}
@@ -12,10 +8,10 @@
                 <a href="{% url 'add_pack' %}" id="add-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="tooltip" data-placement="right" title="Add A New Pack">
                         <i class="far fa-lg fa-plus-square"></i>
                 </a>
-                <a href="{% url 'edit_pack' pack.id %}" id="edit-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="tooltip" data-placement="bottom" title="Edit This Pack">
+                <a href="#pack{{ pack.id }}Modal" data-dismiss="modal" id="edit-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="modal" data-target="#edit-pack{{ pack.id }}Modal">
                     <i class="fas fa-edit"></i>
                 </a>
-                <a href="{% url 'delete_pack' pack.id %}" id="delete-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="tooltip" data-placement="bottom" title="Delete This Pack">
+                <a href="" id="delete-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="modal" data-target="#confirm-delete-{{ pack.id }}-modal">
                     <i class="fas fa-trash"></i>
                 </a>
             {% endif %}
@@ -73,3 +69,8 @@
     </div>
   </div>
 </div>
+{% if request.user.is_superuser %}
+{% include 'packs/packmodals/edit_pack.html' %}
+{% include 'packs/packmodals/confirm-delete.html' %}
+
+{% endif %}

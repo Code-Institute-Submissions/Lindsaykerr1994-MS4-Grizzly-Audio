@@ -52,21 +52,22 @@ def all_packs(request):
                 Q(description__icontains=query)
             messages.info(request, f'You are searching for: {queries}')
             packs = packs.filter(queries)
-
+    edit_pack_form = PackForm()
     context = {
         'packs': packs,
         'search_term': query,
         'current_sorting': sort,
         'current_direction': direction,
         'current_categories': categories,
+        'edit_pack_form': edit_pack_form,
     }
 
     return render(request, 'packs/packs.html', context)
 
 
+# Do I need this, seeing as I the modal window being loaded in def packs
 def pack_detail(request, pack_id):
     # Retrieves and displays a specific audio pack using its pack_id
-
     pack = get_object_or_404(Pack, pk=pack_id)
     category = pack.category.pk
     packs = Pack.objects.all()
@@ -78,12 +79,8 @@ def pack_detail(request, pack_id):
 
     context = {
         'pack': pack,
-        'date_string': str(pack.publish_date)[6:8],
-        'month_string': str(pack.publish_date)[4:6],
-        'year_string': str(pack.publish_date)[0:4],
         'similar_packs': similar_packs
     }
-
     return render(request, 'packs/pack_detail.html', context)
 
 
@@ -132,12 +129,7 @@ def edit_pack(request, pack_id):
     else:
         form = PackForm(instance=pack)
         messages.info(request, f'You are editing {pack.name}')
-    template = 'packs/edit_pack.html'
-    context = {
-        'form': form,
-        'pack': pack,
-    }
-    return render(request, template, context)
+    return redirect(reverse('packs'))
 
 
 @login_required

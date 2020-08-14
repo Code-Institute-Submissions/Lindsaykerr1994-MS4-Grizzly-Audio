@@ -1,7 +1,10 @@
 /* Modal Window Specifications */
-.modal-dialog{
+.pack-detail-modal{
     margin: 0 auto;
     height: 650px;
+}
+.edit-pack-modal{
+    max-width: 700px;
 }
 .modal-header .close{
     padding: 0.25rem;
@@ -9,4 +12,7 @@
 }
 .modal-body{
     overflow: scroll;
+}
+#confirm-delete-btn, #cancel-delete-btn{
+    width: 100px;
 }
