@@ -42,16 +42,7 @@ $(document).ready(function(){
                 $(".pack-detail-modal .modal-content").css("height", `${windowHeight}px`);
             }
         });
-        $("#delete-pack-btn").click(function(){
-            var windowHeight = $(window).height();
-            if(windowHeight > 650){
-                var smallheightDiff = ((windowHeight-650)/2)+278;
-                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
-            } else {
-                smallheightDiff = ((windowHeight-94)/2);
-                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
-            }
-        });
+        
         $(window).resize(function(){
             var windowHeight = $(window).height();
             var modalHeight = $(".pack-detail-modal").height();
@@ -60,13 +51,11 @@ $(document).ready(function(){
                 var smallheightDiff = ((windowHeight-650)/2)+278;
                 $(".pack-detail-modal").css("margin-top", heightDiff);
                 $(".pack-detail-modal").css("height", `650px`);
-                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
             } else {
                 smallheightDiff = ((windowHeight-94)/2);
                 $(".pack-detail-modal").css("margin-top", 0);
                 $(".pack-detail-modal").css("height", `${windowHeight}px`);
                 $(".pack-detail-modal .modal-content").css("height", `${windowHeight}px`);
-                $(".confirm-delete-modal").css("margin-top", `${smallheightDiff}px`);
             }
         });
         

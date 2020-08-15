@@ -16,3 +16,6 @@
 #confirm-delete-btn, #cancel-delete-btn{
     width: 100px;
 }
+.confirm-delete-modal{
+    margin-top: calc(50vh - 94px);
+}

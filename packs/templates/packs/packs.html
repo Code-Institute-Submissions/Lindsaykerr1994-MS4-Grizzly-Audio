@@ -36,7 +36,7 @@
                     <path d="M21 15l-4 4l-4-4m4 4v-14" />
                     </svg>
                 </button>
-                <p id="pack-count" class="font-weight-light d-inline-block">{{ packs|length }} pack(s)  
+                <p id="pack-count" class="font-weight-light d-inline-block">{{ packs|length }} pack(s)
                 {% if search_term %}
                     with search term: <strong>"{{ search_term }}"</strong>
                 {% endif %}
@@ -88,7 +88,7 @@
                                         {% if request.user.is_superuser %}
                                             <br>
                                             <a href="{% url 'edit_pack' pack.id %}" class="mb-0 text-info"><small>Edit</small></a>
-                                            <a href="{% url 'delete_pack' pack.id %}" class="mb-0 ml-2 text-danger"><small>Remove</small></a>
+                                            <a href="" class="mb-0 ml-2 text-danger" data-toggle="modal" data-target="#confirm-delete-{{ pack.id }}-modal"><small>Remove</small></a>
                                         {% endif %}
                                     {% endif %}
                                 </div>

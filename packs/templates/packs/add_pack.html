@@ -1,3 +1,4 @@
+<!doctype html>
 {% extends "base.html" %}
 {% load static %}
 
@@ -15,25 +16,59 @@
         </div>
         <div class="row mt-3">
             <div class="col-10 offset-1">
-                <form method="POST" action="{% url 'add_pack' %}" class="form mb-2" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'add_pack'%}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {% for field in form %}
-                        {% if field.name != 'image' %}
-                            {{ field | as_crispy_field }}
-                        {% else %}
-                            {{ field }}
-                        {% endif %}
-                    {% endfor %}
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <label for="name" class="text-uppercase font-weight-light">Pack Name *:</label>
+                                <input type="text" name="name" value="" class="w-100 rounded-0 mt-0 mb-3" maxlength="254" placeholder="Pack Name *" required id="id_name">
+                                <label for="sku" class="text-uppercase font-weight-light">SKU Number *:</label>
+                                <input type="text" name="sku" value="" class="w-100 rounded-0 mt-0 mb-3" maxlength="12" placeholder="SKU Number *" required id="id_sku">
+                                <label for="description" class="text-uppercase font-weight-light">Pack Description:</label>
+                                {{ add_pack_form.description }}
+                                <div class="row">
+                                    <div class="col-3">
+                                        <label for="category" class="text-uppercase font-weight-light">Category:</label>
+                                    </div>
+                                    <div class="col-9">
+                                        <select name="category" id="id_category" class="w-100 rounded-0" required>
+                                            {% for cat in categories %}
+                                                    <option value="{{ cat.id }}">{{ cat.friendly_name }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="price" class="text-uppercase font-weight-light">Price (£):</label>
+                                        <input type="number" name="price" step="0.01" class="w-100 rounded-0 mt-0 mb-3" id="id_price" required>
+                                        <input type="checkbox" name="on_sale" id="id_on_sale">
+                                        <label for="on_sale" class="text-uppercase font-weight-light">On Sale?</label>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="reduced_price" class="text-uppercase font-weight-light">Reduced Price (£):</label>
+                                        <input type="number" name="reduced_price" step="0.01" class="w-100 rounded-0 mt-0 mb-3" id="id_reduced_price" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                {{ add_pack_form.image }}
+                            </div>
+                        </div>
                     <div class="float-right">
-                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
-                                <i class="fas fa-trash">
-                                </i>
-                                <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Cancel Changes</p>
-                        </a>
-                        <button class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
-                            <i class="fas fa-check"></i>
-                            Add Pack
+                        <button type="submit" name="id_addanother" class="btn btn-darkgrey rounded-0 text-uppercase font-weight-light mt-5 underline-hover">
+                            <i class="fas fa-plus-circle"></i>
+                            Add Another
                         </button>
+                        <button type="submit" name="id_saveandview" class="btn btn-darkgrey rounded-0 text-uppercase font-weight-light mt-5 underline-hover">
+                            <i class="far fa-check-circle"></i>
+                            Save And View
+                        </button>
+                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                            <i class="fas fa-trash">
+                            </i>
+                            <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Cancel Changes</p>
+                        </a>
                     </div>
                 </form>
             </div>
@@ -47,6 +82,14 @@
         $('#new-image').change(function(){
             var file = $('#new-image')[0].files[0]
             $('#filename').text(`Image choosen: ${file.name}`);
+        });
+        $('#id_on_sale').click(function(){
+            if($(this).prop("checked") == true){
+                $('#id_reduced_price').prop('disabled', false);
+            }
+            else {
+                $('#id_reduced_price').prop('disabled', true);
+            }
         });
     </script>
 {% endblock %}

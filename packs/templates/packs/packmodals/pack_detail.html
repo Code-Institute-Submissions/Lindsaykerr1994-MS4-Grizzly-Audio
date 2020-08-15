@@ -8,7 +8,7 @@
                 <a href="{% url 'add_pack' %}" id="add-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="tooltip" data-placement="right" title="Add A New Pack">
                         <i class="far fa-lg fa-plus-square"></i>
                 </a>
-                <a href="#pack{{ pack.id }}Modal" data-dismiss="modal" id="edit-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="modal" data-target="#edit-pack{{ pack.id }}Modal">
+                <a href="{% url 'edit_pack' pack.id %}" id="edit-pack-btn" type="button" class="btn btn-darkgrey rounded-0">
                     <i class="fas fa-edit"></i>
                 </a>
                 <a href="" id="delete-pack-btn" type="button" class="btn btn-darkgrey rounded-0" data-toggle="modal" data-target="#confirm-delete-{{ pack.id }}-modal">
@@ -48,7 +48,6 @@
                     </p>
                     <p class="my-4">{{ pack.description }}</p>
                     <p class="my-4">Category: <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="text-muted">{{pack.category.friendly_name}}</a></p>
-                
                     <p class="my-4 font-weight-bold">
                     {% if pack.on_sale %}
                         <s class="text-muted font-weight-light">£{{ pack.price }}</s>
@@ -63,14 +62,13 @@
         </div>
       </div>
       <div class="modal-footer border-0">
-        <a href="" class="btn btn-darkgrey text-uppercase rounded-0 float-left" data-dismiss="modal">Close</a>
-        <a href="{% url 'add_to_bag' pack.id%}" class="btn btn-darkgrey text-uppercase rounded-0">Add To Bag</a>
+        <a href="" class="btn btn-darkgrey text-uppercase font-weight-light rounded-0 float-left" data-dismiss="modal">Close</a>
+        <a href="{% url 'add_to_bag' pack.id%}" class="btn btn-darkgrey text-uppercase font-weight-light rounded-0">Add To Bag</a>
       </div>
     </div>
   </div>
 </div>
 {% if request.user.is_superuser %}
-{% include 'packs/packmodals/edit_pack.html' %}
 {% include 'packs/packmodals/confirm-delete.html' %}
 
 {% endif %}

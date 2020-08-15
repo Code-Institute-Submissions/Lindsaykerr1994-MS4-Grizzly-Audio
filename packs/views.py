@@ -95,16 +95,22 @@ def add_pack(request):
         form = PackForm(request.POST, request.FILES)
         if form.is_valid():
             pack = form.save()
-            messages.success(request, 'Successfully added new pack!')
-            return redirect(reverse('pack_detail', args=[pack.id]))
+            messages.success(request, f'Successfully added new pack: \
+                {pack.name}!')
+            if 'id_saveandview' in request.POST:
+                return redirect(reverse('packs'))
+            else:
+                return redirect(reverse('add_pack'))
         else:
             messages.error(request, 'Failed to add pack. Please confirm\
             the information you entered, and try again.')
     else:
         form = PackForm()
     template = 'packs/add_pack.html'
+    all_cat = Category.objects.all()
     context = {
-        'form': form,
+        'add_pack_form': form,
+        'categories': all_cat,
     }
     return render(request, template, context)
 
@@ -121,15 +127,23 @@ def edit_pack(request, pack_id):
         form = PackForm(request.POST, request.FILES, instance=pack)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Successfully updated pack!')
-            return redirect(reverse('pack_detail', args=[pack.id]))
+            messages.success(request, f'Successfully updated pack: \
+                {pack.name}!')
+            return redirect(reverse('packs'))
         else:
             messages.error(request, 'Failed to update pack. Please confirm\
             the information you entered, and try again.')
     else:
         form = PackForm(instance=pack)
         messages.info(request, f'You are editing {pack.name}')
-    return redirect(reverse('packs'))
+    template = 'packs/edit_pack.html'
+    all_cat = Category.objects.all()
+    context = {
+        'edit_pack_form': form,
+        'pack': pack,
+        'categories': all_cat,
+    }
+    return render(request, template, context)
 
 
 @login_required

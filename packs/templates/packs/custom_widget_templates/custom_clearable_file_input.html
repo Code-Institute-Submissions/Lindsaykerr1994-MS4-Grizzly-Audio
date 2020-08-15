@@ -1,18 +1,20 @@
+<!DOCTYPE html>
+<p class="font-weight-light text-uppercase">{{ widget.initial_text }}: </p>
 {% if widget.is_initial %}
-    <p>{{ widget.initial_text }}: </p>
+    
     <a href="{{ widget.value.url }}">
-        <img width="86" height="86" class="rounded shadow-sm" src="{{ widget.value.url }}">
+        <img width="200" height="200" class="rounded shadow-sm" src="{{ widget.value.url }}">
     </a>
     {% if not widget.required %}
         <div class="custom-control custom-checkbox mt-2">
             <input class="custom-control-input" type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}"{% if widget.attrs.disabled %} disabled{% endif %}>
-            <label class="custom-control-label text-danger" for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>
+            <label class="custom-control-label text-danger text-uppercase" for="{{ widget.checkbox_id }}"><small>{{ widget.clear_checkbox_label }}</small></label>
         </div>
     {% endif %}
     <br>
-    {{ widget.input_text }}:
+    {{ widget.input_text }}
 {% endif %}
-<span class="btn btn-darkgrey rounded-0 btn-file">
+<span class="btn btn-darkgrey rounded-0 btn-file text-uppercase font-weight-light">
     Select Image <input id="new-image" type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
 </span>
-<strong><p class="text-danger" id="filename"></p></strong>
+<p class="text-danger text-uppercase font-weight-light" id="filename"></p>
