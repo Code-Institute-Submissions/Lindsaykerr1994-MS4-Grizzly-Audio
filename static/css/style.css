@@ -25,6 +25,9 @@ body {
 .text-black:hover{
     color: #000;
 }
+.text-gold{
+    color:#b8860b;
+}
 .hover-red:hover{
     color: #dc3545;
 }
@@ -51,6 +54,16 @@ body {
     color: #000;
     border: 2px solid #292929;
 }
+.btn-inverted{
+    border: 2px solid #292929;
+    background-color:  #fff;
+    color: #292929;
+}
+.btn-inverted:hover{
+    border: 2px solid #fff;
+    background-color:  #292929;
+    color: #fff;
+}
 .dark-border-bottom{
     border-bottom: 3px #292929 solid;
 }
@@ -70,6 +83,18 @@ body {
 .lh-38{
     line-height:38px;
 }
+/* Home Page/Index Specifications */
+#home-page-top-row{
+    background-image: url("home-pack-bg/pexels-aleksandr-neplokhov-1238941_Fotor.jpg");
+    background-size: cover;
+}
+#home-page-top-row div:first-child{
+    background-color: rgba(0,0,0,0.3);
+    color: #fff;
+}
+#home-page-top-row h1{
+    width:450px;
+}
 /* Header & Footer Specifications */
 header, footer{
     background-color: #292929;
@@ -86,9 +111,9 @@ header, footer{
 .mobile-nav-btn{
     background-color: #292929;
     border: 1px solid;
-    border-color: rgba(255 ,255,255,0.6);
+    border-color: #aa842a;
     border-radius: 5px;
-    color: rgba(255 ,255,255,0.6)
+    color: #aa842a;
 }
 #mobile-nav-bar{
     display: none;

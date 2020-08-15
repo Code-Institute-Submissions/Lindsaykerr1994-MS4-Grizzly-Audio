@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
 
@@ -18,40 +19,69 @@
             <hr class="w-100 mb-1">
         </div>
         <div class="row">
-            <div class="col-10 col-lg-5 offset-1 mt-3">
-                <p class="text-muted">Billing Information</p>
+            <div class="col-12 col-md-6 col-xl-5 offset-xl-1 mt-3">
+                <h4 class="text-uppercase font-weight-light">Billing Information</h4>
                 <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
-                    {{ form|crispy }}
-                    <button class="btn btn-darkgrey rounded-0 text-uppercase mt-5 font-weight-light underline-hover float-right">Update Information</button>
-
+                    <div>
+                        <label for="default_phone_number" class="text-uppercase font-weight-light">Phone Number:</label>
+                        <input type="text" name="default_phone_number" value="{% if profile.default_phone_number %}{{ profile.default_phone_number }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="20" placeholder="Phone Number" autofocus id="id_default_phone_number">
+                    </div>
+                    <div>
+                        <label for="default_street_address1" class="text-uppercase font-weight-light">Street Address 1:</label>
+                        <input type="text" name="default_street_address1" value="{% if profile.default_street_address1 %}{{ profile.default_street_address1 }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="80" placeholder="Street Address 1" id="id_default_street_address1">
+                    </div>
+                    <div>
+                        <label for="default_street_address2" class="text-uppercase font-weight-light">Street Address 2:</label>
+                        <input type="text" name="default_street_address2" value="{% if profile.default_street_address2 %}{{ profile.default_street_address2 }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="80" placeholder="Street Address 2" id="id_default_street_address2">
+                    </div>
+                    <div>
+                        <label for="default_town_or_city" class="text-uppercase font-weight-light">Town/City:</label>
+                        <input type="text" name="default_town_or_city" value="{% if profile.default_town_or_city %}{{ profile.default_town_or_city }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="40" placeholder="Town Or City" id="id_default_town_or_city">
+                    </div>
+                    <div>
+                        <label for="default_county" class="text-uppercase font-weight-light">County/State:</label>
+                        <input type="text" name="default_county" value="{% if profile.default_county %}{{ profile.default_county }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="40" placeholder="County Or State" id="id_default_county">
+                    </div>
+                    <div>
+                        <label for="default_post_code" class="text-uppercase font-weight-light">Postal Code:</label>
+                        <input type="text" name="default_post_code" value="{% if profile.default_post_code %}{{ profile.default_post_code }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="10" placeholder="Postal Code" id="id_default_post_code">
+                    </div>
+                    <div>
+                        <label for="default_country" class="text-uppercase font-weight-light">Country:</label>
+                        {{ form.default_country }}
+                    </div>
+                    <button class="btn btn-darkgrey rounded-0 text-uppercase mt-5 font-weight-light underline-hover float-right">
+                        <i class="fas fa-info-circle"></i>
+                        Update Information
+                    </button>
                 </form>
             </div>
-            <div class="col-10 col-lg-5 offset-1 offset-lg-0">
-                <p class="text-muted">Order History</p>
+            <div class="col-12 col-md-6 col-xl-5 mt-3">
+                <h4 class="text-uppercase font-weight-light">Order History</h4>
                 <div class="table-response order-history-table">
                     <table class="table table-sm table-borderless">
-                        <thead>
-                            <tr>
-                                <th>Order Number</th>
-                                <th>Date</th>
-                                <th>Items</th>
-                                <th>Order Total</th>
+                        <thead class="text-white bg-darkgrey">
+                            <tr class="small text-uppercase">
+                                <th class="font-weight-light align-middle">Order No.</th>
+                                <th class="font-weight-light align-middle">Date</th>
+                                <th class="font-weight-light align-middle">Items</th>
+                                <th class="font-weight-light align-middle">Order Total</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for order in orders %}
-                                <tr>
-                                    <td>
+                                <tr class="small text-uppercase">
+                                    <td class="align-middle">
                                         <a href="{% url 'order_history' order.order_number %}" title=" {{ order.order_number }}">
                                             {{ order.order_number|truncatechars:6 }}
                                         </a>
                                     </td>
-                                    <td>
+                                    <td class="align-middle">
                                         {{order.date}}
                                     </td>
-                                    <td>
-                                        <ul class="list-unstyled">
+                                    <td class="align-middle">
+                                        <ul class="list-unstyled my-1">
                                             {% for item in order.lineitems.all %}
                                                 <li>
                                                     {{ item.pack.name }}
@@ -59,7 +89,7 @@
                                             {% endfor %}
                                         </ul>
                                     </td>
-                                    <td>
+                                    <td class="align-middle">
                                         {{ order.order_total }}
                                     </td>
                                 </tr>
@@ -70,5 +100,4 @@
             </div>
         </div>
     </div>
-    {{ profile }}
 {% endblock %}

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends "base.html" %}
 {% load static %}
 
@@ -13,7 +14,7 @@
         <div class="row">
             <hr class="w-100 mb-1">
             <div class="col-10 offset-1 text-center">
-                <h2 class="text-uppercase mt-4  font-weight-light header-spacing d-inline-block">All {% for cat in current_categories %}{{ cat.friendly_name }}{% endfor %} Packs</h2>
+                <h2 class="text-uppercase mt-4 font-weight-light header-spacing">All {% for cat in current_categories %}{{ cat.friendly_name }}{% endfor %} Packs</h2>
             </div>
             <div class="col-1">
                 {% if request.user.is_authenticated %}
@@ -30,7 +31,7 @@
         <div class="row text-uppercase">
             <div class="col-5 offset-1 px-5">
                 <button id="changedirection" class="border-0 bg-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewbox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
                     <path stroke="none" d="M0 0h24v24H0z"/>
                     <path d="M3 9l4-4l4 4m-4 -4v14" />
                     <path d="M21 15l-4 4l-4-4m4 4v-14" />

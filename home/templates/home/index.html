@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
 
@@ -11,19 +12,18 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container h-100 margin-tb-125">
-        <div class="row">
-            <div class="col-8 offset-2 offset-md-0 col-md-12 my-auto text-center">
-                <h1 class="display-4">Shop Description</h1>
-                <p>This segment will contain a brief description about the store, the products offered.</p>
+    <div class="container-fluid h-100 margin-tb-75">
+        <div class="row" id="home-page-top-row">
+            <div class="col-6 offset-3 offset-md-1 col-md-10 my-5 text-center">
+                <h1 class="text-uppercase font-weight-light header-spacing mt-4 mx-auto">Grizzly Audio Packs</h1>
+                <p class="text-uppercase font-weight-light">Welcome to Grizzly Audio Packs. No matter what your preferred DAW platform is, browse our diverse array of audio packs to find the perfect sounds to enhance your next project.</p>
                 <div class="my-5">
-                    <a href="{% url 'packs' %}" class="shop-now-button btn btn-outline-dark btn-sm text-uppercase py-3">View packs</a>
+                    <a href="{% url 'packs' %}" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">View packs</a>
                 </div>
             </div>
-            <hr>
         </div>
-        
-        <div class="row h-50">
+        <div class="row">
+            <hr class="w-100">
             <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
                 <h3 class="text-uppercase my-4 font-weight-light">Best Sellers</h3>
                 <div class="carousel-container">
@@ -34,13 +34,13 @@
                             {% for pack in best_sellers %}
                                 {% if forloop.first %}
                                     <div class="carousel-item active">
-                                        <a href="{% url 'pack_detail' pack.id %}">
+                                        <a href="{% url 'packs' %}?sort=sales&direction=desc">
                                             <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
                                         </a>
                                     </div>
                                 {% else %}
                                     <div class="carousel-item">
-                                        <a href="{% url 'pack_detail' pack.id %}">
+                                        <a href="{% url 'packs' %}?sort=sales&direction=desc">
                                             <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
                                         </a>
                                     </div>
@@ -48,14 +48,14 @@
                             {% endfor %}
                         </div>
                         <a class="carousel-control-prev" href="#carouselBestSellerControls" role="button" data-slide="prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewbox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z"/>
                                     <path d="M18 15l-6-6l-6 6h12" transform="rotate(270 12 12)" />
                                 </svg>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselBestSellerControls" role="button" data-slide="next">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="56" height="56" viewbox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z"/>
                                     <path d="M18 15l-6-6l-6 6h12" transform="rotate(90 12 12)" />
                                 </svg>
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="my-5">
-                    <a href="" class="shop-now-button btn btn-outline-dark btn-sm text-uppercase py-3">See All</a>
+                    <a href="{% url 'packs' %}?sort=sales&direction=desc" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">See All</a>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
@@ -77,13 +77,13 @@
                             {% for pack in new_releases %}
                                 {% if forloop.first %}
                                     <div class="carousel-item active">
-                                        <a href="{% url 'pack_detail' pack.id %}">
+                                        <a href="{% url 'packs' %}?sort=date&direction=asc">
                                             <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
                                         </a>
                                     </div>
                                 {% else %}
                                     <div class="carousel-item">
-                                        <a href="{% url 'pack_detail' pack.id %}">
+                                        <a href="{% url 'packs' %}?sort=date&direction=asc">
                                             <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
                                         </a>
                                     </div>
@@ -91,7 +91,7 @@
                             {% endfor %}
                         </div>
                         <a class="carousel-control-prev" href="#carouselNewReleaseControls" role="button" data-slide="prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewbox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z"/>
                                     <path d="M18 15l-6-6l-6 6h12" transform="rotate(270 12 12)" />
                                 </svg>
@@ -107,7 +107,7 @@
                     </div>
                 </div>
                 <div class="my-5">
-                    <a href="" class="shop-now-button btn btn-outline-dark btn-sm text-uppercase py-3">See All</a>
+                    <a href="" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">See All</a>
                 </div>
             </div>
             <div class="d-none d-lg-inline-block col-lg-4 my-auto text-center">
@@ -134,14 +134,14 @@
                             {% endfor %}
                         </div>
                         <a class="carousel-control-prev" href="#carouselFreePacksControls" role="button" data-slide="prev">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                    <path stroke="none" d="M0 0h24v24H0z"/>
-                                    <path d="M18 15l-6-6l-6 6h12" transform="rotate(270 12 12)" />
-                                </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-left" width="56" height="56" viewbox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z"/>
+                                <path d="M18 15l-6-6l-6 6h12" transform="rotate(270 12 12)" />
+                            </svg>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselFreePacksControls" role="button" data-slide="next">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="56" height="56" viewbox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z"/>
                                 <path d="M18 15l-6-6l-6 6h12" transform="rotate(90 12 12)" />
                             </svg>
@@ -150,9 +150,28 @@
                     </div>
                 </div>
                 <div class="my-5">
-                    <a href="" class="shop-now-button btn btn-outline-dark btn-sm text-uppercase py-3">See All</a>
+                    <a href="" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">See All</a>
                 </div>
             </div>
         </div>
     </div>
+{% endblock %}
+
+{% block postloadjs %}
+    <script>
+        var bgUrls = [
+                "{% static 'home-pack-bg/pexels-aleksandr-neplokhov-1238941_Fotor.jpg' %}",
+                "{% static 'home-pack-bg/pexels-hendrik-b-744318_Fotor.jpg' %}",
+                "{% static 'home-pack-bg/pexels-hendrik-b-744322_Fotor.jpg' %}",
+                "{% static 'home-pack-bg/pexels-inga-seliverstova-3413462_Fotor.jpg' %}"
+            ]
+        $(document).ready(function(){
+            var count = 1;
+            $('#home-page-top-row').css('background-image', `url("${bgUrls[0]}")`);
+            setInterval(function() {
+                $('#home-page-top-row').css('background-image', `url("${bgUrls[count]}")`);
+                count == bgUrls.length-1 ? count = 0 : count++;
+            }, 5000);
+        }); 
+    </script>
 {% endblock %}
