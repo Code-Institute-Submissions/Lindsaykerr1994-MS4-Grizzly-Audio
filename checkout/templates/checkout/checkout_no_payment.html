@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+                            <form action="{% url 'checkout_no_payment' %}" method="POST" id="payment-form">
                                 {% csrf_token %}
                                 <fieldset class="rounded payment-details-div px-3 mb-5">
                                     <legend class="fieldset-label small"><strong>Personal Details</strong></legend>
@@ -76,12 +76,6 @@
                                         {% endif %}
                                     </div>
                                 </fieldset>
-                                <fieldset class="rounded payment-details-div px-3 mb-5">
-                                    <legend class="fieldset-label small"><strong>Payment</strong></legend>
-                                    <div id="card-element"></div>
-                                    <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
-                                    <input type="hidden" value="{{ client_secret }}" name="client_secret">
-                                </fieldset>
                             </form>
                         </td>
                     </tr>
@@ -92,12 +86,6 @@
                                 <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Adjust Order</p>
                             </a>
                             <button id="submit-button" form="payment-form" class="btn btn-darkgrey rounded-0 text-uppercase mt-5 font-weight-light underline-hover">Complete Order</button>
-                            <p class="small text-danger my-0">
-							<span class="icon">
-								<i class="fas fa-exclamation-circle"></i>
-							</span>
-							<span>You will be charged <strong>£{{ total|floatformat:2 }}</strong></span>
-						</p>
                         </td>
                     </tr>
                 </table>
@@ -112,11 +100,4 @@
             </span>
         </h1>
     </div>
-{% endblock %}
-
-{% block postloadjs %}
-    {{ block.super }}
-    {{ stripe_public_key|json_script:"id_stripe_public_key" }}
-    {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'js/stripe_elements.js' %}"></script>
 {% endblock %}

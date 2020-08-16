@@ -85,15 +85,11 @@ body {
 }
 /* Home Page/Index Specifications */
 #home-page-top-row{
-    background-image: url("home-pack-bg/pexels-aleksandr-neplokhov-1238941_Fotor.jpg");
     background-size: cover;
 }
 #home-page-top-row div:first-child{
     background-color: rgba(0,0,0,0.3);
     color: #fff;
-}
-#home-page-top-row h1{
-    width:450px;
 }
 /* Header & Footer Specifications */
 header, footer{
@@ -101,32 +97,50 @@ header, footer{
     color: #fff;
     height: 75px;
 }
+header .row:first-of-type{
+    height:75px;
+}
 #main-nav-logo{
     height:50px;
 }
 #main-logo-text{
     line-height: 50px;
-    font-family: 'Sanchez';
+    margin-bottom: 0px;
+    vertical-align: middle;
 }
-.mobile-nav-btn{
+#main-navbar-list p{
+    display: none;
+}
+#main-navbar-list .list-inline-item{
+    width: 75px;
+}
+.mobile-btn{
     background-color: #292929;
     border: 1px solid;
     border-color: #aa842a;
     border-radius: 5px;
     color: #aa842a;
 }
-#mobile-nav-bar{
+#mobile-nav-bar, #mobile-search-bar{
     display: none;
     background-color:#9c824a;
+    height: 40px;
 }
 #mobile-nav-bar li{
     width:24%;
+}
+#mobile-search-bar .input-group>*{
+    margin-top: 5px;
 }
 .dropdown-menu {
     margin-top:8px;
     width: 225px;
 }
 /* Toast Specifications */
+.toast{
+    min-width: 250px;
+    border: 1px solid #000
+}
 .message-container {
     position: fixed;
     top: 74px;
@@ -172,12 +186,22 @@ header, footer{
 .card-img-top:hover{
     opacity:0.6;
 }
+.card-body{
+    height:70px;
+    background-color:rgba(0,0,0,0.05);
+}
 .btt-button{
     display:none;
     position: fixed;
     bottom: 75px;
     right:25px;
     width: 100px;
+}
+#sortbyoptions{
+    border: 0px;
+}
+#sortbyoptions:hover{
+    border-bottom: 1px solid #292929;
 }
 /* Pack Details Page Specifcations */
 .pack-detail-img{

@@ -6,11 +6,13 @@ def bag_contents(request):
     bag_items = []
     total = 0
     bag_count = 0
+    amount_saved = 0
     bag = request.session.get('bag', {})
 
     for pack_id, quantity in bag.items():
         pack = get_object_or_404(Pack, pk=pack_id)
         if pack.on_sale:
+            amount_saved += (pack.price - pack.reduced_price)
             total += pack.reduced_price
         else:
             total += pack.price
@@ -23,6 +25,7 @@ def bag_contents(request):
     context = {
         'bag_items': bag_items,
         'total': total,
+        'amount_saved': amount_saved,
         'bag_count': bag_count,
     }
     return context

@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <div class="toast rounded-0 border-top-0 font-weight-light" data-autohide="false">
     <div class="w-100 toast-banner bg-success"></div>
     <div class="toast-header bg-darkgrey text-white text-uppercase pl-2">
@@ -8,12 +9,12 @@
     </div>
     <div class="toast-body bg-white pl-2">
         <div class="row">
-            <div class="col">
+            <div class="col my-3 text-uppercase font-weight-light">
                 <small>{{ message }}</small>
                 <hr>
             </div>
         </div>
-        {% if total and not on_profile %}
+        {% if bag_count and not on_profile %}
             <div class="toast-items-container">
             {% for item in bag_items %}
                 <div class="row">
@@ -26,7 +27,7 @@
 
                     </div>
                     <div class="col-9">
-                        <p class="my-0">{{ item.pack.name }}</p>
+                        <p class="my-0 text-uppercase font-weight-light">{{ item.pack.name }}</p>
                         <p class="my-0"><small>£ {% if item.pack.on_sale %}{{ item.pack.reduced_price}}{% else %}{{ item.pack.price}}{% endif %}</small></p>
                     </div>
                 </div>

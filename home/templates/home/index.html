@@ -2,30 +2,21 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block page_header %}
-    <!--
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>-->
-{% endblock %}
-
 {% block content %}
     <div class="container-fluid h-100 margin-tb-75">
         <div class="row" id="home-page-top-row">
-            <div class="col-6 offset-3 offset-md-1 col-md-10 my-5 text-center">
+            <div class="col-10 offset-1 offset-md-2 col-md-8 col-lg-10 offset-lg-1 my-5 text-center">
                 <h1 class="text-uppercase font-weight-light header-spacing mt-4 mx-auto">Grizzly Audio Packs</h1>
                 <p class="text-uppercase font-weight-light">Welcome to Grizzly Audio Packs. No matter what your preferred DAW platform is, browse our diverse array of audio packs to find the perfect sounds to enhance your next project.</p>
                 <div class="my-5">
-                    <a href="{% url 'packs' %}" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">View packs</a>
+                    <a href="{% url 'packs' %}" class="btn btn-darkgrey btn-sm text-uppercase rounded-0 py-3">View packs</a>
                 </div>
             </div>
         </div>
         <div class="row">
             <hr class="w-100">
             <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
-                <h3 class="text-uppercase my-4 font-weight-light">Best Sellers</h3>
+                <h3 class="text-uppercase my-4 font-weight-light"><u>Best Sellers</u></h3>
                 <div class="carousel-container">
                     <div id="carouselBestSellerControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -64,11 +55,11 @@
                     </div>
                 </div>
                 <div class="my-5">
-                    <a href="{% url 'packs' %}?sort=sales&direction=desc" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">See All</a>
+                    <a href="{% url 'packs' %}?sort=sales&direction=desc" class="btn btn-darkgrey btn-sm text-uppercase rounded-0 py-3">See All</a>
                 </div>
             </div>
             <div class="col-12 col-md-6 col-lg-4 my-auto text-center">
-                <h3 class="text-uppercase my-4 font-weight-light">New Release</h3>
+                <h3 class="text-uppercase my-4 font-weight-light"><u>New Releases</u></h3>
                 <div class="carousel-container">
                     <div id="carouselNewReleaseControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -98,7 +89,7 @@
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="carousel-control-next" href="#carouselNewReleaseControls" role="button" data-slide="next">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="56" height="56" viewBox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-caret-right" width="56" height="56" viewbox="0 0 24 24" stroke-width="1.5" stroke="#222433" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z"/>
                                     <path d="M18 15l-6-6l-6 6h12" transform="rotate(90 12 12)" />
                                 </svg>
@@ -107,11 +98,11 @@
                     </div>
                 </div>
                 <div class="my-5">
-                    <a href="" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">See All</a>
+                    <a href="{% url 'packs' %}?sort=date&direction=asc" class="btn btn-darkgrey btn-sm text-uppercase rounded-0 py-3">See All</a>
                 </div>
             </div>
             <div class="d-none d-lg-inline-block col-lg-4 my-auto text-center">
-                <h3 class="text-uppercase my-4 font-weight-light">Free Packs</h3>
+                <h3 class="text-uppercase my-4 font-weight-light"><u>Free Packs</u></h3>
                 <div class="carousel-container">
                     <div id="carouselFreePacksControls" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner">
@@ -150,7 +141,7 @@
                     </div>
                 </div>
                 <div class="my-5">
-                    <a href="" class="btn btn-inverted btn-sm text-uppercase rounded-0 py-3">See All</a>
+                    <a href="{% url 'packs' %}?sort=freepacks" class="btn btn-darkgrey btn-sm text-uppercase rounded-0 py-3">See All</a>
                 </div>
             </div>
         </div>
@@ -166,12 +157,11 @@
                 "{% static 'home-pack-bg/pexels-inga-seliverstova-3413462_Fotor.jpg' %}"
             ]
         $(document).ready(function(){
-            var count = 1;
-            $('#home-page-top-row').css('background-image', `url("${bgUrls[0]}")`);
-            setInterval(function() {
-                $('#home-page-top-row').css('background-image', `url("${bgUrls[count]}")`);
-                count == bgUrls.length-1 ? count = 0 : count++;
-            }, 5000);
-        }); 
+            var randomNumber = Math.floor((Math.random() * 4));
+            $('#home-page-top-row').css('background-image', `url("${bgUrls[randomNumber]}")`);
+        });
+        $('.carousel').carousel({
+            interval: 20000
+        })
     </script>
 {% endblock %}

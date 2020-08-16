@@ -23,7 +23,7 @@ def profile(request):
     else:
         form = UserProfileForm(instance=profile)
     # Import user's order for order history
-    orders = profile.orders.all()
+    orders = profile.orders.all().order_by('-date')
     template = 'profiles/profile.html'
     context = {
         'profile': profile,

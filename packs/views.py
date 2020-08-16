@@ -20,18 +20,31 @@ def all_packs(request):
         if 'sort' in request.GET:
             sortkey = request.GET['sort']
             sort = sortkey
-            if sortkey == ' name':
+            if sortkey == 'name':
                 sortkey = 'lower_name'
                 packs = packs.annotate(lower_name=Lower('name'))
+                messages.info(request, 'Sorting by: Name')
+            if sortkey == 'date':
+                sortkey = 'publish_date'
+                messages.info(request, 'Sorting by: Publication Date')
             if sortkey == 'category':
                 sortkey = 'category__name'
+                messages.info(request, 'Sorting by: Category')
+            if sortkey == 'price':
+                sortkey = 'price'
+                messages.info(request, 'Sorting by: Price')
+            if sortkey == 'freepacks':
+                sortkey = 'lower_name'
+                packs = packs.filter(price=0.00)
+                packs = packs.annotate(lower_name=Lower('name'))
+                messages.info(request, 'Sorting by: Free Packs')
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
                     sortkey = f'-{sortkey}'
+            else:
+                direction = 'desc'
             packs = packs.order_by(sortkey)
-            messages.info(request, f'You are sorting by:\
-                {sortkey.capitalize()}')
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
