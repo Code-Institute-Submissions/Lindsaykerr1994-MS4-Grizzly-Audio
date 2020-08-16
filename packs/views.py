@@ -78,25 +78,6 @@ def all_packs(request):
     return render(request, 'packs/packs.html', context)
 
 
-# Do I need this, seeing as I the modal window being loaded in def packs
-def pack_detail(request, pack_id):
-    # Retrieves and displays a specific audio pack using its pack_id
-    pack = get_object_or_404(Pack, pk=pack_id)
-    category = pack.category.pk
-    packs = Pack.objects.all()
-    similar_packs = packs.filter(category=category)
-    for this_pack in similar_packs:
-        if this_pack == pack:
-            similar_packs = similar_packs.exclude(pk=this_pack.id)
-    similar_packs = similar_packs[:2]
-
-    context = {
-        'pack': pack,
-        'similar_packs': similar_packs
-    }
-    return render(request, 'packs/pack_detail.html', context)
-
-
 @login_required
 def add_pack(request):
     # Allows store owners to add a pack to the store
@@ -122,7 +103,7 @@ def add_pack(request):
     template = 'packs/add_pack.html'
     all_cat = Category.objects.all()
     context = {
-        'add_pack_form': form,
+        'form': form,
         'categories': all_cat,
     }
     return render(request, template, context)
@@ -152,7 +133,7 @@ def edit_pack(request, pack_id):
     template = 'packs/edit_pack.html'
     all_cat = Category.objects.all()
     context = {
-        'edit_pack_form': form,
+        'form': form,
         'pack': pack,
         'categories': all_cat,
     }

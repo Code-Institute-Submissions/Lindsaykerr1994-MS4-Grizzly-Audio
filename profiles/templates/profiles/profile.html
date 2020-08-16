@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/profile-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form-style.css' %}">
 {% endblock %}
 
 {% block page_header %}
@@ -21,43 +21,21 @@
         <div class="row">
             <div class="col-12 col-md-6 col-xl-5 offset-xl-1 mt-3">
                 <h4 class="text-uppercase font-weight-light">Billing Information</h4>
-                <form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
                     {% csrf_token %}
-                    <div>
-                        <label for="default_phone_number" class="text-uppercase font-weight-light">Phone Number:</label>
-                        <input type="text" name="default_phone_number" value="{% if profile.default_phone_number %}{{ profile.default_phone_number }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="20" placeholder="Phone Number" autofocus id="id_default_phone_number">
-                    </div>
-                    <div>
-                        <label for="default_street_address1" class="text-uppercase font-weight-light">Street Address 1:</label>
-                        <input type="text" name="default_street_address1" value="{% if profile.default_street_address1 %}{{ profile.default_street_address1 }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="80" placeholder="Street Address 1" id="id_default_street_address1">
-                    </div>
-                    <div>
-                        <label for="default_street_address2" class="text-uppercase font-weight-light">Street Address 2:</label>
-                        <input type="text" name="default_street_address2" value="{% if profile.default_street_address2 %}{{ profile.default_street_address2 }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="80" placeholder="Street Address 2" id="id_default_street_address2">
-                    </div>
-                    <div>
-                        <label for="default_town_or_city" class="text-uppercase font-weight-light">Town/City:</label>
-                        <input type="text" name="default_town_or_city" value="{% if profile.default_town_or_city %}{{ profile.default_town_or_city }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="40" placeholder="Town Or City" id="id_default_town_or_city">
-                    </div>
-                    <div>
-                        <label for="default_county" class="text-uppercase font-weight-light">County/State:</label>
-                        <input type="text" name="default_county" value="{% if profile.default_county %}{{ profile.default_county }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="40" placeholder="County Or State" id="id_default_county">
-                    </div>
-                    <div>
-                        <label for="default_post_code" class="text-uppercase font-weight-light">Postal Code:</label>
-                        <input type="text" name="default_post_code" value="{% if profile.default_post_code %}{{ profile.default_post_code }}{% endif %}" class="w-100 rounded-0 mt-0 mb-3" maxlength="10" placeholder="Postal Code" id="id_default_post_code">
-                    </div>
-                    <div>
-                        <label for="default_country" class="text-uppercase font-weight-light">Country:</label>
-                        {{ form.default_country }}
-                    </div>
+                    {{ form.default_street_address1 | as_crispy_field }}
+                    {{ form.default_street_address2 | as_crispy_field }}
+                    {{ form.default_town_or_city | as_crispy_field }}
+                    {{ form.default_county | as_crispy_field }}
+                    {{ form.default_post_code | as_crispy_field }}
+                    {{ form.default_country | as_crispy_field }}
                     <button class="btn btn-darkgrey rounded-0 text-uppercase mt-5 font-weight-light underline-hover float-right">
                         <i class="fas fa-info-circle"></i>
                         Update Information
                     </button>
                 </form>
             </div>
-            <div class="col-12 col-md-6 col-xl-5 mt-3">
+            <div class="col-12 col-md-6 col-xl-5 mt-3 mx-auto">
                 <h4 class="text-uppercase font-weight-light">Order History</h4>
                 <div class="table-responsive order-history-table">
                     <table class="table table-sm table-borderless">

@@ -34,6 +34,11 @@
                         {% else %}
                                 <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="pack-detail-img">
                         {% endif %}
+                        {% if pack.sample_track %}
+                            <audio>
+                                <source src="" type="audio/mpeg"> 
+                            </audio>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="row">

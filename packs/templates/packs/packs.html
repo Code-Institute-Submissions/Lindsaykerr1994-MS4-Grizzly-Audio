@@ -72,13 +72,13 @@
                                 </div>
                                 {% else %}
                                 <div class="img-container">
-                                    <a href="{% url 'pack_detail' pack.id %}" class="h-100">
+                                    <a href="" class="h-100" data-toggle="modal" data-target="#pack{{ pack.id }}Modal">
                                         <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
                                     </a>
                                 </div>
                                 {% endif %}
                                 <div class="card-body p-2 pb-0">
-                                    <a href="{% url 'pack_detail' pack.id %}" class="mb-0 text-black font-weight-light text-uppercase">{{ pack.name|truncatechars:20 }}</a>
+                                    <a href="" class="mb-0 text-black font-weight-light text-uppercase" data-toggle="modal" data-target="#pack{{ pack.id }}Modal">{{ pack.name|truncatechars:20 }}</a>
                                     <br>
                                     <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="mb-0 text-black text-uppercase"><small>{{ pack.category.friendly_name }}</small></a>
                                     <br>

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.shortcuts import get_object_or_404, HttpResponse
 from django.views.decorators.http import require_POST
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.conf import settings
 from .forms import OrderForm
@@ -182,6 +183,7 @@ def checkout_no_payment(request):
     return render(request, template, context)
 
 
+@login_required
 def checkout_success(request, order_number):
     # This will confirm a successful order
     save_info = request.session.get('save_info')
@@ -205,7 +207,7 @@ def checkout_success(request, order_number):
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
-    messages.success(request, f'Your order({order_number}) was a success. A\
+    messages.success(request, f'Your order({order_number.truncatechars:6 }) was a success. A\
         confirmation email will be sent to your address.')
     if 'bag' in request.session:
         bag = request.session.get('bag', {})

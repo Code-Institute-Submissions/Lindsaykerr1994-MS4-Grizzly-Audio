@@ -25,6 +25,7 @@
                 <div class="row">
                     <div class="col">
                         <p>Your online receipt has been sent to your email address: <strong>{{ order.email }}</strong></p>
+                        <p>To download your new audio packs, please use the download links in the table below</p>
                     </div>
                 </div>
             </div>
@@ -51,8 +52,7 @@
                                 </td>
                                 <td class="align-middle">
                                     <a href="{% url 'pack_detail' item.pack.id %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
-                                    <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
-                                    <a href="" download class="text-info">Download Here</a>
+                                    <a href="" download class="text-primary">Download Here</a>
                                 </td>
                                 <td class="align-middle">
                                     <p class="mb-0">£{{ item.pack.price }}</p>

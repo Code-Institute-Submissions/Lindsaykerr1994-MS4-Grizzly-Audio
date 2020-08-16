@@ -21,6 +21,7 @@
         </a>
         <div class="dropdown-menu border-0" aria-labelledby="packs-link">
             <a href="{% url 'packs' %}" class="dropdown-item">All Audio Packs</a>
+            <div class="dropdown-divider"></div>
             <a href="{% url 'packs' %}?sort=freepacks" class="dropdown-item">Free Packs</a>
             <a href="{% url 'packs' %}?sort=sales&direction=desc" class="dropdown-item">By Popularity</a>
             <a href="{% url 'packs' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
@@ -51,7 +52,7 @@
             </form>
         </div>
     </li>
-    <li class="list-inline-item dropdown mr-0">
+    <li class="list-inline-item dropdown mr-0" >
         <a class="nav-link text-white p-0" href="#" id="account-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <div class="text-center">
                 <div>
@@ -64,6 +65,7 @@
                 {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
                         <a href="{% url 'add_pack' %}" class="dropdown-item">Product Management</a>
+                        <div class="dropdown-divider"></div>
                     {% endif %}
                     <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                     <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>

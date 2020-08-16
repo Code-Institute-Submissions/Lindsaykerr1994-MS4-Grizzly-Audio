@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/checkout-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form-style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -19,8 +19,8 @@
         <div class="row mt-3">
             <div class="col-10 offset-1 col-lg-4 offset-lg-0 h-50 order-lg-last">
                 <table class="table table-sm table-borderless font-weight-light text-uppercase">
-                    <thead class="text-white bg-darkgrey small">
-                        <th colspan="4">Shopping Cart Summary</th>
+                    <thead class="text-white bg-darkgrey">
+                        <th colspan="4"><small>Shopping Cart Summary</small></th>
                     </thead>
                     <tr class="my-3">
                         <td colspan="3">Items</td>
@@ -39,11 +39,10 @@
                 </table>
             </div>
             <div class="col-10 offset-1 col-lg-8 offset-lg-0 h-50">
-                <table  class="table table-sm table-borderless">
-                    
-                    <tr>
+                <table  class="table table-sm table-borderless text-uppercase">
+                    <tr class="bg-darkgrey text-white">
                         <td>
-                            <small>
+                            <small class="">
                                 Please fill out the form below to complete your order.
                             </small>
                         </td>
@@ -52,13 +51,13 @@
                         <td>
                             <form action="{% url 'checkout' %}" method="POST" id="payment-form">
                                 {% csrf_token %}
-                                <fieldset class="rounded payment-details-div px-3 mb-5">
+                                <fieldset class="rounded payment-details-div px-3 mb-5 w-50">
                                     <legend class="fieldset-label small"><strong>Personal Details</strong></legend>
                                     {{ order_form.full_name | as_crispy_field }}
                                     {{ order_form.email | as_crispy_field }}
                                     {{ order_form.phone_number | as_crispy_field }}
                                 </fieldset>
-                                <fieldset class="rounded payment-details-div px-3 mb-5">
+                                <fieldset class="rounded payment-details-div px-3 mb-5 w-50">
                                     <legend class="fieldset-label small"><strong>Billing Details</strong></legend>
                                     {{ order_form.street_address1 | as_crispy_field }}
                                     {{ order_form.street_address2 | as_crispy_field }}
