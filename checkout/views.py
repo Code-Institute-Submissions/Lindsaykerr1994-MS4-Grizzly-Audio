@@ -127,8 +127,8 @@ def checkout_no_payment(request):
     for item_id, quantity in bag.items():
         pack = Pack.objects.get(id=item_id)
         if pack.price != 0:
-            messages.error(request, 'There is an error! You have been \
-                redirected to the appropriate page.')
+            messages.error(request, 'There is an error! You have been\
+                 redirected.')
             return redirect(reverse('checkout'))
     if request.method == 'POST':
         form_data = {

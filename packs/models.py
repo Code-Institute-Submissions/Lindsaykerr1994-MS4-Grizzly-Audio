@@ -28,7 +28,10 @@ class Pack(models.Model):
     sales = models.IntegerField(null=False, blank=False, default='0',
                                 editable=False)
     image = models.ImageField(null=False, blank=False,
-                              default='{{ MEDIA_URL }}noimage.png')
+                              default='{{ MEDIA_URL }}noimage.png',
+                              upload_to='{{ MEDIA_URL}}/audiocovers')
+    sample_track = models.FileField(null=False, blank=False,
+                                    upload_to='{{ MEDIA_URL}}/sampletracks')
 
     def __str__(self):
         return self.name

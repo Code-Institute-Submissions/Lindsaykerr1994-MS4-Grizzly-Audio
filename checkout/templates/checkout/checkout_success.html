@@ -29,6 +29,47 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-10 offset-1">
+                <table class="table table-sm table-borderless font-weight-light text-uppercase">
+                        <thead class="text-white bg-darkgrey small">
+                            <tr>
+                                <th scope="col">Pack Info</th>
+                                <th scope="col"></th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+                        {% for item in order.lineitems.all %}
+                            <tr>
+                                <td class="img-col">
+                                    {% if item.pack.image %}
+                                        <img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid">
+                                    {% else %}
+                                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
+                                    {% endif %}
+                                </td>
+                                <td class="align-middle">
+                                    <a href="{% url 'pack_detail' item.pack.id %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
+                                    <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
+                                    <a href="" download class="text-info">Download Here</a>
+                                </td>
+                                <td class="align-middle">
+                                    <p class="mb-0">£{{ item.pack.price }}</p>
+                                </td>
+                                <td class="align-middle">
+                                    <p class="mb-0">
+                                    {% if item.pack.on_sale %}
+                                    £{{ item.pack.reduced_price }}
+                                    {% else %}
+                                    £{{ item.pack.price }}
+                                    {% endif %}</p>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+        </div>
         <div class="row mt-3">
             <div class="col-12 text-center">
                 <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
