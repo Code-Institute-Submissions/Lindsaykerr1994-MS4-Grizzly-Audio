@@ -148,9 +148,4 @@
 {% block extra_js %}
     {{block.super}}
     <script src="{% static 'js/sortpacks.js' %}"></script>
-    <script>
-        $(document).ready(function(){
-            $('#add-pack-btn').tooltip()
-        })
-    </script>
 {% endblock%}

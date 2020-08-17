@@ -224,8 +224,8 @@ header .row:first-of-type{
 }
 .onsale-lgdisplay{
     position: relative;
-    left: 335px;
-    bottom: 400px;
+    left: 65px;
+    bottom: 200px;
 }
 /* This snippet of code was sourced from: */ 
 /* https://css-tricks.com/making-pure-css-playpause-button/ */

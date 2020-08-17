@@ -44,10 +44,18 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <label for="id_image" class="text-uppercase font-weight-light w-25">Select Image:</label>
-                                {{ form.image }}
-                                <label for="id_sample_track" class="text-uppercase font-weight-light w-25">Sample Track:</label>
-                                {{ form.sample_track }}
+                                <div class="row">
+                                    <div class="col-12">
+                                    <label for="id_image" class="text-uppercase font-weight-light w-25">Select Image:</label>
+                                    {{ form.image }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                    <label for="id_sample_track" class="text-uppercase font-weight-light w-25">Sample Track:</label>
+                                    {{ form.sample_track }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <div class="float-right">
@@ -59,7 +67,7 @@
                             <i class="far fa-check-circle"></i>
                             Save And View
                         </button>
-                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
+                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5" id="cancel-btn">
                             <i class="fas fa-trash">
                             </i>
                             <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Cancel Changes</p>
@@ -73,23 +81,5 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-        $('input[name="image"]').change(function(){
-            var file = $('input[name="image"]')[0].files[0]
-            console.log(file.name)
-            $(this).parent().next().text(`Image choosen: ${file.name}`);
-        });
-        $('input[name=sample_track]').change(function(){
-            var file = $('input[name=sample_track]')[0].files[0]
-            $(this).parent().next().text(`File choosen: ${file.name}`);
-        });
-        $('#id_on_sale').click(function(){
-            if($(this).prop("checked") == true){
-                $('#id_reduced_price').prop('disabled', false);
-            }
-            else {
-                $('#id_reduced_price').prop('disabled', true);
-            }
-        });
-    </script>
+    <script type="text/javascript" src="{% static 'js/add-edit-pack.js' %}"></script>
 {% endblock %}

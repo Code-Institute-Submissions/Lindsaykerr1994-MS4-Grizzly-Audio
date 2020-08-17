@@ -1,7 +1,9 @@
 $(document).ready(function(){
         var audioPlaying = false;
+        // When the user scrolls the page
         document.body.onscroll = function() {
             var yOffset = window.pageYOffset;
+            // If the user scrolls more than 75px, change the display of the back-to-top button
             if(yOffset > 75){
                 $('.btt-button').css("display","block");
             }
@@ -11,7 +13,8 @@ $(document).ready(function(){
         };
         $('.btt-link').click(function(e) {
 			window.scrollTo(0,0)
-		})
+        })
+        // When user clicks on the sort by select element
         $("#sortbyoptions").change(function(){
             var sortelement = $(this);
             var currentUrl = new URL(window.location);
@@ -32,6 +35,7 @@ $(document).ready(function(){
             currentUrl.searchParams.set("direction", newDir);
             window.location.replace(currentUrl)
         })
+        // When opening modal window, resize margin-top to fit in the middle of the window.
         $(".pack-card").click(function(){
             var windowHeight = $(window).height();
             if(windowHeight > 650){
@@ -58,25 +62,41 @@ $(document).ready(function(){
                 $(".pack-detail-modal .modal-content").css("height", `${windowHeight}px`);
             }
         });
+        // When user hovers over the img, show the play/pause button.
         $(".pack-detail-img").hover(function(){
             $(".button-container").removeClass("d-none").addClass("d-block");
         }, function(){
             $(".button-container").removeClass("d-block").addClass("d-none");
         })
-        $(".pack-detail-img").click(function(){
-            var packID = $(this).children("img").attr("id");
-            var pack = packID.split("-")[1];
-            var audio = document.getElementById(`audio_track${pack}`);
-            if (audioPlaying==false){
-                audio.play();
-                $(this).find(".play-button").addClass("pause")
-                audioPlaying = true;
-            } else {
-                audio.pause();
-                $(this).find(".play-button").removeClass("pause")
-                audioPlaying = false;
-            }
-        })
+        // When modal window open:
+        $('.modal').on('show.bs.modal', function (e) {
+            //Get modal ID
+            var getID = $(this).attr("id");
+            var ID = getID.replace("pack","").replace("Modal","");
+            // Check if there is an audio file in modal.
+            if($(`#pack${ID}Modal audio`).length == 1) {
+                $(`#pack${ID}Modal .pack-detail-img`).click(function(){
+                    var audio = document.getElementById(`audio_track${ID}`);
+                    // If audio file is paused, play. Vice versa
+                    if (audioPlaying==false){
+                        audio.play();
+                        // Change play button icon to paused.
+                        $(this).find(".play-button").addClass("pause");
+                        audioPlaying = true;
+                        // If user closes the modal, pause the audio file.
+                        $(`#pack${ID}Modal`).on('hide.bs.modal', function (e) {
+                            audio.pause();
+                            audioPlaying = false;
+                        });
+                    } else {
+                        audio.pause();
+                        $(this).find(".play-button").removeClass("pause");
+                        audioPlaying = false;
+                    }
+                });
+            };
+        });
+        // Change icon/text when hovering
         $(".close-btn").hover(function(){
             $(".text-close").removeClass("d-block")
             $(".text-close").addClass("d-none")
@@ -99,8 +119,8 @@ $(document).ready(function(){
             $(".text-price").removeClass("d-none")
             $(".text-price").addClass("d-block")
         })
-})
 
+})
 function checkWindowHeight(){
     var yOffset = window.pageYOffset;
     if(yOffset != 0){

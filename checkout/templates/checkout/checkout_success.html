@@ -47,12 +47,12 @@
                                     {% if item.pack.image %}
                                         <img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid">
                                     {% else %}
-                                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
+                                        <img src="{{ MEDIA_URL }}noimage.png" alt="{{ item.pack.name }}" class="card-img-top img-fluid">
                                     {% endif %}
                                 </td>
                                 <td class="align-middle">
                                     <p class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></p>
-                                    <a href="" download class="text-primary">Download Here</a>
+                                    <a href="{{ item.pack.sample_track.url }}" download class="text-primary">Download Here</a>
                                 </td>
                                 <td class="align-middle">
                                     <p class="mb-0">£{{ item.pack.price }}</p>

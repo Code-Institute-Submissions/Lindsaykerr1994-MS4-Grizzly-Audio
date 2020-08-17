@@ -38,6 +38,11 @@
                         {% else %}
                                 <div class="pack-detail-img mx-auto">
                                     <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="">
+                                    {% if pack.sample_track %}
+                                        <div class="button-container mx-auto d-none">
+                                            <div class="play-button"></div>
+                                        </div>
+                                    {% endif %}
                                 </div>
                         {% endif %}
                         {% if pack.sample_track %}

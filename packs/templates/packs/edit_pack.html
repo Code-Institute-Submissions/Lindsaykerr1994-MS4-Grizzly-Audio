@@ -44,10 +44,18 @@
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <label for="id_image" class="text-uppercase font-weight-light w-25">Select Image:</label>
-                                {{ form.image }}
-                                <label for="id_sample_track" class="text-uppercase font-weight-light w-25">Sample Track:</label>
-                                {{ form.sample_track }}
+                                <div class="row">
+                                    <div class="col-12">
+                                    <label for="id_image" class="text-uppercase font-weight-light w-25">Select Image:</label>
+                                    {{ form.image }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                    <label for="id_sample_track" class="text-uppercase font-weight-light w-25">Sample Track:</label>
+                                    {{ form.sample_track }}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     <div class="float-right">
@@ -70,9 +78,8 @@
 {% block postloadjs %}
     {{ block.super }}
     <script type="text/javascript">
-        $('input[name="image"]').change(function(){
+        $('input[name=image]').change(function(){
             var file = $('input[name="image"]')[0].files[0]
-            console.log(file.name)
             $(this).parent().next().text(`Image choosen: ${file.name}`);
         });
         $('input[name=sample_track]').change(function(){
