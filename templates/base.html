@@ -94,13 +94,14 @@
     <footer class="container-fluid fixed-bottom">
     </footer>
     {% block postloadjs %}
-        <!-- Had to recreate the command to close toasts, as it wasn't closing properly -->
-        <script type="text/javascript">
+        
+    {% endblock %}
+    <script type="text/javascript">
+        // Had to recreate the command to close toasts, as it wasn't closing properly
             $('.toast').toast('show');
             $('.toast .close').click(function(){
                 $('.message-container').css("display", "none");
             });
-        </script>
-    {% endblock %}
+    </script>
   </body>
 </html>

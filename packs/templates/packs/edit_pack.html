@@ -9,7 +9,6 @@
 {% block content %}
     <div class="container-fluid margin-tb-75">
         <div class="row">
-            <hr class="w-100 mb-1">
             <div class="col-10 offset-1">
                 <h2 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Edit A Pack</h2>
             </div>
@@ -59,15 +58,15 @@
                             </div>
                         </div>
                     <div class="float-right">
-                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
-                                <i class="fas fa-trash">
-                                </i>
-                                <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Cancel Changes</p>
-                        </a>
-                        <button class="btn btn-darkgrey rounded-0 text-uppercase mt-5">
-                            <i class="fas fa-check"></i>
-                            Save Changes
+                        <button class="btn btn-darkgrey rounded-0  mt-5 save-btn">
+                            <i class="fas fa-check d-none"></i>
+                            <p class="d-block mb-0 underline-hover text-uppercase font-weight-light">Save Changes</p>
                         </button>
+                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 mt-5 cancel-btn">
+                            <i class="fas fa-trash d-none">
+                            </i>
+                            <p class="mb-0 d-block underline-hover text-uppercase font-weight-light">Cancel Changes</p>
+                        </a>
                     </div>
                 </form>
             </div>
@@ -77,22 +76,6 @@
 
 {% block postloadjs %}
     {{ block.super }}
-    <script type="text/javascript">
-        $('input[name=image]').change(function(){
-            var file = $('input[name="image"]')[0].files[0]
-            $(this).parent().next().text(`Image choosen: ${file.name}`);
-        });
-        $('input[name=sample_track]').change(function(){
-            var file = $('input[name=sample_track]')[0].files[0]
-            $(this).parent().next().text(`File choosen: ${file.name}`);
-        });
-        $('#id_on_sale').click(function(){
-            if($(this).prop("checked") == true){
-                $('#id_reduced_price').prop('disabled', false);
-            }
-            else {
-                $('#id_reduced_price').prop('disabled', true);
-            }
-        });
+    <script type="text/javascript" src="{% static 'js/add-edit-pack.js' %}">
     </script>
 {% endblock %}

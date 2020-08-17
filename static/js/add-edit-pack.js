@@ -16,26 +16,26 @@ $(document).ready(function(){
         }
     });
     $('#add-pack-btn').tooltip();
-    $("#cancel-btn").hover(function(){
-        $("#text-cancel").removeClass("d-block")
-        $("#text-cancel").addClass("d-none")
-        $("#cancel-btn i").removeClass("d-none")
-        $("#cancel-btn i").addClass("d-block")
+    $(".cancel-btn").hover(function(){
+        $(this).children("p").removeClass("d-block")
+        $(this).children("p").addClass("d-none")
+        $(this).children("i").removeClass("d-none")
+        $(this).children("i").addClass("d-block")
     }, function(){
-        $("#cancel-btn i").removeClass("d-block")
-        $("#cancel-btn i").addClass("d-none")
-        $("#text-cancel").removeClass("d-none")
-        $("#text-cancel").addClass("d-block")
-    })
-    $(".add-btn").hover(function(){
-        $(".text-price").removeClass("d-block")
-        $(".text-price").addClass("d-none")
-        $(".add-btn i").removeClass("d-none")
-        $(".add-btn i").addClass("d-block")
+        $(this).children("i").removeClass("d-block")
+        $(this).children("i").addClass("d-none")
+        $(this).children("p").removeClass("d-none")
+        $(this).children("p").addClass("d-block")
+    });
+    $(".save-btn").hover(function(){
+        $(this).children("p").removeClass("d-block")
+        $(this).children("p").addClass("d-none")
+        $(this).children("i").removeClass("d-none")
+        $(this).children("i").addClass("d-block")
     }, function(){
-        $(".add-btn i").removeClass("d-block")
-        $(".add-btn i").addClass("d-none")
-        $(".text-price").removeClass("d-none")
-        $(".text-price").addClass("d-block")
-    })
+        $(this).children("i").removeClass("d-block")
+        $(this).children("i").addClass("d-none")
+        $(this).children("p").removeClass("d-none")
+        $(this).children("p").addClass("d-block")
+    });
 });

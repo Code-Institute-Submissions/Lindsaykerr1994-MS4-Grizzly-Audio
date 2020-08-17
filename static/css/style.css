@@ -292,6 +292,10 @@ header .row:first-of-type{
     border-color: #dc3545;
     border-radius: 0;
 }
+.cancel-btn, .save-btn{
+    width: 165px;
+
+}
 /* Bag Page Specifcations */
 .img-col{
     width:250px;

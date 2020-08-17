@@ -9,7 +9,6 @@
 {% block content %}
     <div class="container-fluid margin-tb-75">
         <div class="row">
-            <hr class="w-100 mb-1">
             <div class="col-10 offset-1">
                 <h2 class="text-uppercase mt-4 text-center font-weight-light header-spacing">Add A New Pack</h2>
             </div>
@@ -59,18 +58,18 @@
                             </div>
                         </div>
                     <div class="float-right">
-                        <button type="submit" name="id_addanother" class="btn btn-darkgrey rounded-0 text-uppercase font-weight-light mt-5 underline-hover">
-                            <i class="fas fa-plus-circle"></i>
-                            Add Another
+                        <button type="submit" name="id_addanother" class="btn btn-darkgrey rounded-0 mt-5 save-btn">
+                            <i class="fas fa-plus-circle d-none"></i>
+                            <p class="text-uppercase font-weight-light mb-0">Add Another</p>
                         </button>
-                        <button type="submit" name="id_saveandview" class="btn btn-darkgrey rounded-0 text-uppercase font-weight-light mt-5 underline-hover">
-                            <i class="far fa-check-circle"></i>
-                            Save And View
+                        <button type="submit" name="id_saveandview" class="btn btn-darkgrey rounded-0 mt-5 save-btn">
+                            <i class="far fa-check-circle d-none"></i>
+                            <p class="text-uppercase font-weight-light mb-0">Save And View</p>
                         </button>
-                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 text-uppercase mt-5" id="cancel-btn">
-                            <i class="fas fa-trash">
+                        <a href="{% url 'packs' %}" class="btn btn-darkgrey rounded-0 mt-5 cancel-btn">
+                            <i class="fas fa-trash d-none">
                             </i>
-                            <p class="d-inline-block text-uppercase font-weight-light underline-hover mb-0">Cancel Changes</p>
+                            <p class="text-uppercase font-weight-light mb-0">Cancel Changes</p>
                         </a>
                     </div>
                 </form>

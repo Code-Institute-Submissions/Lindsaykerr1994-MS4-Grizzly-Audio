@@ -14,6 +14,6 @@
     {{ widget.input_text }}
 {% endif %}
 <span class="btn btn-darkgrey rounded-0 btn-file text-uppercase font-weight-light">
-    Select File <input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %} >
+    Select File <input type="{{ widget.type }}" name="{{ widget.name }}" {% include "django/forms/widgets/attrs.html" %} >
 </span>
 <p class="text-danger text-uppercase font-weight-light iamge-filename"> </p>
