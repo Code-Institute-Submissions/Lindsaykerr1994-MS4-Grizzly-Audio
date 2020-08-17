@@ -1,0 +1,1 @@
+web: gunicorn grizzly_audio.wsgi:application
