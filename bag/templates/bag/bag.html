@@ -35,7 +35,7 @@
                                     {% endif %}
                                 </td>
                                 <td class="align-middle">
-                                    <a href="{% url 'pack_detail' item.pack.id %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
+                                    <a href="{% url 'packs' %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
                                     <p class="small mb-0">SKU: {{ item.pack.sku|upper }}</p>
                                     <a class="remove-item-link" data-pack_id="{{ item.pack_id }}"><small class="text-danger underline-hover">Remove</small></a>
                                 </td>

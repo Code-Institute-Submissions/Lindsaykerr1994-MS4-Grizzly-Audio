@@ -120,6 +120,7 @@ header .row:first-of-type{
     border-color: #aa842a;
     border-radius: 5px;
     color: #aa842a;
+    margin-top: 9px;
 }
 #mobile-nav-bar, #mobile-search-bar{
     display: none;
@@ -205,8 +206,8 @@ header .row:first-of-type{
 }
 /* Pack Details Page Specifcations */
 .pack-detail-img{
-    height:400px;
-    width:400px;
+    height:200px;
+    width:200px;
 }
 .pack-detail-img img{
     width: 100%;
@@ -225,6 +226,48 @@ header .row:first-of-type{
     position: relative;
     left: 335px;
     bottom: 400px;
+}
+/* This snippet of code was sourced from: */ 
+/* https://css-tricks.com/making-pure-css-playpause-button/ */
+/* It has been altered to fit my needs */
+.custom-container{
+    height: 200px;
+    width: 200px;
+}
+.custom-container:hover{
+    background-color: rgba(0,0,0,0.3);
+    
+}
+.button-container{
+    position: relative;
+    background-color:rgba(0,0,0,0.3);
+    width: 100px;
+    height: 100px;
+    bottom: 143px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+}
+.play-button {
+    width:60px;
+    margin-top: 10px;
+    margin-left: 27px;
+    box-sizing: border-box;
+    height: 74px;
+    border-color: transparent transparent transparent #fff;
+    transition: 100ms all ease;
+    will-change: border-width;
+    cursor: pointer;
+
+    border-style: solid;
+    border-width: 37px 0 37px 60px;
+}
+.play-button.pause {
+    border-style: double;
+    border-width: 0px 0 0px 60px;
+    height: 60px;
+    margin-left: 16px;
+    margin-top: 16px;
+  }
 }
 /* Add/Edit Pack Widget Specifications */
 .btn-file {

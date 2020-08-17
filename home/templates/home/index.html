@@ -111,13 +111,13 @@
                             {% for pack in free_packs %}
                                 {% if forloop.first %}
                                     <div class="carousel-item active">
-                                        <a href="{% url 'pack_detail' pack.id %}">
+                                        <a href="{% url 'packs' %}">
                                             <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
                                         </a>
                                     </div>
                                 {% else %}
                                     <div class="carousel-item">
-                                        <a href="{% url 'pack_detail' pack.id %}">
+                                        <a href="{% url 'packs' %}">
                                             <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
                                         </a>
                                     </div>

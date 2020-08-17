@@ -48,11 +48,11 @@ def all_packs(request):
 
         if 'category' in request.GET:
             categories = request.GET['category'].split(',')
-            for term in categories:
-                category_term = term.capitalize()
-            messages.info(request, f'You are searching for: {category_term}')
             packs = packs.filter(category__name__in=categories)
             categories = Category.objects.filter(name__in=categories)
+            for term in categories:
+                category_term = term.friendly_name
+            messages.info(request, f'You are searching for: {category_term}')
 
         if 'q' in request.GET:
             query = request.GET['q']
@@ -96,6 +96,7 @@ def add_pack(request):
             else:
                 return redirect(reverse('add_pack'))
         else:
+            print(form.errors)
             messages.error(request, 'Failed to add pack. Please confirm\
             the information you entered, and try again.')
     else:
@@ -125,6 +126,7 @@ def edit_pack(request, pack_id):
                 {pack.name}!')
             return redirect(reverse('packs'))
         else:
+            print(form.errors)
             messages.error(request, 'Failed to update pack. Please confirm\
             the information you entered, and try again.')
     else:

@@ -10,6 +10,13 @@
 .modal-body{
     overflow: scroll;
 }
+.close-btn, .add-btn{
+    width: 100px;
+    height: 40px;
+}
+.close-btn i, .add-btn i{
+    margin-top: 6px;
+}
 #confirm-delete-btn, #cancel-delete-btn{
     width: 100px;
 }

@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-12 col-md-6 col-xl-5 offset-xl-1 mt-3">
                 <h4 class="text-uppercase font-weight-light">Billing Information</h4>
-                <form action="{% url 'profile' %}" method="POST" id="profile-update-form">
+                <form action="{% url 'profile' %}" method="POST" id="profile_update_form">
                     {% csrf_token %}
                     {{ form.default_street_address1 | as_crispy_field }}
                     {{ form.default_street_address2 | as_crispy_field }}

@@ -18,26 +18,34 @@
                         </a>
                     {% endif %}
                 {% endif %}
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+                
             </div>
             <div class="row">
-                    <div class="col-10 offset-1 text-center">
+                    <div class="col-10 offset-1 text-center" style="height: 200px;">
                         {% if pack.image %}
-                            <div>
-                                <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="">
+                                <div class="pack-detail-img mx-auto">
+                                    <img src="{{ pack.image.url }}" alt="{{ pack.name }}" class="" id="pack-{{ pack.id }}">
+                                    {% if pack.sample_track %}
+                                        <div class="button-container mx-auto d-none">
+                                            <div class="play-button"></div>
+                                        </div>
+                                    {% endif %}
                                 {% if pack.on_sale %}
-                                <span class="badge badge-danger onsale-lgdisplay">On Sale!</span>
+                                    <span class="badge badge-danger onsale-lgdisplay">On Sale!</span>
                                 {% endif %}
-                            </div>
+                                        
+                                </div>
                         {% else %}
-                                <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="pack-detail-img">
+                                <div class="pack-detail-img mx-auto">
+                                    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="">
+                                </div>
                         {% endif %}
                         {% if pack.sample_track %}
-                            <audio>
-                                <source src="" type="audio/mpeg"> 
+                            <audio id="audio_track{{ pack.id }}" loop>
+                                <source src="{{ pack.sample_track.url }}" type="audio/mpeg"> 
                             </audio>
+                        {% else %}
+                            <p class="my-0 text-muted small text-uppercase font-weight-light">No sample track available for this pack.</p>
                         {% endif %}
                     </div>
                 </div>
@@ -51,20 +59,13 @@
       <div class="modal-body py-0">
         <div class="container-fluid">
             <div class="row pack-details-row">
-                <div class="col-12">
+                <div class="col-12 text-uppercase font-weight-light">
                     <hr class="w-100 mb-1">
-                    <p class="text-muted">Publication Date: {{ pack.publish_date }}
+                    <p class="text-muted my-2 small">Publication Date: {{ pack.publish_date }}
                     </p>
-                    <p class="my-4">{{ pack.description }}</p>
-                    <p class="my-4">Category: <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="text-muted">{{pack.category.friendly_name}}</a></p>
-                    <p class="my-4 font-weight-bold">
-                    {% if pack.on_sale %}
-                        <s class="text-muted font-weight-light">£{{ pack.price }}</s>
-                        £{{ pack.reduced_price }}
-                    {% else %}
-                    £{{ pack.price }}
-                    {% endif %}
-                    </p>
+                    <p class="my-2 small">Category: <a href="{% url 'packs' %}?category={{ pack.category.name }}" class="text-muted">{{pack.category.friendly_name}}</a></p>
+                    <p class="my-2">{{ pack.description }}</p>                    
+                    
                     <hr class="w-100 mb-1">
                     {% if pack.reviews %}
                         <div class="reviews">
@@ -76,13 +77,24 @@
         </div>
       </div>
       <div class="modal-footer border-0">
-        <a href="" class="btn btn-darkgrey text-uppercase font-weight-light rounded-0 float-left" data-dismiss="modal">Close</a>
-        <a href="{% url 'add_to_bag' pack.id%}" class="btn btn-darkgrey text-uppercase font-weight-light rounded-0">Add To Bag</a>
+        <a href="" class="btn btn-darkgrey text-uppercase font-weight-light rounded-0 close-btn text-center" data-dismiss="modal">
+            <p class="text-close d-block mb-0">Close</p>
+            <i class="fas fa-lg fa-times d-none"></i>
+            </a>
+        <a href="{% url 'add_to_bag' pack.id%}" class="btn btn-darkgrey text-uppercase font-weight-light rounded-0 add-btn">
+            <p class="font-weight-light text-price d-block mb-0">
+                {% if pack.on_sale %}
+                    £{{ pack.reduced_price }}
+                {% else %}
+                    £{{ pack.price }}
+                {% endif %}
+            </p>
+            <i class="fas fa-cart-plus fa-lg d-none"></i>
+        </a>
       </div>
     </div>
   </div>
 </div>
 {% if request.user.is_superuser %}
 {% include 'packs/packmodals/confirm-delete.html' %}
-
 {% endif %}

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+        var audioPlaying = false;
         document.body.onscroll = function() {
             var yOffset = window.pageYOffset;
             if(yOffset > 75){
@@ -42,7 +43,6 @@ $(document).ready(function(){
                 $(".pack-detail-modal .modal-content").css("height", `${windowHeight}px`);
             }
         });
-        
         $(window).resize(function(){
             var windowHeight = $(window).height();
             var modalHeight = $(".pack-detail-modal").height();
@@ -58,7 +58,47 @@ $(document).ready(function(){
                 $(".pack-detail-modal .modal-content").css("height", `${windowHeight}px`);
             }
         });
-        
+        $(".pack-detail-img").hover(function(){
+            $(".button-container").removeClass("d-none").addClass("d-block");
+        }, function(){
+            $(".button-container").removeClass("d-block").addClass("d-none");
+        })
+        $(".pack-detail-img").click(function(){
+            var packID = $(this).children("img").attr("id");
+            var pack = packID.split("-")[1];
+            var audio = document.getElementById(`audio_track${pack}`);
+            if (audioPlaying==false){
+                audio.play();
+                $(this).find(".play-button").addClass("pause")
+                audioPlaying = true;
+            } else {
+                audio.pause();
+                $(this).find(".play-button").removeClass("pause")
+                audioPlaying = false;
+            }
+        })
+        $(".close-btn").hover(function(){
+            $(".text-close").removeClass("d-block")
+            $(".text-close").addClass("d-none")
+            $(".close-btn i").removeClass("d-none")
+            $(".close-btn i").addClass("d-block")
+        }, function(){
+            $(".close-btn i").removeClass("d-block")
+            $(".close-btn i").addClass("d-none")
+            $(".text-close").removeClass("d-none")
+            $(".text-close").addClass("d-block")
+        })
+        $(".add-btn").hover(function(){
+            $(".text-price").removeClass("d-block")
+            $(".text-price").addClass("d-none")
+            $(".add-btn i").removeClass("d-none")
+            $(".add-btn i").addClass("d-block")
+        }, function(){
+            $(".add-btn i").removeClass("d-block")
+            $(".add-btn i").addClass("d-none")
+            $(".text-price").removeClass("d-none")
+            $(".text-price").addClass("d-block")
+        })
 })
 
 function checkWindowHeight(){

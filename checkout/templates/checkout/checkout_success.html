@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/checkout-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/form-style.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -51,7 +51,7 @@
                                     {% endif %}
                                 </td>
                                 <td class="align-middle">
-                                    <a href="{% url 'pack_detail' item.pack.id %}" class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></a>
+                                    <p class="mb-0 text-black"><strong>{{ item.pack.name }}</strong></p>
                                     <a href="" download class="text-primary">Download Here</a>
                                 </td>
                                 <td class="align-middle">
