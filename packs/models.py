@@ -5,7 +5,8 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = 'Categories'
     name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254, null=True, blank=True)
+    friendly_name = models.CharField(max_length=254, null=False,
+                                     blank=False, default=name)
 
     def __str__(self):
         return self.name
@@ -27,8 +28,8 @@ class Pack(models.Model):
                                  on_delete=models.SET_NULL)
     sales = models.IntegerField(null=False, blank=False, default='0',
                                 editable=False)
-    image = models.ImageField(null=True, blank=True)
-    sample_track = models.FileField(null=True, blank=True)
+    image = models.ImageField(null=False, blank=True)
+    sample_track = models.FileField(null=False, blank=True)
 
     def __str__(self):
         return self.name
