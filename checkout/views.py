@@ -166,6 +166,7 @@ def checkout_no_payment(request):
             return redirect(reverse('checkout_success',
                             args=[order.order_number]))
         else:
+            print(order_form.errors)
             messages.error(request, 'There is an error! Please confirm your \
                 information and try again.')
             return redirect(reverse('checkout'))
@@ -207,7 +208,7 @@ def checkout_success(request, order_number):
             user_profile_form = UserProfileForm(profile_data, instance=profile)
             if user_profile_form.is_valid():
                 user_profile_form.save()
-    messages.success(request, f'Your order({order_number.truncatechars:6 }) was a success. A\
+    messages.success(request, f'Your order({order_number[:6]}) was a success. A\
         confirmation email will be sent to your address.')
     if 'bag' in request.session:
         bag = request.session.get('bag', {})

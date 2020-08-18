@@ -7,6 +7,7 @@
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
 var clientSecret = $('#id_client_secret').text().slice(1, -1);
 var stripe = Stripe(stripePublicKey);
+
 /* Assign necessary elements */
 var elements = stripe.elements();
 
@@ -63,12 +64,13 @@ form.addEventListener('submit', function(ev) {
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'client_secret': clientSecret,
-        'save_info': saveInfo
-    }
+        'save_info': saveInfo,
+    };
     var url = '/checkout/cache_checkout_data/';
     /* Post the url to save this information to cache */
     /* Wait to see that the action is completed before progressing */
-    $.post(url, postData).done(function(){
+    $.post(url, postData).done(function () {
+        console.log("hello")
         /* Then proceed with the payment */
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -77,7 +79,7 @@ form.addEventListener('submit', function(ev) {
                     name: $.trim(form.full_name.value),
                     phone: $.trim(form.phone_number.value),
                     email: $.trim(form.email.value),
-                    address:{
+                    address: {
                         line1: $.trim(form.street_address1.value),
                         line2: $.trim(form.street_address2.value),
                         city: $.trim(form.town_or_city.value),
