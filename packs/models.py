@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 class Category(models.Model):
@@ -19,7 +20,7 @@ class Pack(models.Model):
     sku = models.CharField(max_length=254, null=False, blank=False)
     name = models.CharField(max_length=254)
     description = models.TextField()
-    publish_date = models.DateField(auto_now_add=True, null=True)
+    publish_date = models.DateField(auto_now_add=True)
     price = models.DecimalField(max_digits=6, decimal_places=2, default=0.00)
     on_sale = models.BooleanField(default=False)
     reduced_price = models.DecimalField(max_digits=6, decimal_places=2,

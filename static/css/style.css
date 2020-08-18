@@ -92,10 +92,15 @@ body {
     color: #fff;
 }
 /* Header & Footer Specifications */
-header, footer{
+header{
     background-color: #292929;
     color: #fff;
     height: 75px;
+}
+footer{
+   background-color: #292929;
+    color: #fff;
+    height: 25px; 
 }
 header .row:first-of-type{
     height:75px;
