@@ -1,0 +1,6 @@
+<!DOCTYPE html>
+{% if item.pack.image %}
+    <img src="{{ item.pack.image.url }}" alt="{{ item.pack.name }}" class="rounded img-fluid">
+{% else %}
+    <img src="{{ MEDIA_URL }}noimage.png" alt="{{ pack.name }}" class="card-img-top img-fluid">
+{% endif %}

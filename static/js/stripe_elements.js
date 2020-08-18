@@ -70,7 +70,6 @@ form.addEventListener('submit', function(ev) {
     /* Post the url to save this information to cache */
     /* Wait to see that the action is completed before progressing */
     $.post(url, postData).done(function () {
-        console.log("hello")
         /* Then proceed with the payment */
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
@@ -100,7 +99,6 @@ form.addEventListener('submit', function(ev) {
                     country: $.trim(form.country.value),
                 }
             },
-            console.log(payment_method[billing_details])
         });
     /* If the post method fails, then reload the page, and the error message will display */
     }).fail(function(){

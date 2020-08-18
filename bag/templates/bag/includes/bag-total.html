@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<p class="mb-0">
+{% if item.pack.on_sale %}
+£{{ item.pack.reduced_price }}
+{% else %}
+£{{ item.pack.price }}
+{% endif %}</p>

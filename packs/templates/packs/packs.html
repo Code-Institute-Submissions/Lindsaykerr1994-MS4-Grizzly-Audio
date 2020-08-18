@@ -25,7 +25,7 @@
         </div>
         
         <div class="row text-uppercase">
-            <div class="col-5 offset-1 px-5">
+            <div class="col-10 col-lg-5 offset-1 px-5">
                 <button id="changedirection" class="border-0 bg-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewbox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
                     <path stroke="none" d="M0 0h24v24H0z"/>
@@ -45,7 +45,7 @@
                 {% endif %}
                 </p>
             </div>
-            <div class="col-5 text-right px-5">
+            <div class="col-10 offset-1 col-lg-5 offset-lg-0 text-right px-5">
                 <select name="sortby" id="sortbyoptions" class="font-weight-light text-uppercase">
                     <option value="-">Sort By</option>
                     <option {% if current_sorting == 'name' %}selected{% endif %} value="name">Name {% if current_sorting == 'name' and current_direction == 'asc' %}(A-Z){% else %}(Z-A){% endif %}</option>

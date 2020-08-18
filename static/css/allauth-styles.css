@@ -10,7 +10,7 @@ input::placeholder{
     text-transform: uppercase;
     color: #aab7c4;
 }
-button, .btn{
+button:not(.mobile-btn), .btn{
     margin-top: 3rem !important;
     text-transform: uppercase;
     font-weight: 200;

@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<ul class="list-inline text-center my-0">
-    <li class="list-inline-item mx-auto">
-        <a class="nav-link text-white" href="{% url 'home' %}">
+<div class="row">
+    <div class="col-3">
+        <a class="nav-link text-white w-100" href="{% url 'home' %}">
             <div class="text-center">
                 <i class="fas fa-home"></i>
             </div>
         </a>
-    </li>
-    <li class="list-inline-item mx-auto">
-        <a class="nav-link text-white" href="{% url 'packs' %}" id="packs-link">
+    </div>
+    <div class="col-3">
+        <a class="nav-link text-white w-100" href="{% url 'packs' %}" id="packs-link">
             <div class="text-center">
                 <i class="fas fa-music"></i>
             </div>
         </a>
-    </li>
-    <li class="list-inline-item mx-auto">
-        <a class="nav-link text-white" href="{% url 'profile' %}" id="account-link">
+    </div>
+    <div class="col-3">
+        <a class="nav-link text-white w-100" href="{% url 'profile' %}" id="account-link">
             <div class="text-center">
                 <i class="fas fa-user fa-lg"></i>
             </div>
         </a>
-    </li>
-    <li class="list-inline-item mx-auto">
+    </div>
+    <div class="col-3">
         <a class="nav-link text-white" href="{% url 'bag' %}" id="cart-link">
             <div class="text-center">
                 <i class="fas fa-shopping-cart"></i>
             </div>
         </a>
-    </li>
-</ul>
+    </div>
+</div>
