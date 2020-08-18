@@ -100,32 +100,7 @@ form.addEventListener('submit', function(ev) {
                     country: $.trim(form.country.value),
                 }
             },
-        }).then(function(result) {
-            if (result.error) {
-            // Show error to your customer (e.g., insufficient funds)
-                var errorDiv = document.getElementById('card-errors');
-                var html = `
-                    <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                    </span>
-                    <span>${result.error.message}</span>`;
-                $(errorDiv).html(html);
-                /* Re-enable the card and submit button to try again */
-                card.update({ 'disabled': false});
-                $('#submit-button').attr('disabled', false);
-                $('#payment-form').fadeToggle(100);
-                $('#loading-overlay').fadeToggle(100);
-            } else {
-            // The payment has been processed!
-                if (result.paymentIntent.status === 'succeeded') {
-                // Show a success message to your customer
-                // There's a risk of the customer closing the window before callback
-                // execution. Set up a webhook or plugin to listen for the
-                // payment_intent.succeeded event that handles any business critical
-                // post-payment actions.
-                form.submit();
-                }
-            }
+            console.log(payment_method[billing_details])
         });
     /* If the post method fails, then reload the page, and the error message will display */
     }).fail(function(){
