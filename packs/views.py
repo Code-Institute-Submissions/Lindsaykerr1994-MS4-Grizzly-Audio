@@ -63,7 +63,7 @@ def all_packs(request):
 
             queries = Q(name__icontains=query) |\
                 Q(description__icontains=query)
-            messages.info(request, f'You are searching for: {queries}')
+            messages.info(request, f'You are searching for: "{query}"')
             packs = packs.filter(queries)
     edit_pack_form = PackForm()
     context = {

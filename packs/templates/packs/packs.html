@@ -25,7 +25,7 @@
         </div>
         
         <div class="row text-uppercase">
-            <div class="col-10 col-lg-5 offset-1 px-5">
+            <div class="col-10 col-lg-5 offset-1 pl-5 pr-0">
                 <button id="changedirection" class="border-0 bg-white">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrows-sort" width="24" height="24" viewbox="0 0 24 24" stroke-width="1.0" stroke="#292929" fill="none" stroke-linecap="round" stroke-linejoin="round" >
                     <path stroke="none" d="M0 0h24v24H0z"/>
@@ -35,13 +35,13 @@
                 </button>
                 <p id="pack-count" class="font-weight-light d-inline-block">{{ packs|length }} pack(s)
                 {% if search_term %}
-                    with search term: <strong>"{{ search_term }}"</strong>
+                    with search term: <strong>"{{ search_term }}" </strong><a href="{% url 'packs' %}{% if current_sorting %}?sort={{ current_sorting }}{% endif %}{% if current_direction %}&direction={{ current_direction }}{% endif %}" class="text-black"> <i class="far fa-times-circle"></i></a>
                 {% endif %}
                 {% if current_categories %}
                     with category: <strong>{% for cat in current_categories %}"{{ cat.friendly_name }}"{% endfor %}</strong><a href="{% url 'packs' %}{% if current_sorting %}?sort={{ current_sorting }}{% endif %}{% if current_direction %}&direction={{ current_direction }}{% endif %}" class="text-black"> <i class="far fa-times-circle"></i></a>
                 {% endif %}
                 {% if current_sorting %}
-                    sorted by: {{ current_sorting }}
+                    sorted by: <strong>"{{ current_sorting }}"</strong> <a href="{% url 'packs' %}" class="text-black"> <i class="far fa-times-circle"></i></a>
                 {% endif %}
                 </p>
             </div>

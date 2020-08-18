@@ -49,7 +49,7 @@
                     <img class="d-inline-block" id="main-nav-logo" src="{% static 'canva/grizzlyaudio-logo.png' %}" alt="Main Logo">
                     <p class="d-none d-sm-inline-block d-lg-none text-uppercase font-weight-light text-white mobile-nav-text">Audio</p>
                 </a>
-                <h2 id="main-logo-text" class="d-lg-inline-block d-none text-uppercase font-weight-light text-white">GRIZZLY</h2>
+                <a href="{% url 'home' %}"><h2 id="main-logo-text" class="d-lg-inline-block d-none text-uppercase font-weight-light text-white">GRIZZLY</h2></a>
             </div>
             <div class="col-6 d-none d-lg-inline-block col-6 my-auto py-1 py-lg-0 text-lg-right">    
                 {% include 'includes/main-navbar.html' %}
