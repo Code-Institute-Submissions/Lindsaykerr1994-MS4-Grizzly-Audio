@@ -120,6 +120,7 @@ class StripeWH_Handler:
                     original_bag=bag,
                     stripe_pid=pid,
                 )
+                print(order)
                 for item_id, quantity in json.loads(bag).items():
                     pack = Pack.objects.get(id=item_id)
                     order_line_item = OrderLineItem(
