@@ -1,7 +1,7 @@
 # Grizzly Audio Packs
-![Grizzly Audio Packs](media/grizzlybanner.jpeg){: width=100%}
-This is a submission for my fourth Milestone Project - Full Stack Frameworks with Django.
-It was created by Lindsay Kerr, 2020
+![Grizzly Audio Packs](media/grizzlybanner.jpeg)<br/>
+This is a submission for my fourth Milestone Project - Full Stack Frameworks with Django.<br/>
+It was created by Lindsay Kerr, 2020<br/>
 *Disclaimer: This wedpage is for educational purposes only*
 
 ---
@@ -32,27 +32,27 @@ It was created by Lindsay Kerr, 2020
 ### Design <a name="design"></a>
 I chose to keep the colour scheme as simple as possible. This will play into the minimalist design layout of the website. Together, the two will allow the functionality of the back-end speak for itself and promote the project. Furthermore, the simplicity of the site will allow users to navigate through the pages, and promote a sense of professionalism and style.
 #### Colours:
-* Dark Grey: #292929
-* White: #ffffff
-* Light Brown: #9c824a
-* Gold: #aa842a
+* Dark Grey: `#292929`
+* White: `#ffffff`
+* Light Brown: `#9c824a`
+* Gold: `#aa842a`
 #### Fonts:
 Only one font was used throughout these project: Arial. This was used in conjunction with font weight: 200 to garnish the pages with a slim, sleek environment.
 
 ### Wireframing & Mockups <a name="wireframing"></a>
-All wireframes (created with Moqup, see [Tools](#tools) can be in the [Media Folder](media/wireframing)
+All wireframes (created with Moqup, see [Tools](#tools)) can found be in the [Media Folder](media/wireframing)
 
 ## Features <a name="features"></a>
 ### Implemented <a name="implemented"></a>
-* Accounts/ Profiles
+* Accounts/ Profiles<br/>
 Although a user is not required to create an account to purchase from Grizzly Audio Packs, they are encouraged to do, as they will have their information saved for further use. Furthermore, any purchases made will be stored under a unique order number. This will allow users to return to any purchase. Customers receive their puchased packs through a download link, therefore if they lose their packs and wish to re-download their purchases, they are able to do so with ease. Unofrtunately, this feature is only available to registered users. If an anonymous user tries to access an order history, they will be redirected.
-* Search/ Sorting/ categories
+* Search/ Sorting/ Categories<br/>
 When a customer is browsing the packs, they are able to filter the packs on display using a search term, that will search the name or description, by categories, so they can browse similar products, or they can sort all the products by price, name, publication date, or popularity.
-* Sample Tracks
+* Sample Tracks<br/>
 Users are unlikely to purchase audio files for their use without being able hear a sample first. On browsing packs, users are able to play a short sample of the pack in question. This audio file relies on JavaScript to immediately stop playing when closing the pack's modal window so that audio tracks do not play over one another. If a user so wishes to download this sample file, they are able to do so, which is why the sample tracks are kept as short as possible, however they are played in loops for the user's ease.
-* Bag and checkout
+* Bag and checkout<br/>
 Users are able to easily navigate through the bag and checkout pages. All objects entered into the session storage, so that the website will be able to access these objects while the user keeps the window open. On the bag page, users are able to easily see any necessary information, or if desired, they can easily remove packs from their bag. On the checkout page, users are shown how much money they saved by purchasing packs on sale. If the user has a registered profile, their information will be saved upon checkout, if that option is chosen. 
-* Store Management
+* Store Management<br/>
 As a store owner, it is possible to add and edit packs. If on the editing page, the back-end system will load the pack's details into the form for ease of use. Furthermore any media or static files they require to display the pack will be uploaded and saved to the database. In the admin page, storeowners are able to see further details about each pack, such as publication date, or number of sales, so that they can see which packs generate the most income.
 
 ### Upcoming <a name="upcoming"></a>
@@ -83,6 +83,7 @@ In the construction of this project, I utlised four different languages:
 
 ### Tools <a name="tools"></a>
 * [Stripe](https://stripe.com/en-gb) is a service that handled any online payments service.
+* [Gmail](https://mail.google.com/mail/u/0/) sends an automatically generated email to a customer after a purchase.
 * [GitPod](https://gitpod.io/workspaces/) provided an IDE to create this project.
 * [GitHub](https://github.com/) hosted and managed this project's repositories.
 * [Heroku](https://dashboard.heroku.com/apps) allowed me to host the deployed version of this project.
@@ -111,12 +112,50 @@ I used three different validators/linters:
 <br />
 Any and all problems or issues located by these validators were fixed pre-deployment.
 Additionally, to validate any Python styling issues, I used the command in the command-line interface:<br />
+
 `$ flake8`<br />
 Any issues identified by this command were corrected to the best of my ability. There were some styling issues that were left unresolved, however these were all related to auto-generated files, such as my migration logs, or code automated in 'grizzly_audio/settings.py'.
 
 ## Deployment <a name="deployment"></a>
 ### Github Repository <a name="github"></a>
+To download a copy of this project's repository, follow this [link](https://github.com/Lindsaykerr1994/MS4-Grizzly-Audio), clicking on the button "Code" > "Download ZIP".
+<br/>
+This can be opened in your chosen IDE's directory, such as VSCode or GitPod. Alternatively, a copy can be made with:<br/>
 
+`$ git clone https://github.com/Lindsaykerr1994/MS4-Grizzly-Audio`<br/>
+This can be run in a virtual environment with, and then activated: <br/>
+`$ python3 -m venv venv`<br/>
+`$ source venv/bin/activate`<br/>
+All packages that were used in creating this project can be found in the file [requirements.txt](requirements.txt). These packages can be installed with the command:<br/>
+`$ pip3 install -r requirements.txt`<br/>
+All environmental variables can be installed in an `env.py` file, or in the workspace's variables:<br/>
+| KEY     | VALUE |
+| ----------- | ----------- |
+| 'SECRET_KEY' | <'secret key'>  |
+| 'DATABASE_URL' | <'postgres key'> |
+| 'STRIPE_PUBLIC_KEY' | <'stripe public key'> |
+| 'STRIPE_SECRET_KEY' | <'stripe secret key'> |
+| 'STRIPE_WH_SECRET' | <'stripe webhook key'> |
+| 'AWS_ACCESS_KEY_ID' | <'aws access key id'> |
+| 'AWS_SECRET_ACCESS_KEY' | <'aws access secret key'> |
+| 'EMAIL_HOST_USER' | <'email user address'> |
+| 'EMAIL_HOST_PASS' | <'email api password'> |
+
+These variables can be set using the code:<br/>
+`import os`
+`os.environ.setdefault('KEY', 'VALUE')`<br/>
+If using a `env.py` file, remember to add this file to your local `.gitignore` file.
+
+After setting these variables, install the JSON data with:<br/>
+`$ python3 manage.py migrate`
+`$ python3 manage.py loaddata categories`
+`$ python3 manage.py loaddata packs`<br/>
+
+Finally, create a super user to access all the admin files:<br/>
+`$ python3 manage.py createsuperuser`<br/>
+
+Now the server is ready to be run with:<br/>
+`$ python3 manage.py runserver`<br/>
 
 ### Heroku <a name="heroku"></a>
 
