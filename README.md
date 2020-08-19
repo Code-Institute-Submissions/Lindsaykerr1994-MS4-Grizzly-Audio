@@ -1,5 +1,7 @@
 # Grizzly Audio Packs
 ![Grizzly Audio Packs](media/grizzlybanner.jpeg)<br/>
+
+---
 This is a submission for my fourth Milestone Project - Full Stack Frameworks with Django.<br/>
 It was created by Lindsay Kerr, 2020<br/>
 *Disclaimer: This wedpage is for educational purposes only*
@@ -24,12 +26,29 @@ It was created by Lindsay Kerr, 2020<br/>
     * [AWS Hosting](#aws)
 * [Credits](#credits)
 
+---
 ## UX <a name="ux"></a>
 ### User Goals <a name="usergoals"></a>
+#### Target Audience
+With the number of Digital Audio Workspaces always growing, and with more music producers being able to explore their passions, there is a an increase in the market for components, such as instrument one-shots, or filters that help with mastering and mixing. Grizzly Audio Packs currently offers a variety of instrumental loops for aspiring and established music producers, and in the near future, Grizzly Audio Packs hopes to offer a diverse range of different components that can be used in the product of all genres of music.
 
-
+#### User Stories
+* As an online shopper, I want to be able to save my information, so that I can easily checkout in the future.
+* As an online shopper, I want to be able to see my order history, so that I can revisit my previous purchases.
+* As an online shopper, I want to be validate my account, so that I can confirm my registration was confirmed.
+* As an online shopper, I want to be able to reset my password, so that I can recover my account if I forget my password.
+* As a shopper, I want to be able to view all the packs offered, so that I can purchase some.
+* As a shopper, I want to be able to see each pach individually, so that I can identify the qualities that each one offers.
+* As a shopper, I want to be able to search and sort through the audio packs, so that I can quickly find the audio packs I want.
+* As a shopper, I want to be able to sample the audio files, so that I can ensure I am purchasing the right pack.
+* As a shopper, I want to be able to identify which packs are on sale, so that I can save money on my purchases.
+* As a shopper, I want to be able to see the total of my shopping bag, so that I can control the amount of money I spend.
+* As a store owner, I want to be able to add audio packs to the store, so that I can increase the size of my sales catelogue.
+* As a store owner, I want to be able to edit the existing packs, so that I can update details when necessary. 
+* As a store owner, I want to be able to see the sales numbers of my audio packs, so that I can analyse which items are selling best.
 
 ### Design <a name="design"></a>
+
 I chose to keep the colour scheme as simple as possible. This will play into the minimalist design layout of the website. Together, the two will allow the functionality of the back-end speak for itself and promote the project. Furthermore, the simplicity of the site will allow users to navigate through the pages, and promote a sense of professionalism and style.
 #### Colours:
 * Dark Grey: `#292929`
@@ -37,11 +56,12 @@ I chose to keep the colour scheme as simple as possible. This will play into the
 * Light Brown: `#9c824a`
 * Gold: `#aa842a`
 #### Fonts:
-Only one font was used throughout these project: Arial. This was used in conjunction with font weight: 200 to garnish the pages with a slim, sleek environment.
+Only one font was used throughout these project: Montserrat. This was used in conjunction with font weight: 200 to garnish the pages with a slim, sleek environment.
 
 ### Wireframing & Mockups <a name="wireframing"></a>
 All wireframes (created with Moqup, see [Tools](#tools)) can found be in the [Media Folder](media/wireframing)
 
+---
 ## Features <a name="features"></a>
 ### Implemented <a name="implemented"></a>
 * Accounts/ Profiles<br/>
@@ -63,6 +83,7 @@ As customers browse the different packs on offer, they will be shown a selection
 * Reviews<br/>
 This upcoming feature will allow registered users to leave a review, a rating of out 5, and comments, informing other customers of the quality of the audio packs being offered. This will also allow the store owner another criteria in which to filter the packs in the main sale window.
 
+---
 ## Technologies <a name="technologies"></a>
 ### Languages <a name="languages"></a>
 In the construction of this project, I utlised four different languages:
@@ -76,6 +97,7 @@ In the construction of this project, I utlised four different languages:
 * [Bootstrap4](https://getbootstrap.com/) provided a web-responsive CSS framework for the front-end.
 * [FontAwesome](https://fontawesome.com/start) provided the icons found through out the site.
 * [TablerIcons](https://tablericons.com/) provided SVG icons that used in the carousel controls.
+* [GoogleFonts](https://fonts.google.com/) provided the font styling for this project.
 * [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) was used as a template language to implement logic in the front-end development.
 * [Psycopg2-Binary](https://pypi.org/project/psycopg2-binary/) is an adapter for the PostgreSQL database.
 * [JQuery](https://jquery.com/download/) was used in tandem with JavaScript to ease the DOM manipulation.
@@ -87,13 +109,16 @@ In the construction of this project, I utlised four different languages:
 * [GitPod](https://gitpod.io/workspaces/) provided an IDE to create this project.
 * [GitHub](https://github.com/) hosted and managed this project's repositories.
 * [Heroku](https://dashboard.heroku.com/apps) allowed me to host the deployed version of this project.
+* [AWS](https://aws.amazon.com/s3/) is a hosting service offered by Amazon to host my Static and Media files.
 * [SQLite](https://www.sqlite.org/index.html) is a database provided by Django that handles my JSON files in development.
 * [PostgreSQL](https://www.postgresql.org/) is a database that works with Heroku to handle my JSON files after deployment.
+
 * [Canva](https://www.canva.com/) was used in creating all media files, such as the audio pack cover images.
 * [Sampleswap](https://sampleswap.org/filebrowser-new.php) is a royalty-free website that provided all audio files. To clarify, I claim no ownership over any audio file found on these pages, nor do I seek to generate any revenue from these files.
 * [Pexels](https://www.pexels.com/) is a free stock image provider, where I was able to resource the background images used in the body element of 'index.html'. Again, I claim no ownership over any photographic files found on this website.
 * [Moqup](moqups.com) provided the services to create my wireframing designs found above.
 
+---
 ## Testing <a name="testing"></a>
 ### Manual Testing <a name="manual"></a>
 Throughout the development of this webpage, manual testing was implemented in every regard. This testing was simple but effective, testing each individual link, button or function. In this process, I was able to identify and locate every broken page or link before deployment. Unforunately, this testing is not 100% thorough, but it does allow me to simulate the user's experience through every step of a purchase or registration. Such bugs were handled and corrected to the best of my ability. 
@@ -107,7 +132,7 @@ To confirm the responsiveness of the pages, I ran the project through a [Mobile 
 No testing would be complete without validation.
 I used three different validators/linters:
 * [W3C HTML Validator](https://validator.w3.org/)
-* [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/)
+* [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/) - [Result](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgrizzlyaudiopacks.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
 * [JS Hint](https://jshint.com/)
 <br />
 Any and all problems or issues located by these validators were fixed pre-deployment.
@@ -116,6 +141,7 @@ Additionally, to validate any Python styling issues, I used the command in the c
 `$ flake8`<br />
 Any issues identified by this command were corrected to the best of my ability. There were some styling issues that were left unresolved, however these were all related to auto-generated files, such as my migration logs, or code automated in 'grizzly_audio/settings.py'.
 
+---
 ## Deployment <a name="deployment"></a>
 ### Github Repository <a name="github"></a>
 To download a copy of this project's repository, follow this [link](https://github.com/Lindsaykerr1994/MS4-Grizzly-Audio), clicking on the button "Code" > "Download ZIP".
@@ -129,6 +155,7 @@ This can be run in a virtual environment with, and then activated: <br/>
 All packages that were used in creating this project can be found in the file [requirements.txt](requirements.txt). These packages can be installed with the command:<br/>
 `$ pip3 install -r requirements.txt`<br/>
 All environmental variables can be installed in an `env.py` file, or in the workspace's variables:<br/>
+<a name="vars"></a>
 | KEY     | VALUE |
 | ----------- | ----------- |
 | 'SECRET_KEY' | <'secret key'>  |
@@ -147,8 +174,8 @@ These variables can be set using the code:<br/>
 If using a `env.py` file, remember to add this file to your local `.gitignore` file.
 
 After setting these variables, install the JSON data with:<br/>
-`$ python3 manage.py migrate`
-`$ python3 manage.py loaddata categories`
+`$ python3 manage.py migrate`<br/>
+`$ python3 manage.py loaddata categories`<br/>
 `$ python3 manage.py loaddata packs`<br/>
 
 Finally, create a super user to access all the admin files:<br/>
@@ -158,10 +185,32 @@ Now the server is ready to be run with:<br/>
 `$ python3 manage.py runserver`<br/>
 
 ### Heroku <a name="heroku"></a>
+A tutorial about how to depoloy to Heroku can be found [here](https://devcenter.heroku.com/categories/deployment)
+Once the project has been opened in your preferred IDE, it can be deployed to Heroku (with an existing account) by using the following code in the CLI:<br/>
+`$ heroku login`<br/>
+`Enter your Heroku credentials.`<br/>
+`Email: your@email.com`<br/>
+`Password (typing will be hidden):`<br/>
+`Authentication successful.`<br/>
+Along with the `requirements.txt` file, a `Procfile` is necessary to deploy to Heroku. This file will list the process types found in the web application.<br/>
+`web: gunicorn grizzly_audio.wsgi`<br/>
+Next, create an application in Heroku, and in the Settings tab, set all Config Vars as seen [above](#vars).
+In the resources table, install PostgreSQL
+Finally, connect your Heroku app with your GitHub repository in the Deploy tab to allow Automatic Deployment, and then push your project to Heroku.
+`$ git add .`<br/>
+`$ git commit -m "Commit Message"`<br/>
+`$ git push`<br/>
 
 
 ### AWS Hosting <a name="aws"></a>
+For details on hosting your static and media files to AWS, a tutorial can be found [here](https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html)
 
-
+---
 ## Credits <a name="credits"></a>
 
+While referenced in [Tools](#tools), I would like to make mention of the source of the media files, found at [Pexels](https://www.pexels.com/) & [Sampleswap](https://sampleswap.org/filebrowser-new.php). <br/>
+
+I would also like to thank my mentor for his guidance and advice in the creation of this project.
+Secondly, I would like to thank those that provided constructive criticism.
+Next, I would like to thank CodeInstitute for their instruction in Fullstack Web Development.
+Finally, I would like to thank Zoe Playoust for her patience while I completed my course at Code Institute.

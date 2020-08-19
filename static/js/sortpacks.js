@@ -8,12 +8,12 @@ $(document).ready(function(){
                 $('.btt-button').css("display","block");
             }
             else {
-                $('.btt-button').css("display","none")
+                $('.btt-button').css("display","none");
             }
         };
         $('.btt-link').click(function(e) {
-			window.scrollTo(0,0)
-        })
+			window.scrollTo(0,0);
+        });
         // When user clicks on the sort by select element
         $("#sortbyoptions").change(function(){
             var sortelement = $(this);
@@ -21,20 +21,21 @@ $(document).ready(function(){
             var selectedSort = sortelement.val();
             if(selectedSort != "-"){
                 currentUrl.searchParams.set("sort", selectedSort);
-                window.location.replace(currentUrl)
+                window.location.replace(currentUrl);
             }
-        })
+        });
         $("#changedirection").click(function(){
             var currentUrl = new URL(window.location);
             var currentDir = currentUrl.searchParams.get("direction");
+          	var newDir;
             if(currentDir == "desc"){
-                var newDir = "asc";
+                newDir = "asc";
             } else {
                 newDir = "desc";
             }
             currentUrl.searchParams.set("direction", newDir);
-            window.location.replace(currentUrl)
-        })
+            window.location.replace(currentUrl);
+        });
         // When opening modal window, resize margin-top to fit in the middle of the window.
         $(".pack-card").click(function(){
             var windowHeight = $(window).height();
@@ -50,9 +51,10 @@ $(document).ready(function(){
         $(window).resize(function(){
             var windowHeight = $(window).height();
             var modalHeight = $(".pack-detail-modal").height();
+          	var smallheightDiff;
             if(windowHeight > modalHeight){
                 var heightDiff = (windowHeight-modalHeight)/2;
-                var smallheightDiff = ((windowHeight-650)/2)+278;
+                smallheightDiff = ((windowHeight-650)/2)+278;
                 $(".pack-detail-modal").css("margin-top", heightDiff);
                 $(".pack-detail-modal").css("height", `650px`);
             } else {
@@ -67,7 +69,7 @@ $(document).ready(function(){
             $(".button-container").removeClass("d-none").addClass("d-block");
         }, function(){
             $(".button-container").removeClass("d-block").addClass("d-none");
-        })
+        });
         // When modal window open:
         $('.modal').on('show.bs.modal', function (e) {
             //Get modal ID
@@ -94,36 +96,29 @@ $(document).ready(function(){
                         audioPlaying = false;
                     }
                 });
-            };
+            }
         });
         // Change icon/text when hovering
         $(".close-btn").hover(function(){
-            $(".text-close").removeClass("d-block")
-            $(".text-close").addClass("d-none")
-            $(".close-btn i").removeClass("d-none")
-            $(".close-btn i").addClass("d-block")
+            $(".text-close").removeClass("d-block");
+            $(".text-close").addClass("d-none");
+            $(".close-btn i").removeClass("d-none");
+            $(".close-btn i").addClass("d-block");
         }, function(){
-            $(".close-btn i").removeClass("d-block")
-            $(".close-btn i").addClass("d-none")
-            $(".text-close").removeClass("d-none")
-            $(".text-close").addClass("d-block")
-        })
+            $(".close-btn i").removeClass("d-block");
+            $(".close-btn i").addClass("d-none");
+            $(".text-close").removeClass("d-none");
+            $(".text-close").addClass("d-block");
+        });
         $(".add-btn").hover(function(){
-            $(".text-price").removeClass("d-block")
-            $(".text-price").addClass("d-none")
-            $(".add-btn i").removeClass("d-none")
-            $(".add-btn i").addClass("d-block")
+            $(".text-price").removeClass("d-block");
+            $(".text-price").addClass("d-none");
+            $(".add-btn i").removeClass("d-none");
+            $(".add-btn i").addClass("d-block");
         }, function(){
-            $(".add-btn i").removeClass("d-block")
-            $(".add-btn i").addClass("d-none")
-            $(".text-price").removeClass("d-none")
-            $(".text-price").addClass("d-block")
-        })
-
-})
-function checkWindowHeight(){
-    var yOffset = window.pageYOffset;
-    if(yOffset != 0){
-        $('.btt-button').css("display","")
-    }
-}
+            $(".add-btn i").removeClass("d-block");
+            $(".add-btn i").addClass("d-none");
+            $(".text-price").removeClass("d-none");
+            $(".text-price").addClass("d-block");
+        });
+});

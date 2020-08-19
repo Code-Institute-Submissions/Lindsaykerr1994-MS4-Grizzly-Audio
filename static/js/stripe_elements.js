@@ -2,6 +2,10 @@
 /* https://stripe.com/docs/payments/accept-a-payment */
 /* https://stripe.com/docs/stripe-js */
 
+/* The implementation of this following Javascript code was instructed by following along the following videos:
+    https://courses.codeinstitute.net/courses/course-v1:CodeInstitute+FSF_102+Q1_2020/courseware/4201818c00aa4ba3a0dae243725f6e32/90cda137ebaa461894ba8c89cd83291a/?activate_block_id=block-v1%3ACodeInstitute%2BFSF_102%2BQ1_2020%2Btype%40sequential%2Bblock%4090cda137ebaa461894ba8c89cd83291a
+*/
+
 /* Import required keys from document */
 /* These variables are camel case to adher to following code */
 var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
@@ -54,7 +58,7 @@ form.addEventListener('submit', function(ev) {
     ev.preventDefault();
     /* Disable the card element and submit button to prevent multiple payments */
     card.update({'disabled': true});
-    $('#submit-button').attr('disabled', true)
+    $('#submit-button').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
     /* Check if 'save-info' input is checked */
