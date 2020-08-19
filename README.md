@@ -28,7 +28,7 @@ It was created by Lindsay Kerr, 2020<br/>
 
 ---
 ## UX <a name="ux"></a>
-![Grizzly Audio Packs](media/media-responsive-graphic.png)<br/>
+![Grizzly Audio Packs](media/media-responsive-graphics.png)<br/>
 
 ### User Goals <a name="usergoals"></a>
 #### Target Audience
