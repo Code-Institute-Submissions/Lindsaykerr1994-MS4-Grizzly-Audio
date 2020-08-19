@@ -28,7 +28,7 @@ It was created by Lindsay Kerr, 2020<br/>
 
 ---
 ## UX <a name="ux"></a>
-![Grizzly Audio Packs](media/media-responsive-graphic.jpeg)<br/>
+![Grizzly Audio Packs](media/media-responsive-graphic.png)<br/>
 
 ### User Goals <a name="usergoals"></a>
 #### Target Audience
@@ -125,6 +125,8 @@ In the construction of this project, I utlised four different languages:
 ### Manual Testing <a name="manual"></a>
 Throughout the development of this webpage, manual testing was implemented in every regard. This testing was simple but effective, testing each individual link, button or function. In this process, I was able to identify and locate every broken page or link before deployment. Unforunately, this testing is not 100% thorough, but it does allow me to simulate the user's experience through every step of a purchase or registration. Such bugs were handled and corrected to the best of my ability. 
 Furthermore, before official deployment and project submission, I requested that trusted professionals used the website, attempting to push the site to its boundaries. They were able to analyse every feature or design found on the site.
+
+Further more, I enlisted the help of members of my Slack community, #peer-code-review, to provide any advice or constructive criticism where relevant or necessary. These suggestions were implemented pre-deployment.
 
 ### Responsive <a name="responsive"></a>
 To confirm the responsiveness of the pages, I ran the project through a [Mobile Friendly Test](https://search.google.com/test/mobile-friendly). The test was only able to test one page at a time,so I ran the test with each template, with the results being: "Page is Mobile Friendly", as can be found [here](https://search.google.com/test/mobile-friendly?id=vMS5vOhoXJXS8-1sfNfiWQ). Along side this, I also conducted manual testing for responsiveness, running through the project's multiple pages, using the feature provided by Google Chrome's 'Inspect'. This allowed me to simulate viewing the webpage through the view of standard mobile devices, such as Mobile XS(320x557) or 4K(2560x1392).
