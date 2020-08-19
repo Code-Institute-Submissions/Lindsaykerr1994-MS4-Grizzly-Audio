@@ -323,3 +323,8 @@ header .row:first-of-type{
         margin: auto 15px;
     }
 }
+@media (max-width: 400px){
+    header .row .col-2:last-of-type{
+        margin-left: 10px !important;
+    }
+}
