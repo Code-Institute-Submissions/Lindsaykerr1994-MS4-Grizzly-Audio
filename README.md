@@ -1,5 +1,5 @@
 # Grizzly Audio Packs
-![Grizzly Audio Packs](media/grizzlybanner.jpeg)<br/>
+![Grizzly Audio Packs](media/grizzlybanner.jpeg =838x469)<br/>
 
 ---
 This is a submission for my fourth Milestone Project - Full Stack Frameworks with Django.<br/>
@@ -28,6 +28,8 @@ It was created by Lindsay Kerr, 2020<br/>
 
 ---
 ## UX <a name="ux"></a>
+![Grizzly Audio Packs](media/media-responsive-graphic.jpeg =838x469)<br/>
+
 ### User Goals <a name="usergoals"></a>
 #### Target Audience
 With the number of Digital Audio Workspaces always growing, and with more music producers being able to explore their passions, there is a an increase in the market for components, such as instrument one-shots, or filters that help with mastering and mixing. Grizzly Audio Packs currently offers a variety of instrumental loops for aspiring and established music producers, and in the near future, Grizzly Audio Packs hopes to offer a diverse range of different components that can be used in the product of all genres of music.
@@ -132,7 +134,7 @@ To confirm the responsiveness of the pages, I ran the project through a [Mobile 
 No testing would be complete without validation.
 I used three different validators/linters:
 * [W3C HTML Validator](https://validator.w3.org/)
-* [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/) - [Result](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgrizzlyaudiopacks.herokuapp.com%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en)
+* [W3C CSS Jigsaw Validator](https://jigsaw.w3.org/css-validator/)usermedium=all&warning=1&vextwarning=&lang=en)
 * [JS Hint](https://jshint.com/)
 <br />
 Any and all problems or issues located by these validators were fixed pre-deployment.
