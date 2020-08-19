@@ -22,6 +22,7 @@ input:not([type='checkbox']){
     box-sizing: border-box;
     padding: 10px 12px;
     border: 1px solid #292929;
+    height: 40px;
     border-radius: 0;
     background-color: white;
     box-shadow: 0 2px 4px 0 #e6ebf1;
@@ -35,8 +36,8 @@ input:not([type='checkbox']){
 #id_category{
     margin-top: 5px;
 }
-.stripe-style-input:not(textarea), .stripe-style-input:not(input[type="checkbox"]) {
-    height: 40px;
+textarea.stripe-style-input, input[type="checkbox"] {
+    height: auto;
 }
 
 .StripeElement--focus, .stripe-style-input:focus, .stripe-style-input:active {
