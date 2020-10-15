@@ -103,6 +103,25 @@ form.addEventListener('submit', function(ev) {
                     country: $.trim(form.country.value),
                 }
             },
+        /* After collecting all the necessary data from the form, we present an errors (if necessary), or we submit the form to Stripe */
+        }).then(function(result) {
+            if (result.error) {
+                var errorDiv = document.getElementById('card-errors');
+                var errorHtml = `
+                    <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>`;
+                $(errorDiv).html(errorHtml);
+                $('#payment-form').fadeToggle(100);
+                $('#loading-overlay').fadeToggle(100);
+                card.update({ 'disabled': false});
+                $('#submit-button').attr('disabled', false);
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
+            }
         });
     /* If the post method fails, then reload the page, and the error message will display */
     }).fail(function(){
