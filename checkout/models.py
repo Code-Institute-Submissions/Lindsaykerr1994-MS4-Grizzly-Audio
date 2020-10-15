@@ -16,16 +16,15 @@ class Order(models.Model):
     email = models.EmailField(max_length=254, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False)
     street_address1 = models.CharField(max_length=80, null=False, blank=False,
-                                       default=" ")
-    # Street Address is not required
+                                       default="")
     street_address2 = models.CharField(max_length=80,
-                                       null=False, blank=False, default=" ")
+                                       null=True, blank=True, default="")
     town_or_city = models.CharField(max_length=40, null=False, blank=False)
-    # Street Address is not required
+    # Street Address 2 is not required
     county = models.CharField(max_length=40, null=False, blank=False,
-                              default=" ")
+                              default="")
     post_code = models.CharField(max_length=10, null=False, blank=False,
-                                 default=" ")
+                                 default="")
     country = CountryField(blank_label='Country *', null=False,
                            blank=False)
     order_total = models.DecimalField(max_digits=10, decimal_places=2,
