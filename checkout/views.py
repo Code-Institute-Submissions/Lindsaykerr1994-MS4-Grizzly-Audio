@@ -98,8 +98,8 @@ def checkout(request):
             try:
                 profile = UserProfile.objects.get(user=request.user)
                 order_form = OrderForm(initial={
-                    'full_name': profile.user.get_full_name(),
-                    'email': profile.user.email,
+                    'full_name': profile.default_full_name,
+                    'email': profile.default_email,
                     'phone_number': profile.default_phone_number,
                     'street_address1': profile.default_street_address1,
                     'street_address2': profile.default_street_address2,
@@ -177,7 +177,25 @@ def checkout_no_payment(request):
                 right now")
             return redirect(reverse('packs'))
         template = 'checkout/checkout_no_payment.html'
-        order_form = OrderForm()
+        # Assign user's information to order_form to
+        if request.user.is_authenticated:
+            try:
+                profile = UserProfile.objects.get(user=request.user)
+                order_form = OrderForm(initial={
+                    'full_name': profile.default_full_name,
+                    'email': profile.default_email,
+                    'phone_number': profile.default_phone_number,
+                    'street_address1': profile.default_street_address1,
+                    'street_address2': profile.default_street_address2,
+                    'town_or_city': profile.default_town_or_city,
+                    'post_code': profile.default_post_code,
+                    'county': profile.default_county,
+                    'country': profile.default_country,
+                })
+            except UserProfile.DoesNotExist:
+                order_form = OrderForm()
+        else:
+            order_form = OrderForm()
         context = {
             'order_form': order_form,
         }
@@ -197,6 +215,8 @@ def checkout_success(request, order_number):
         # Save profile information
         if save_info:
             profile_data = {
+                'default_full_name': order.full_name,
+                'default_email': order.email,
                 'default_phone_number': order.phone_number,
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
