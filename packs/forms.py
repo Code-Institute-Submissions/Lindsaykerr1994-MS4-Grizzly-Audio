@@ -28,6 +28,7 @@ class PackForm(forms.ModelForm):
             'reduced_price': 'Reduced Price',
             'image': 'Image',
             'sample_track': 'Sample Track',
+            'download_file': 'Download File',
         }
         categories = Category.objects.all()
         friendly_names = [(c.id, c.get_friendly_name()) for c in categories]

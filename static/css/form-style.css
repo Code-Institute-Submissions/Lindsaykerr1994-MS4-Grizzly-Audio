@@ -1,20 +1,17 @@
 
 #payment-form .form-control,
 #card-element {
-    color: #292929;
     border: 1px solid #292929;
 }
 input:not([type='checkbox']){
     margin: 5px auto;
 }
-.stripe-style-input {
-    font-weight: 200;
-    text-transform: uppercase;
-}
 .stripe-style-input::placeholder {
     font-weight: 200;
-    text-transform: uppercase;
     color: #aab7c4;
+}
+#div_id_country select{
+    text-transform: uppercase;
 }
 /* The following specifcations are found at */
 /* https://stripe.com/docs/stripe-js */

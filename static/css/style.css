@@ -146,9 +146,14 @@ header .row:first-of-type{
     margin-top:8px;
     width: 225px;
 }
+/* Couldn't accopmlish this with Bootstrap's ".text-decoration-none" */
+#logo-container a{
+    text-decoration: none;
+}
 /* Toast Specifications */
 .toast{
     min-width: 250px;
+    max-width: 400px;
     border: 1px solid #000
 }
 .message-container {
@@ -306,6 +311,9 @@ header .row:first-of-type{
 /* Bag Page Specifcations */
 .img-col{
     width:250px;
+}
+.img-col img{
+    width: 200px;
 }
 .remove-item-link{
     cursor: pointer;

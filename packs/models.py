@@ -30,6 +30,7 @@ class Pack(models.Model):
                                 editable=False)
     image = models.ImageField(null=False, blank=True)
     sample_track = models.FileField(null=False, blank=True)
+    download_file = models.FileField(null=False, blank=False, default='.')
 
     def __str__(self):
         return self.name

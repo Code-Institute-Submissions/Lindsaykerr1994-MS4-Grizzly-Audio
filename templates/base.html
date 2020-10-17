@@ -14,6 +14,8 @@
         <link rel="icon" type="image/png" href="{% static 'canva/favicon.png' %}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover.css"
+		type="text/css" />
     {% endblock %}
 
     {% block extra_css %}
@@ -41,13 +43,15 @@
             <div class="col-2 d-lg-none">
                 <button class="mobile-btn" id="mobile-nav-btn"><i class="fas fa-bars fa-2x"></i></button>
             </div>
-            <div class="col-6 offset-1 offset-lg-0 my-auto py-1 py-lg-0 text-center text-lg-left">
-                <a href="{% url 'home' %}" class="float-lg-none">
-                    <p class="d-none d-sm-inline-block d-lg-none text-uppercase font-weight-light text-white mobile-nav-text">Grizzly</p>
+            <div id="logo-container" class="col-6 offset-1 offset-lg-0 my-auto py-1 py-lg-0 text-center text-lg-left">
+                <a href="{% url 'home' %}" class="float-lg-none text-decoration-none">
+                    <p class="d-none d-sm-inline-block d-lg-none text-uppercase font-weight-light text-white">Grizzly</p>
                     <img class="d-inline-block" id="main-nav-logo" src="{% static 'canva/grizzlyaudio-logo.png' %}" alt="Main Logo">
-                    <p class="d-none d-sm-inline-block d-lg-none text-uppercase font-weight-light text-white mobile-nav-text">Audio</p>
+                    <p class="d-none d-sm-inline-block d-lg-none text-uppercase font-weight-light text-white">Audio</p>
                 </a>
-                <a href="{% url 'home' %}"><h2 id="main-logo-text" class="d-lg-inline-block d-none text-uppercase font-weight-light text-white">GRIZZLY</h2></a>
+                <a href="{% url 'home' %}" class="d-lg-inline-block d-none">
+                    <h2 id="main-logo-text" class="text-uppercase font-weight-light text-white">GRIZZLY</h2>
+                </a>
             </div>
             <div class="col-6 d-none d-lg-inline-block my-auto py-1 py-lg-0 text-lg-right">    
                 {% include 'includes/main-navbar.html' %}
@@ -110,6 +114,9 @@
     <script type="text/javascript">
         // Had to recreate the command to close toasts, as it wasn't closing properly
             $('.toast').toast('show');
+            $('header').click(function(){
+                $('.message-container').css("display", "none");
+            });
             $('.toast .close').click(function(){
                 $('.message-container').css("display", "none");
             });
