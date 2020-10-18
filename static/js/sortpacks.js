@@ -70,7 +70,7 @@ $(document).ready(function(){
         }, function(){
             $(".button-container").removeClass("d-block").addClass("d-none");
         });
-        // When modal window open:
+        // When modal window opens:
         $('.modal').on('show.bs.modal', function (e) {
             //Get modal ID
             var getID = $(this).attr("id");
@@ -82,12 +82,14 @@ $(document).ready(function(){
                     // If audio file is paused, play. Vice versa
                     if (audioPlaying==false){
                         audio.play();
-                        // Change play button icon to paused.
-                        $(this).find(".play-button").addClass("pause");
+                        // Change play button icon to pause.
+                        $(`#pack${ID}Modal .pack-detail-img`).find(".play-button").addClass("pause");
                         audioPlaying = true;
+                        
                         // If user closes the modal, pause the audio file.
                         $(`#pack${ID}Modal`).on('hide.bs.modal', function (e) {
                             audio.pause();
+                            $(`#pack${ID}Modal .pack-detail-img`).find(".play-button").removeClass("pause");
                             audioPlaying = false;
                         });
                     } else {
@@ -95,8 +97,10 @@ $(document).ready(function(){
                         $(this).find(".play-button").removeClass("pause");
                         audioPlaying = false;
                     }
+                    
                 });
             }
+            
         });
         // Change icon/text when hovering
         $(".close-btn").hover(function(){
