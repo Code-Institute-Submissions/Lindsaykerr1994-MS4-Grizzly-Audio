@@ -123,6 +123,13 @@ header .row:first-of-type{
 #main-navbar-list .list-inline-item{
     width: 75px;
 }
+#search-bar input{
+    width: 175px;
+}
+#search-bar button{
+    height:30px;
+    margin-top: 5px;
+}
 .mobile-btn{
     background-color: #292929;
     border: 1px solid;
