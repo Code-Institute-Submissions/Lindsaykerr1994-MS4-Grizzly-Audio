@@ -110,7 +110,7 @@
                             {% for pack in free_packs %}
                                 {% if forloop.first %}
                                     <div class="carousel-item active">
-                                        <a href="{% url 'packs' %}">
+                                        <a href="{% url 'packs' %}?sort=freepacks">
                                             <img class="d-block mx-auto" src="{{ pack.image.url }}" alt="{{ pack.name }} Cover Image">
                                         </a>
                                     </div>
