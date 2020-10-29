@@ -202,7 +202,6 @@ def checkout_no_payment(request):
     return render(request, template, context)
 
 
-@login_required
 def checkout_success(request, order_number):
     # This will confirm a successful order
     save_info = request.session.get('save_info')
